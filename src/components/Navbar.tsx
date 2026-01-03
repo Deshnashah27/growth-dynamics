@@ -1,12 +1,13 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
 
 const navLinks = [
-  { name: 'Services', href: '#services' },
-  { name: 'Process', href: '#process' },
-  { name: 'About', href: '#about' },
-  { name: 'Contact', href: '#contact' },
+  { name: 'Services', href: '/#services' },
+  { name: 'Process', href: '/#process' },
+  { name: 'About', href: '/#about' },
+  { name: 'Contact', href: '/#contact' },
 ];
 
 const Navbar = () => {
@@ -45,17 +46,16 @@ const Navbar = () => {
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <motion.a
-            href="#"
+          <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
-            className="font-display text-2xl font-bold tracking-tight"
           >
-            <span className="text-gradient">AXIS</span>
-          </motion.a>
+            <Link to="/" className="font-display text-2xl font-bold tracking-tight">
+              <span className="text-gradient">Jinanshé</span>
+            </Link>
+          </motion.div>
 
-          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link, index) => (
               <motion.a
@@ -71,17 +71,16 @@ const Navbar = () => {
               </motion.a>
             ))}
 
-            <motion.button
+            <motion.a
+              href="/#contact"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.4 }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.98 }}
-              className="px-5 py-2.5 bg-primary text-primary-foreground text-sm font-display font-semibold rounded-full hover:shadow-lg transition-shadow"
+              className="px-5 py-2.5 bg-primary text-primary-foreground text-sm font-display font-semibold rounded-full hover:shadow-lg hover:scale-105 transition-all"
               style={{ boxShadow: 'var(--shadow-glow)' }}
             >
               Get Started
-            </motion.button>
+            </motion.a>
           </div>
 
           {/* Mobile menu button */}
@@ -112,9 +111,9 @@ const Navbar = () => {
                 {link.name}
               </a>
             ))}
-            <button className="w-full mt-4 px-5 py-3 bg-primary text-primary-foreground font-display font-semibold rounded-full">
+            <a href="/#contact" className="block w-full mt-4 px-5 py-3 bg-primary text-primary-foreground font-display font-semibold rounded-full text-center">
               Get Started
-            </button>
+            </a>
           </div>
         </motion.div>
       </div>

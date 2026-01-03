@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Check, ArrowUpRight, Palette, Share2, LineChart, Box } from 'lucide-react';
+import { useEffect } from 'react';
+import { ArrowLeft, Check, ArrowUpRight, Palette, Share2, LineChart, Box, Instagram, Linkedin, Youtube, Mail } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import RevealOnScroll from '@/components/RevealOnScroll';
 
@@ -24,9 +25,24 @@ const servicesData = {
       { step: '04', title: 'Delivery', description: 'Comprehensive brand assets and guidelines for implementation.' },
     ],
     clientWork: [
-      { name: 'TechVenture', industry: 'Technology', result: 'Complete rebrand resulting in 150% increase in brand recognition' },
-      { name: 'EcoLiving', industry: 'Sustainability', result: 'New identity launch driving 200% social engagement growth' },
-      { name: 'FinanceHub', industry: 'FinTech', result: 'Brand refresh achieving 80% positive sentiment increase' },
+      { 
+        name: 'TechVenture', 
+        industry: 'Technology', 
+        result: 'Complete rebrand resulting in 150% increase in brand recognition',
+        image: 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=600&h=400&fit=crop'
+      },
+      { 
+        name: 'EcoLiving', 
+        industry: 'Sustainability', 
+        result: 'New identity launch driving 200% social engagement growth',
+        image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&h=400&fit=crop'
+      },
+      { 
+        name: 'FinanceHub', 
+        industry: 'FinTech', 
+        result: 'Brand refresh achieving 80% positive sentiment increase',
+        image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&h=400&fit=crop'
+      },
     ],
   },
   'social-media-marketing': {
@@ -48,9 +64,24 @@ const servicesData = {
       { step: '04', title: 'Optimize', description: 'Continuous improvement based on performance data.' },
     ],
     clientWork: [
-      { name: 'FashionForward', industry: 'E-commerce', result: '500% growth in organic reach within 6 months' },
-      { name: 'HealthyLife', industry: 'Wellness', result: '10K to 250K followers in one year' },
-      { name: 'StartupX', industry: 'SaaS', result: '3x increase in qualified leads from social' },
+      { 
+        name: 'FashionForward', 
+        industry: 'E-commerce', 
+        result: '500% growth in organic reach within 6 months',
+        image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&h=400&fit=crop'
+      },
+      { 
+        name: 'HealthyLife', 
+        industry: 'Wellness', 
+        result: '10K to 250K followers in one year',
+        image: 'https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?w=600&h=400&fit=crop'
+      },
+      { 
+        name: 'StartupX', 
+        industry: 'SaaS', 
+        result: '3x increase in qualified leads from social',
+        image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop'
+      },
     ],
   },
   'sales-lead-generation': {
@@ -72,9 +103,24 @@ const servicesData = {
       { step: '04', title: 'Scale', description: 'Optimize and expand successful campaigns for growth.' },
     ],
     clientWork: [
-      { name: 'B2B Solutions', industry: 'Enterprise', result: '400% increase in qualified leads' },
-      { name: 'CourseCreator', industry: 'Education', result: '$2M in course sales from funnel campaigns' },
-      { name: 'ConsultingPro', industry: 'Professional Services', result: '60% reduction in cost per acquisition' },
+      { 
+        name: 'B2B Solutions', 
+        industry: 'Enterprise', 
+        result: '400% increase in qualified leads',
+        image: 'https://images.unsplash.com/photo-1553028826-f4804a6dba3b?w=600&h=400&fit=crop'
+      },
+      { 
+        name: 'CourseCreator', 
+        industry: 'Education', 
+        result: '$2M in course sales from funnel campaigns',
+        image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=400&fit=crop'
+      },
+      { 
+        name: 'ConsultingPro', 
+        industry: 'Professional Services', 
+        result: '60% reduction in cost per acquisition',
+        image: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&h=400&fit=crop'
+      },
     ],
   },
   'ar-experiences': {
@@ -96,16 +142,43 @@ const servicesData = {
       { step: '04', title: 'Launch', description: 'Deploy, monitor, and optimize for maximum engagement.' },
     ],
     clientWork: [
-      { name: 'LuxuryBrand', industry: 'Fashion', result: 'AR try-on feature increasing conversions by 250%' },
-      { name: 'FurnitureCo', industry: 'Home Decor', result: 'Room visualization reducing returns by 40%' },
-      { name: 'BeverageBrand', industry: 'FMCG', result: 'Viral AR campaign with 5M+ interactions' },
+      { 
+        name: 'LuxuryBrand', 
+        industry: 'Fashion', 
+        result: 'AR try-on feature increasing conversions by 250%',
+        image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop'
+      },
+      { 
+        name: 'FurnitureCo', 
+        industry: 'Home Decor', 
+        result: 'Room visualization reducing returns by 40%',
+        image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=600&h=400&fit=crop'
+      },
+      { 
+        name: 'BeverageBrand', 
+        industry: 'FMCG', 
+        result: 'Viral AR campaign with 5M+ interactions',
+        image: 'https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=600&h=400&fit=crop'
+      },
     ],
   },
 };
 
+const socialLinks = [
+  { icon: Instagram, name: 'Instagram', href: 'https://instagram.com/yourhandle', color: '#E4405F' },
+  { icon: Linkedin, name: 'LinkedIn', href: 'https://linkedin.com/company/yourcompany', color: '#0A66C2' },
+  { icon: Youtube, name: 'YouTube', href: 'https://youtube.com/@yourchannel', color: '#FF0000' },
+  { icon: Mail, name: 'Email', href: 'mailto:hello@example.com', color: '#D44638' },
+];
+
 const ServiceDetailPage = () => {
   const { slug } = useParams<{ slug: string }>();
   const service = servicesData[slug as keyof typeof servicesData];
+
+  // Scroll to top when page loads
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [slug]);
 
   if (!service) {
     return (
@@ -131,11 +204,11 @@ const ServiceDetailPage = () => {
         
         <div className="container mx-auto px-6 relative z-10">
           <Link 
-            to="/" 
+            to="/#services" 
             className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors mb-8"
           >
             <ArrowLeft className="w-4 h-4" />
-            <span>Back to Home</span>
+            <span>Back to Services</span>
           </Link>
 
           <motion.div
@@ -158,6 +231,30 @@ const ServiceDetailPage = () => {
             <p className="text-muted-foreground text-xl md:text-2xl max-w-3xl leading-relaxed">
               {service.heroDescription}
             </p>
+          </motion.div>
+
+          {/* Social Links */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="flex items-center gap-4 mt-10"
+          >
+            <span className="text-muted-foreground text-sm">Follow us:</span>
+            <div className="flex items-center gap-3">
+              {socialLinks.map((social) => (
+                <motion.a
+                  key={social.name}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.1, backgroundColor: social.color }}
+                  className="w-10 h-10 rounded-xl bg-card border border-border/50 flex items-center justify-center text-muted-foreground hover:text-white transition-colors"
+                >
+                  <social.icon className="w-5 h-5" />
+                </motion.a>
+              ))}
+            </div>
           </motion.div>
         </div>
       </section>
@@ -220,25 +317,55 @@ const ServiceDetailPage = () => {
         </div>
       </section>
 
-      {/* Client Work Section */}
+      {/* Client Work Section - Portfolio */}
       <section className="py-20 md:py-32 border-t border-border/30">
         <div className="container mx-auto px-6">
           <RevealOnScroll className="mb-16">
             <h2 className="font-display text-3xl md:text-5xl font-bold mb-4">
               Client <span className="text-gradient">Results</span>
             </h2>
+            <p className="text-muted-foreground text-lg max-w-2xl">
+              Real results from real clients. See how we've helped brands transform their digital presence.
+            </p>
           </RevealOnScroll>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-8">
             {service.clientWork.map((client, index) => (
               <RevealOnScroll key={client.name} delay={index * 0.1}>
                 <motion.div 
-                  whileHover={{ y: -5 }}
-                  className="p-8 rounded-3xl bg-card border border-border/50 hover:border-primary/30 transition-all duration-300"
+                  whileHover={{ y: -10 }}
+                  className="group relative rounded-3xl overflow-hidden bg-card border border-border/50 hover:border-primary/30 transition-all duration-500"
                 >
-                  <p className="text-primary text-sm font-medium mb-2">{client.industry}</p>
-                  <h3 className="font-display text-2xl font-bold mb-4">{client.name}</h3>
-                  <p className="text-muted-foreground">{client.result}</p>
+                  {/* Image */}
+                  <div className="relative h-56 overflow-hidden">
+                    <motion.img
+                      src={client.image}
+                      alt={`${client.name} project`}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-card via-card/20 to-transparent" />
+                    
+                    {/* Industry badge */}
+                    <div className="absolute top-4 left-4">
+                      <span className="px-3 py-1 rounded-full text-xs font-medium bg-primary/20 text-primary backdrop-blur-sm">
+                        {client.industry}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Content */}
+                  <div className="p-6">
+                    <h3 className="font-display text-2xl font-bold mb-3 group-hover:text-primary transition-colors">
+                      {client.name}
+                    </h3>
+                    <p className="text-muted-foreground leading-relaxed">{client.result}</p>
+                    
+                    {/* View Project link */}
+                    <div className="mt-4 flex items-center gap-2 text-primary font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <span>View Project</span>
+                      <ArrowUpRight className="w-4 h-4" />
+                    </div>
+                  </div>
                 </motion.div>
               </RevealOnScroll>
             ))}
@@ -256,24 +383,38 @@ const ServiceDetailPage = () => {
             <p className="text-muted-foreground text-lg mb-8 max-w-xl mx-auto">
               Let's discuss how we can help transform your brand with our {service.title.toLowerCase()} expertise.
             </p>
-            <motion.button
+            <motion.a
+              href="/#contact"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
               className="group relative inline-flex items-center gap-3 px-8 py-4 bg-primary text-primary-foreground font-display font-semibold text-lg rounded-full overflow-hidden transition-all duration-300"
             >
               <span className="relative z-10">Start a Conversation</span>
               <ArrowUpRight className="relative z-10 w-5 h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-            </motion.button>
+            </motion.a>
           </RevealOnScroll>
         </div>
       </section>
 
       {/* Footer */}
       <footer className="py-8 border-t border-border/30">
-        <div className="container mx-auto px-6 text-center">
+        <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-muted-foreground text-sm">
-            © 2024 AXIS Agency. All rights reserved.
+            © 2024 Jinanshé. All rights reserved.
           </p>
+          <div className="flex items-center gap-4">
+            {socialLinks.map((social) => (
+              <a
+                key={social.name}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
+                <social.icon className="w-5 h-5" />
+              </a>
+            ))}
+          </div>
         </div>
       </footer>
     </div>
