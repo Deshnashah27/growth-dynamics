@@ -2,7 +2,6 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import { ArrowRight } from 'lucide-react';
 import KineticText from '../KineticText';
-import FloatingElement from '../FloatingElement';
 
 const HeroSection = () => {
   const containerRef = useRef(null);
@@ -19,70 +18,109 @@ const HeroSection = () => {
       ref={containerRef}
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      {/* Subtle gradient background */}
+      {/* Enhanced gradient background */}
       <div className="absolute inset-0 bg-background">
+        {/* Primary radial glow */}
         <div 
-          className="absolute inset-0 opacity-50"
-          style={{ background: 'var(--gradient-radial)' }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1200px] opacity-40"
+          style={{ 
+            background: 'radial-gradient(circle, hsl(var(--primary) / 0.15) 0%, transparent 60%)'
+          }}
         />
+        
+        {/* Animated gradient orbs */}
+        <motion.div
+          animate={{ 
+            scale: [1, 1.2, 1],
+            opacity: [0.3, 0.5, 0.3]
+          }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-[20%] left-[20%] w-[500px] h-[500px] rounded-full blur-[120px]"
+          style={{ background: 'hsl(var(--primary) / 0.2)' }}
+        />
+        <motion.div
+          animate={{ 
+            scale: [1.2, 1, 1.2],
+            opacity: [0.2, 0.4, 0.2]
+          }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-[10%] right-[15%] w-[600px] h-[600px] rounded-full blur-[150px]"
+          style={{ background: 'hsl(45 100% 60% / 0.15)' }}
+        />
+        
+        {/* Subtle grid overlay */}
         <div 
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] opacity-30"
-          style={{ background: 'var(--gradient-glow)' }}
+          className="absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage: `linear-gradient(hsl(var(--foreground)) 1px, transparent 1px),
+                              linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)`,
+            backgroundSize: '80px 80px'
+          }}
         />
+        
+        {/* Accent lines */}
+        <svg className="absolute inset-0 w-full h-full opacity-20" xmlns="http://www.w3.org/2000/svg">
+          <motion.line
+            x1="10%" y1="30%" x2="40%" y2="20%"
+            stroke="url(#lineGradient)"
+            strokeWidth="1"
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={{ pathLength: 1, opacity: 1 }}
+            transition={{ duration: 2, delay: 1 }}
+          />
+          <motion.line
+            x1="60%" y1="80%" x2="90%" y2="60%"
+            stroke="url(#lineGradient)"
+            strokeWidth="1"
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={{ pathLength: 1, opacity: 1 }}
+            transition={{ duration: 2, delay: 1.5 }}
+          />
+          <motion.circle
+            cx="85%" cy="25%"
+            r="100"
+            fill="none"
+            stroke="url(#circleGradient)"
+            strokeWidth="1"
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={{ pathLength: 1, opacity: 0.5 }}
+            transition={{ duration: 3, delay: 2 }}
+          />
+          <defs>
+            <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity="0" />
+              <stop offset="50%" stopColor="hsl(var(--primary))" stopOpacity="0.5" />
+              <stop offset="100%" stopColor="hsl(var(--primary))" stopOpacity="0" />
+            </linearGradient>
+            <linearGradient id="circleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity="0.3" />
+              <stop offset="100%" stopColor="hsl(var(--primary))" stopOpacity="0" />
+            </linearGradient>
+          </defs>
+        </svg>
+        
+        {/* Floating particles */}
+        {[...Array(6)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 rounded-full bg-primary/40"
+            style={{
+              left: `${15 + i * 15}%`,
+              top: `${20 + (i % 3) * 25}%`,
+            }}
+            animate={{
+              y: [0, -30, 0],
+              opacity: [0.3, 0.7, 0.3],
+            }}
+            transition={{
+              duration: 4 + i,
+              repeat: Infinity,
+              delay: i * 0.5,
+              ease: "easeInOut"
+            }}
+          />
+        ))}
       </div>
-
-      {/* Floating UI elements */}
-      <FloatingElement 
-        className="absolute top-[15%] left-[10%] w-32 h-32 rounded-2xl glass-card opacity-40" 
-        speed={0.3}
-        rotateAmount={8}
-      >
-        <div className="w-full h-full p-4 flex flex-col gap-2">
-          <div className="w-8 h-2 bg-primary/50 rounded-full" />
-          <div className="w-16 h-2 bg-muted-foreground/30 rounded-full" />
-          <div className="w-12 h-2 bg-muted-foreground/20 rounded-full" />
-        </div>
-      </FloatingElement>
-
-      <FloatingElement 
-        className="absolute top-[25%] right-[12%] w-24 h-40 rounded-2xl glass-card opacity-30" 
-        speed={0.5}
-        rotateAmount={-6}
-      >
-        <div className="w-full h-full p-3 flex flex-col gap-2">
-          <div className="w-full h-16 bg-gradient-to-br from-primary/30 to-primary/10 rounded-lg" />
-          <div className="flex-1 flex flex-col gap-1.5">
-            <div className="w-full h-2 bg-muted-foreground/20 rounded-full" />
-            <div className="w-3/4 h-2 bg-muted-foreground/15 rounded-full" />
-          </div>
-        </div>
-      </FloatingElement>
-
-      <FloatingElement 
-        className="absolute bottom-[20%] left-[15%] w-40 h-24 rounded-2xl glass-card opacity-35" 
-        speed={0.4}
-        rotateAmount={5}
-      >
-        <div className="w-full h-full p-4 flex items-end gap-2">
-          {[0.4, 0.7, 0.5, 0.9, 0.6, 0.8].map((height, i) => (
-            <div 
-              key={i}
-              className="flex-1 bg-gradient-to-t from-primary/40 to-primary/10 rounded-sm"
-              style={{ height: `${height * 100}%` }}
-            />
-          ))}
-        </div>
-      </FloatingElement>
-
-      <FloatingElement 
-        className="absolute bottom-[25%] right-[8%] w-28 h-28 rounded-full glass-card opacity-25" 
-        speed={0.6}
-        rotateAmount={0}
-      >
-        <div className="w-full h-full flex items-center justify-center">
-          <div className="w-16 h-16 rounded-full border-4 border-primary/30 border-t-primary/70 animate-spin" style={{ animationDuration: '3s' }} />
-        </div>
-      </FloatingElement>
 
       {/* Main content */}
       <motion.div 
