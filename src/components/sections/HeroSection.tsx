@@ -165,7 +165,8 @@ const HeroSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 2.1 }}
         >
-          <motion.button
+          <motion.a
+            href="#contact"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
             className="group relative inline-flex items-center gap-3 px-8 py-4 bg-primary text-primary-foreground font-display font-semibold text-lg rounded-full overflow-hidden transition-all duration-300"
@@ -178,7 +179,7 @@ const HeroSection = () => {
               whileHover={{ x: 0 }}
               transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
             />
-          </motion.button>
+          </motion.a>
         </motion.div>
       </motion.div>
 
