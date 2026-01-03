@@ -1,7 +1,23 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { ArrowRight, Instagram, Mail, Linkedin, Youtube, Facebook } from 'lucide-react';
+import { ArrowRight, Instagram, Mail, Linkedin, Youtube, Facebook, Send, CheckCircle } from 'lucide-react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
 import RevealOnScroll from '../RevealOnScroll';
+import { Button } from '../ui/button';
+import { Input } from '../ui/input';
+import { Textarea } from '../ui/textarea';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '../ui/form';
+import { useToast } from '@/hooks/use-toast';
+
+const contactSchema = z.object({
+  name: z.string().trim().min(2, { message: "Name must be at least 2 characters" }).max(100, { message: "Name must be less than 100 characters" }),
+  email: z.string().trim().email({ message: "Please enter a valid email address" }).max(255, { message: "Email must be less than 255 characters" }),
+  message: z.string().trim().min(10, { message: "Message must be at least 10 characters" }).max(1000, { message: "Message must be less than 1000 characters" })
+});
+
+type ContactFormData = z.infer<typeof contactSchema>;
 
 const socialIcons = [
   { icon: Instagram, name: 'Instagram', color: '#E4405F', delay: 0 },
@@ -13,6 +29,28 @@ const socialIcons = [
 
 const ContactSection = () => {
   const [hoveredIcon, setHoveredIcon] = useState<string | null>(null);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const { toast } = useToast();
+
+  const form = useForm<ContactFormData>({
+    resolver: zodResolver(contactSchema),
+    defaultValues: {
+      name: '',
+      email: '',
+      message: ''
+    }
+  });
+
+  const onSubmit = (data: ContactFormData) => {
+    console.log('Form submitted:', data);
+    setIsSubmitted(true);
+    toast({
+      title: "Message sent!",
+      description: "We'll get back to you as soon as possible.",
+    });
+    form.reset();
+    setTimeout(() => setIsSubmitted(false), 3000);
+  };
 
   return (
     <section className="relative py-32 md:py-48 overflow-hidden">
@@ -36,26 +74,96 @@ const ContactSection = () => {
           <h2 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-8">
             Ready to <span className="text-gradient">Grow?</span>
           </h2>
-          <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto mb-12">
+          <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto">
             Transform your brand's potential into measurable results. 
             Let's start a conversation about your growth.
           </p>
+        </RevealOnScroll>
 
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.98 }}
-            className="group relative inline-flex items-center gap-3 px-10 py-5 bg-primary text-primary-foreground font-display font-semibold text-lg rounded-full overflow-hidden transition-all duration-300 shadow-lg"
-            style={{ boxShadow: 'var(--shadow-glow)' }}
-          >
-            <span className="relative z-10">Start Your Journey</span>
-            <ArrowRight className="relative z-10 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            <motion.div
-              className="absolute inset-0 bg-foreground"
-              initial={{ x: '-100%' }}
-              whileHover={{ x: 0 }}
-              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            />
-          </motion.button>
+        {/* Contact Form */}
+        <RevealOnScroll delay={0.2}>
+          <div className="max-w-xl mx-auto mb-20">
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                <FormField
+                  control={form.control}
+                  name="name"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-foreground">Name</FormLabel>
+                      <FormControl>
+                        <Input 
+                          placeholder="Your name" 
+                          className="bg-card/50 border-border/50 focus:border-primary/50 transition-colors"
+                          {...field} 
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-foreground">Email</FormLabel>
+                      <FormControl>
+                        <Input 
+                          type="email"
+                          placeholder="your@email.com" 
+                          className="bg-card/50 border-border/50 focus:border-primary/50 transition-colors"
+                          {...field} 
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="message"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-foreground">Message</FormLabel>
+                      <FormControl>
+                        <Textarea 
+                          placeholder="Tell us about your project..." 
+                          className="bg-card/50 border-border/50 focus:border-primary/50 transition-colors min-h-[120px] resize-none"
+                          {...field} 
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <Button 
+                    type="submit" 
+                    variant="hero"
+                    size="xl"
+                    className="w-full"
+                    disabled={isSubmitted}
+                  >
+                    {isSubmitted ? (
+                      <>
+                        <CheckCircle className="w-5 h-5 mr-2" />
+                        Message Sent
+                      </>
+                    ) : (
+                      <>
+                        <Send className="w-5 h-5 mr-2" />
+                        Send Message
+                      </>
+                    )}
+                  </Button>
+                </motion.div>
+              </form>
+            </Form>
+          </div>
         </RevealOnScroll>
 
         {/* 3D Orbiting Social Icons */}
