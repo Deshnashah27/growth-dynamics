@@ -25,6 +25,7 @@ const navLinks = [
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
   const { scrollY } = useScroll();
 
   const backgroundColor = useTransform(
@@ -69,36 +70,44 @@ const Navbar = () => {
           </motion.div>
 
           <div className="hidden md:flex items-center gap-8">
-            {/* Services Dropdown */}
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <motion.button
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5 }}
-                  className="relative text-muted-foreground hover:text-foreground transition-colors duration-300 text-sm font-medium group flex items-center gap-1 outline-none"
+            {/* Services Dropdown - Hover triggered */}
+            <div 
+              className="relative"
+              onMouseEnter={() => setServicesOpen(true)}
+              onMouseLeave={() => setServicesOpen(false)}
+            >
+              <DropdownMenu open={servicesOpen} onOpenChange={setServicesOpen}>
+                <DropdownMenuTrigger asChild>
+                  <motion.button
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="relative text-muted-foreground hover:text-foreground transition-colors duration-300 text-sm font-medium group flex items-center gap-1 outline-none"
+                  >
+                    Services
+                    <ChevronDown className={`w-4 h-4 transition-transform ${servicesOpen ? 'rotate-180' : ''}`} />
+                    <span className="absolute -bottom-1 left-0 w-0 h-px bg-primary group-hover:w-full transition-all duration-300" />
+                  </motion.button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent 
+                  align="start" 
+                  className="w-56 bg-background/95 backdrop-blur-xl border-border"
+                  onMouseEnter={() => setServicesOpen(true)}
+                  onMouseLeave={() => setServicesOpen(false)}
                 >
-                  Services
-                  <ChevronDown className="w-4 h-4 transition-transform group-data-[state=open]:rotate-180" />
-                  <span className="absolute -bottom-1 left-0 w-0 h-px bg-primary group-hover:w-full transition-all duration-300" />
-                </motion.button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent 
-                align="start" 
-                className="w-56 bg-background/95 backdrop-blur-xl border-border"
-              >
-                {serviceLinks.map((service) => (
-                  <DropdownMenuItem key={service.name} asChild>
-                    <Link 
-                      to={service.href} 
-                      className="w-full cursor-pointer text-muted-foreground hover:text-foreground"
-                    >
-                      {service.name}
-                    </Link>
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
+                  {serviceLinks.map((service) => (
+                    <DropdownMenuItem key={service.name} asChild>
+                      <Link 
+                        to={service.href} 
+                        className="w-full cursor-pointer text-muted-foreground hover:text-foreground"
+                      >
+                        {service.name}
+                      </Link>
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
 
             {navLinks.map((link, index) => (
               <motion.a
