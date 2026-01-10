@@ -91,7 +91,7 @@ const Navbar = () => {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent 
                   align="start" 
-                  className="w-56 bg-background/95 backdrop-blur-xl border-border"
+                  className="w-56 bg-background/95 backdrop-blur-xl border-border animate-in fade-in-0 zoom-in-95 duration-200"
                   onMouseEnter={() => setServicesOpen(true)}
                   onMouseLeave={() => setServicesOpen(false)}
                 >
