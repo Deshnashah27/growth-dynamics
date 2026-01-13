@@ -8,36 +8,36 @@ const services = [
     icon: Palette,
     title: 'Brand Foundation',
     slug: 'brand-foundation',
-    tagline: 'Identity that resonates',
-    description: 'Strategic brand development from positioning to visual identity. We create brands that connect, convert, and endure.',
-    features: ['Brand Strategy', 'Visual Identity', 'Brand Guidelines', 'Messaging Framework'],
+    tagline: 'From vision to a recognizable brand',
+    description: 'Clear brand positioning and identity. Visual and narrative consistency across platforms.',
+    features: ['Brand Positioning', 'Visual Identity', 'Narrative Consistency', 'Platform Alignment'],
     gradient: 'from-amber-500/10 via-orange-500/5 to-transparent',
   },
   {
     icon: Share2,
-    title: 'Social Media Marketing',
+    title: 'Social Media Brand Engine',
     slug: 'social-media-marketing',
-    tagline: 'Presence that performs',
-    description: 'Data-driven social strategies that build engaged communities and drive measurable business results.',
-    features: ['Content Strategy', 'Community Management', 'Paid Social', 'Analytics & Reporting'],
+    tagline: "We don't post to fill calendars. We publish with intent.",
+    description: 'Reels built on storytelling, relevance, and meaning. Posts and carousels that educate, connect, and reflect your values.',
+    features: ['Story-Driven Reels', 'Educational Carousels', 'Community Stories', 'Value-Based Content'],
     gradient: 'from-primary/10 via-yellow-500/5 to-transparent',
   },
   {
     icon: LineChart,
-    title: 'Sales & Lead Generation',
+    title: 'Sales & Lead Support',
     slug: 'sales-lead-generation',
-    tagline: 'Growth that scales',
-    description: 'High-converting funnels and campaigns that turn cold traffic into qualified leads and loyal customers.',
-    features: ['Funnel Design', 'Lead Magnets', 'Email Sequences', 'Conversion Optimization'],
+    tagline: 'Trust before conversion',
+    description: 'Ad creatives aligned with brand perception. Campaign content that supports trust before conversion. Monthly insights focused on direction, not vanity metrics.',
+    features: ['Brand-Aligned Ads', 'Trust-First Campaigns', 'Strategic Insights', 'Direction-Focused Metrics'],
     gradient: 'from-yellow-500/10 via-amber-500/5 to-transparent',
   },
   {
     icon: Box,
-    title: 'AR Experiences',
+    title: 'AR Experiences & Interactive Branding',
     slug: 'ar-experiences',
-    tagline: 'Immersive innovation',
-    description: 'Cutting-edge augmented reality solutions that transform customer engagement and create unforgettable brand interactions.',
-    features: ['AR Filters & Effects', 'Product Visualization', 'Interactive Campaigns', 'WebAR Solutions'],
+    tagline: 'Engage, involve, and organically amplify your brand',
+    description: 'Custom AR filters designed to turn your audience into active brand participants. Drives organic reach through user-generated content and social sharing.',
+    features: ['Custom AR Filters', 'User-Generated Content', 'Social Sharing', 'Campaign Integration'],
     gradient: 'from-purple-500/10 via-pink-500/5 to-transparent',
   },
 ];
@@ -54,13 +54,13 @@ const ServicesSection = () => {
       <div className="container mx-auto px-6 relative z-10">
         <RevealOnScroll className="text-center mb-20">
           <p className="text-primary text-sm tracking-[0.3em] uppercase mb-4 font-medium">
-            What We Do
+            What We Deliver
           </p>
           <h2 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6">
-            Premium <span className="text-gradient">Services</span>
+            What You Get When You <span className="text-gradient">Work With Us</span>
           </h2>
-          <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto">
-            Comprehensive solutions designed to elevate your brand and accelerate growth.
+          <p className="text-muted-foreground text-lg md:text-xl max-w-3xl mx-auto">
+            Everything we deliver works toward one purpose — building a recognizable brand and an engaged community that grows with you over time.
           </p>
         </RevealOnScroll>
 
@@ -100,12 +100,12 @@ const ServicesSection = () => {
                       </div>
 
                       {/* Content */}
-                      <p className="text-primary text-sm font-medium mb-2">
-                        {service.tagline}
-                      </p>
-                      <h3 className="font-display text-2xl md:text-3xl font-bold mb-4 group-hover:text-primary transition-colors duration-300">
+                      <h3 className="font-display text-2xl md:text-3xl font-bold mb-3 group-hover:text-primary transition-colors duration-300">
                         {service.title}
                       </h3>
+                      <p className="text-primary text-sm font-medium mb-4">
+                        {service.tagline}
+                      </p>
                       <p className="text-muted-foreground mb-8 leading-relaxed">
                         {service.description}
                       </p>

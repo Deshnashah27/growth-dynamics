@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Download } from 'lucide-react';
 import KineticText from '../KineticText';
 
 const HeroSection = () => {
@@ -127,26 +127,15 @@ const HeroSection = () => {
         style={{ opacity, scale }}
         className="relative z-10 container mx-auto px-6 text-center"
       >
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-muted-foreground text-sm md:text-base tracking-[0.3em] uppercase mb-8"
-        >
-          Growth-Driven Marketing
-        </motion.p>
-
-        <h1 className="font-display text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold leading-[0.95] tracking-tight mb-8">
-          <KineticText text="We Build" delay={0.3} />
+        <h1 className="font-display text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[1.1] tracking-tight mb-8">
+          <KineticText text="Strong businesses" delay={0.3} />
+          <br />
+          <KineticText text="deserve more than" delay={0.5} />
+          <br />
+          <KineticText text="random marketing." delay={0.7} />
           <br />
           <span className="text-gradient">
-            <KineticText text="Trust." delay={0.5} />
-          </span>
-          <br />
-          <KineticText text="We Scale" delay={0.7} />
-          <br />
-          <span className="text-gradient">
-            <KineticText text="Brands." delay={0.9} />
+            <KineticText text="They deserve a brand." delay={0.9} />
           </span>
         </h1>
 
@@ -154,24 +143,33 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.8 }}
+          className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto mb-6"
+        >
+          Your audience is watching, scrolling, and deciding every day.
+        </motion.p>
+        
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 2.0 }}
           className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto mb-12"
         >
-          Strategic marketing that transforms communities into loyal customers 
-          and vision into measurable growth.
+          The question is — do they understand who you are and why you matter?
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 2.1 }}
+          transition={{ duration: 0.8, delay: 2.3 }}
+          className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <motion.a
-            href="#contact"
+            href="#services"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
             className="group relative inline-flex items-center gap-3 px-8 py-4 bg-primary text-primary-foreground font-display font-semibold text-lg rounded-full overflow-hidden transition-all duration-300"
           >
-            <span className="relative z-10">Start Your Growth</span>
+            <span className="relative z-10">See How We Build Brands</span>
             <ArrowRight className="relative z-10 w-5 h-5 group-hover:translate-x-1 transition-transform" />
             <motion.div
               className="absolute inset-0 bg-foreground"
@@ -180,6 +178,16 @@ const HeroSection = () => {
               transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
             />
           </motion.a>
+          
+          <motion.a
+            href="#"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.98 }}
+            className="group inline-flex items-center gap-3 px-8 py-4 border border-border bg-card/50 text-foreground font-display font-semibold text-lg rounded-full hover:border-primary/50 transition-all duration-300"
+          >
+            <Download className="w-5 h-5" />
+            <span>Download Portfolio</span>
+          </motion.a>
         </motion.div>
       </motion.div>
 
@@ -187,7 +195,7 @@ const HeroSection = () => {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 2.5, duration: 1 }}
+        transition={{ delay: 2.8, duration: 1 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
       >
         <span className="text-muted-foreground text-xs tracking-widest uppercase">Scroll</span>

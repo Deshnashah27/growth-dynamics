@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { ArrowRight, Instagram, Mail, Linkedin, Youtube, Facebook, Send, CheckCircle } from 'lucide-react';
+import { ArrowRight, Instagram, Mail, Linkedin, Youtube, Facebook, Send, CheckCircle, Download, Calendar } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -69,15 +69,46 @@ const ContactSection = () => {
       <div className="container mx-auto px-6 relative z-10">
         <RevealOnScroll className="text-center mb-16">
           <p className="text-primary text-sm tracking-[0.3em] uppercase mb-6 font-medium">
-            Let's Connect
+            Final Call to Action
           </p>
           <h2 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-8">
-            Ready to <span className="text-gradient">Grow?</span>
+            Ready to build a brand, <span className="text-gradient">not just content?</span>
           </h2>
           <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto">
-            Transform your brand's potential into measurable results. 
-            Let's start a conversation about your growth.
+            If you want marketing that aligns with your vision and grows with your business, let's talk.
           </p>
+        </RevealOnScroll>
+
+        {/* CTA Buttons */}
+        <RevealOnScroll delay={0.1}>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+            <motion.a
+              href="#"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
+              className="group relative inline-flex items-center gap-3 px-8 py-4 bg-primary text-primary-foreground font-display font-semibold text-lg rounded-full overflow-hidden transition-all duration-300"
+            >
+              <Calendar className="relative z-10 w-5 h-5" />
+              <span className="relative z-10">Schedule a Strategy Call</span>
+              <ArrowRight className="relative z-10 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              <motion.div
+                className="absolute inset-0 bg-foreground"
+                initial={{ x: '-100%' }}
+                whileHover={{ x: 0 }}
+                transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              />
+            </motion.a>
+            
+            <motion.a
+              href="#"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
+              className="group inline-flex items-center gap-3 px-8 py-4 border border-border bg-card/50 text-foreground font-display font-semibold text-lg rounded-full hover:border-primary/50 transition-all duration-300"
+            >
+              <Download className="w-5 h-5" />
+              <span>Download Portfolio</span>
+            </motion.a>
+          </div>
         </RevealOnScroll>
 
         {/* Contact Form */}
