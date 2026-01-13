@@ -1,38 +1,38 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
-import { Target, Lightbulb, Layers, Rocket, BarChart3 } from 'lucide-react';
+import { Search, Target, Palette, Rocket, TrendingUp } from 'lucide-react';
 import RevealOnScroll from '../RevealOnScroll';
 
 const steps = [
   {
     number: '01',
-    icon: Target,
+    icon: Search,
     title: 'Discovery',
-    description: 'Deep dive into your brand, audience, and market positioning.',
+    description: 'Understanding your business, mission, audience, and current gaps',
   },
   {
     number: '02',
-    icon: Lightbulb,
+    icon: Target,
     title: 'Strategy',
-    description: 'Craft a tailored roadmap aligned with your business goals.',
+    description: 'Defining positioning, brand voice, content direction, and systems',
   },
   {
     number: '03',
-    icon: Layers,
-    title: 'Build',
-    description: 'Execute campaigns with precision and creative excellence.',
+    icon: Palette,
+    title: 'Identity',
+    description: 'Creating a consistent, premium identity across platforms',
   },
   {
     number: '04',
     icon: Rocket,
-    title: 'Launch',
-    description: 'Deploy optimized content across strategic channels.',
+    title: 'Execution',
+    description: 'Content, reels, stories, and campaigns aligned to your brand narrative',
   },
   {
     number: '05',
-    icon: BarChart3,
-    title: 'Scale',
-    description: 'Analyze, iterate, and amplify what works.',
+    icon: TrendingUp,
+    title: 'Optimization',
+    description: 'Refining direction through insights, not trends',
   },
 ];
 
@@ -50,13 +50,13 @@ const FunnelSection = () => {
       <div className="container mx-auto px-6">
         <RevealOnScroll className="text-center mb-20">
           <p className="text-primary text-sm tracking-[0.3em] uppercase mb-4 font-medium">
-            Our Process
+            Our Framework
           </p>
           <h2 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6">
-            The Growth <span className="text-gradient">Framework</span>
+            A Thoughtful Framework Built for <span className="text-gradient">Long-Term Brands</span>
           </h2>
           <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto">
-            A proven 5-step methodology that transforms marketing into measurable business outcomes.
+            Built like a consulting framework. Executed with creative precision.
           </p>
         </RevealOnScroll>
 

@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Shield, Users, Cog } from 'lucide-react';
 import RevealOnScroll from '../RevealOnScroll';
 
 const clientLogos = [
@@ -12,49 +13,76 @@ const clientLogos = [
   { name: 'Vector', initials: 'VC' },
 ];
 
+const pillars = [
+  { icon: Shield, title: 'Brand Trust' },
+  { icon: Users, title: 'Community Building' },
+  { icon: Cog, title: 'Long-Term Marketing Systems' },
+];
+
 const AboutSection = () => {
   return (
     <section className="relative py-32 md:py-48 overflow-hidden">
       <div className="container mx-auto px-6">
-        {/* Editorial layout */}
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 mb-24">
-          {/* Mission */}
+        {/* Main content */}
+        <div className="max-w-4xl mx-auto mb-24">
           <RevealOnScroll>
-            <div>
+            <div className="text-center mb-12">
               <p className="text-primary text-sm tracking-[0.3em] uppercase mb-6 font-medium">
-                Our Mission
+                Why Jinanshé
               </p>
               <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] mb-8">
-                To transform how brands <span className="text-gradient">connect</span> with their audiences.
+                We aren't here to post content. <br />
+                <span className="text-gradient">We're here to build your brand.</span>
               </h2>
-              <p className="text-muted-foreground text-lg leading-relaxed">
-                We believe in marketing that matters — strategies that create genuine value, 
-                build authentic relationships, and drive sustainable growth. Every campaign 
-                we craft is designed to resonate, convert, and endure.
-              </p>
             </div>
           </RevealOnScroll>
 
-          {/* Vision */}
-          <RevealOnScroll delay={0.2}>
-            <div className="lg:pt-16">
-              <p className="text-primary text-sm tracking-[0.3em] uppercase mb-6 font-medium">
-                Our Vision
+          <RevealOnScroll delay={0.1}>
+            <div className="space-y-6 text-muted-foreground text-lg leading-relaxed">
+              <p>
+                At Jinanshé, marketing is never random. Every campaign is rooted in clarity — your mission, your values, and your long-term vision.
               </p>
-              <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] mb-8">
-                Where creativity meets <span className="text-gradient">precision.</span>
-              </h2>
-              <p className="text-muted-foreground text-lg leading-relaxed">
-                We envision a future where data-driven insights and creative excellence 
-                work in perfect harmony. Where every brand has the tools and strategy 
-                to reach its full potential and make a meaningful impact.
+              <p>
+                We work with established businesses that are tired of trend-chasing agencies and directionless content. Instead of dumping posts, we create systems, narratives, and identity-driven marketing that helps your audience recognize you, trust you, and stay connected.
+              </p>
+              <p className="text-foreground font-medium">
+                We work with a limited number of clients each month to protect focus, consistency, and brand integrity.
               </p>
             </div>
           </RevealOnScroll>
         </div>
 
+        {/* Our Pillars */}
+        <RevealOnScroll delay={0.2}>
+          <div className="mb-24">
+            <p className="text-center text-primary text-sm tracking-[0.3em] uppercase mb-12 font-medium">
+              Our Pillars
+            </p>
+            <div className="grid md:grid-cols-3 gap-6 lg:gap-8 max-w-4xl mx-auto">
+              {pillars.map((pillar, index) => (
+                <motion.div
+                  key={pillar.title}
+                  whileHover={{ y: -8, scale: 1.02 }}
+                  transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                  className="group relative p-8 rounded-2xl bg-card border border-border/50 hover:border-primary/30 transition-colors duration-500 text-center"
+                >
+                  <motion.div
+                    whileHover={{ rotate: 5, scale: 1.1 }}
+                    className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-primary/10 text-primary mb-4"
+                  >
+                    <pillar.icon className="w-7 h-7" />
+                  </motion.div>
+                  <h3 className="font-display text-xl font-bold group-hover:text-primary transition-colors duration-300">
+                    {pillar.title}
+                  </h3>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </RevealOnScroll>
+
         {/* Client logos infinite scroll */}
-        <RevealOnScroll>
+        <RevealOnScroll delay={0.3}>
           <div className="relative">
             <p className="text-center text-muted-foreground text-sm tracking-widest uppercase mb-12">
               Trusted by Industry Leaders
