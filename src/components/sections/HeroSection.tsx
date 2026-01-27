@@ -125,7 +125,7 @@ const HeroSection = () => {
       {/* Main content */}
       <motion.div 
         style={{ opacity, scale }}
-        className="relative z-10 container mx-auto px-6 text-center"
+        className="relative z-10 container mx-auto px-6 text-center pt-20"
       >
         <h1 className="font-display text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.1] tracking-tight mb-8">
           <KineticText text="Strong businesses" delay={0.3} />
@@ -143,7 +143,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.8 }}
-          className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto mb-6"
+          className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto mb-5"
         >
           Your audience is watching, scrolling, and deciding every day.
         </motion.p>
@@ -152,7 +152,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 2.0 }}
-          className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto mb-12"
+          className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto mb-12"
         >
           The question is — do they understand who you are and why you matter?
         </motion.p>
