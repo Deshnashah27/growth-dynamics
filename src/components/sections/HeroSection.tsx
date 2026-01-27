@@ -127,7 +127,7 @@ const HeroSection = () => {
         style={{ opacity, scale }}
         className="relative z-10 container mx-auto px-6 text-center"
       >
-        <h1 className="font-display text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[1.1] tracking-tight mb-8">
+        <h1 className="font-display text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.1] tracking-tight mb-8">
           <KineticText text="Strong businesses" delay={0.3} />
           <br />
           <KineticText text="deserve more than" delay={0.5} />

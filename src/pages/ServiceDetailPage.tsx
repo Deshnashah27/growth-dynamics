@@ -224,7 +224,7 @@ const ServiceDetailPage = () => {
               {service.tagline}
             </p>
             
-            <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-8">
+            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-8">
               {service.title}
             </h1>
             
