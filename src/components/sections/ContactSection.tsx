@@ -68,10 +68,7 @@ const ContactSection = () => {
 
       <div className="container mx-auto px-6 relative z-10">
         <RevealOnScroll className="text-center mb-16">
-          <p className="text-primary text-sm tracking-[0.3em] uppercase mb-6 font-medium">
-            Final Call to Action
-          </p>
-          <h2 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-8">
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-8">
             Ready to build a brand, <span className="text-gradient">not just content?</span>
           </h2>
           <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto">
