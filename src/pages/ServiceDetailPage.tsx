@@ -1,9 +1,25 @@
 import { motion } from 'framer-motion';
 import { useParams, Link } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { ArrowLeft, Check, ArrowUpRight, Palette, Share2, LineChart, Box, Instagram, Linkedin, Youtube, Mail } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import RevealOnScroll from '@/components/RevealOnScroll';
+import ClientWorkModal from '@/components/ClientWorkModal';
+
+// Import logos
+import krushnarpanLogo from '@/assets/logos/krushnarpan-logo.png';
+import evaraLogo from '@/assets/logos/evara-logo.png';
+import absLogo from '@/assets/logos/abs-logo.png';
+import ruaCrystalsLogo from '@/assets/logos/rua-crystals-logo.png';
+import moryaDevelopersLogo from '@/assets/logos/morya-developers-logo.png';
+
+interface ClientWork {
+  name: string;
+  industry: string;
+  result: string;
+  image: string;
+  description?: string[];
+}
 
 const servicesData = {
   'brand-foundation': {
@@ -26,22 +42,59 @@ const servicesData = {
     ],
     clientWork: [
       { 
-        name: 'TechVenture', 
-        industry: 'Technology', 
-        result: 'Complete rebrand resulting in 150% increase in brand recognition',
-        image: 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=600&h=400&fit=crop'
+        name: 'Krushnarpan Builders', 
+        industry: 'Real Estate', 
+        result: 'Cultural symbolism meets modern credibility',
+        image: krushnarpanLogo,
+        description: [
+          'Inspired by Krishna\'s tilak to reflect trust, protection, and auspicious beginnings',
+          'Blends cultural symbolism with structural clarity suited for a real estate brand',
+          'Designed to feel emotionally rooted while remaining professionally credible'
+        ]
       },
       { 
-        name: 'EcoLiving', 
-        industry: 'Sustainability', 
-        result: 'New identity launch driving 200% social engagement growth',
-        image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&h=400&fit=crop'
+        name: 'Evara Ventures', 
+        industry: 'Investment', 
+        result: 'Growth-oriented identity for multi-vertical brand',
+        image: evaraLogo,
+        description: [
+          'Conceptualised as a growth-oriented parent brand focused on trust and scalability',
+          'Upward visual movement symbolises progress and long-term vision',
+          'Clean, adaptable identity suitable across multiple business verticals'
+        ]
       },
       { 
-        name: 'FinanceHub', 
-        industry: 'FinTech', 
-        result: 'Brand refresh achieving 80% positive sentiment increase',
-        image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&h=400&fit=crop'
+        name: 'ABS Realty', 
+        industry: 'Real Estate', 
+        result: 'Bold visibility in competitive markets',
+        image: absLogo,
+        description: [
+          'Built with bold typography for strong visibility in competitive real estate markets',
+          'Focuses on strength, stability, and sales-driven clarity',
+          'Designed for instant recognition across digital and offline platforms'
+        ]
+      },
+      { 
+        name: 'RUA Crystals', 
+        industry: 'Luxury Jewellery', 
+        result: 'Minimal luxury reflecting purity',
+        image: ruaCrystalsLogo,
+        description: [
+          'Crafted as a soft, minimal luxury identity reflecting delicacy and purity',
+          'Restrained typography keeps the product as the visual hero',
+          'Designed to appeal to conscious, premium jewellery buyers'
+        ]
+      },
+      { 
+        name: 'Morya Developers', 
+        industry: 'Real Estate', 
+        result: 'Cultural relevance with modern form',
+        image: moryaDevelopersLogo,
+        description: [
+          'Subtle integration of Lord Ganesha\'s outline symbolising prosperity and new beginnings',
+          'Cultural relevance balanced with a modern, uncluttered form',
+          'Created to build trust without overt or heavy symbolism'
+        ]
       },
     ],
   },
@@ -174,6 +227,7 @@ const socialLinks = [
 const ServiceDetailPage = () => {
   const { slug } = useParams<{ slug: string }>();
   const service = servicesData[slug as keyof typeof servicesData];
+  const [selectedClient, setSelectedClient] = useState<ClientWork | null>(null);
 
   // Scroll to top when page loads
   useEffect(() => {
@@ -197,6 +251,13 @@ const ServiceDetailPage = () => {
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
       
+      {/* Client Work Modal */}
+      <ClientWorkModal 
+        isOpen={!!selectedClient} 
+        onClose={() => setSelectedClient(null)} 
+        client={selectedClient} 
+      />
+      
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">
         <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-50`} />
@@ -205,7 +266,7 @@ const ServiceDetailPage = () => {
         <div className="container mx-auto px-6 relative z-10">
           <Link 
             to="/#services" 
-            className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors mb-8"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-card border border-border/50 text-muted-foreground hover:text-primary hover:border-primary/50 transition-all mb-8"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>Back to Services</span>
@@ -224,7 +285,7 @@ const ServiceDetailPage = () => {
               {service.tagline}
             </p>
             
-            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-8">
+            <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-8">
               {service.title}
             </h1>
             
@@ -334,16 +395,17 @@ const ServiceDetailPage = () => {
               <RevealOnScroll key={client.name} delay={index * 0.1}>
                 <motion.div 
                   whileHover={{ y: -10 }}
-                  className="group relative rounded-3xl overflow-hidden bg-card border border-border/50 hover:border-primary/30 transition-all duration-500"
+                  className="group relative rounded-3xl overflow-hidden bg-card border border-border/50 hover:border-primary/30 transition-all duration-500 cursor-pointer"
+                  onClick={() => setSelectedClient(client)}
                 >
                   {/* Image */}
-                  <div className="relative h-56 overflow-hidden">
+                  <div className="relative h-56 overflow-hidden bg-muted flex items-center justify-center p-6">
                     <motion.img
                       src={client.image}
                       alt={`${client.name} project`}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      className="max-w-full max-h-full object-contain transition-transform duration-700 group-hover:scale-110"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-card via-card/20 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
                     
                     {/* Industry badge */}
                     <div className="absolute top-4 left-4">
@@ -360,11 +422,13 @@ const ServiceDetailPage = () => {
                     </h3>
                     <p className="text-muted-foreground leading-relaxed">{client.result}</p>
                     
-                    {/* View Project link */}
-                    <div className="mt-4 flex items-center gap-2 text-primary font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    {/* View Project button - always visible, bigger */}
+                    <motion.div 
+                      className="mt-6 inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary/10 text-primary font-medium group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300"
+                    >
                       <span>View Project</span>
-                      <ArrowUpRight className="w-4 h-4" />
-                    </div>
+                      <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                    </motion.div>
                   </div>
                 </motion.div>
               </RevealOnScroll>
