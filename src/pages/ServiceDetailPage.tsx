@@ -18,6 +18,7 @@ interface ClientWork {
   industry: string;
   result: string;
   image: string;
+  images?: string[];
   description?: string[];
 }
 
@@ -96,6 +97,25 @@ const servicesData = {
           'Created to build trust without overt or heavy symbolism'
         ]
       },
+      { 
+        name: 'Wonderful Toyland', 
+        industry: 'Product Photography', 
+        result: 'Long-term brand asset, not just catalog photography',
+        image: 'https://images.unsplash.com/photo-1558060370-d644479cb6f7?w=600&h=400&fit=crop',
+        images: [
+          'https://images.unsplash.com/photo-1558060370-d644479cb6f7?w=600&h=400&fit=crop',
+          'https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=600&h=400&fit=crop',
+          'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=600&h=400&fit=crop',
+          'https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=600&h=400&fit=crop',
+          'https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=600&h=400&fit=crop',
+          'https://images.unsplash.com/photo-1560859251-d563a49c5e4a?w=600&h=400&fit=crop'
+        ],
+        description: [
+          'Executed as a long-term brand asset, not just catalog photography',
+          'Visual consistency maintained across toys and books for brand coherence',
+          'Assets designed for reuse across brochures, campaigns, and digital branding'
+        ]
+      },
     ],
   },
   'social-media-marketing': {
@@ -118,22 +138,48 @@ const servicesData = {
     ],
     clientWork: [
       { 
-        name: 'FashionForward', 
-        industry: 'E-commerce', 
-        result: '500% growth in organic reach within 6 months',
-        image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&h=400&fit=crop'
+        name: 'The Choupaal', 
+        industry: 'Commercial Real Estate', 
+        result: 'Positioned as a premium community-driven commercial hub',
+        image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&h=400&fit=crop',
+        description: [
+          'Crafted content to portray true luxury, exclusivity, and a premium work ecosystem',
+          'Positioned the project as a community-driven commercial hub enabling work–life balance',
+          'Focused on aspiration, lifestyle, and long-term brand perception'
+        ]
       },
       { 
-        name: 'HealthyLife', 
-        industry: 'Wellness', 
-        result: '10K to 250K followers in one year',
-        image: 'https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?w=600&h=400&fit=crop'
+        name: 'Monalisa Training Institute & Salon', 
+        industry: 'Beauty & Education', 
+        result: 'Knowledge-led platform empowering women',
+        image: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?w=600&h=400&fit=crop',
+        description: [
+          'Built educational content to upskill existing and aspiring beauticians',
+          'Positioned the brand as a knowledge-led platform empowering women',
+          'Focused on community building and long-term trust over promotions'
+        ]
       },
       { 
-        name: 'StartupX', 
-        industry: 'SaaS', 
-        result: '3x increase in qualified leads from social',
-        image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop'
+        name: 'Durvankur', 
+        industry: 'Agri Brand – Regional Markets', 
+        result: 'Multi-language content breaking regional barriers',
+        image: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=600&h=400&fit=crop',
+        description: [
+          'Solved language and regional entry barriers through multi-language content',
+          'Used farmer psychology and AI-led localization to build personal connection',
+          'Created relatable content that educated, built trust, and supported sales'
+        ]
+      },
+      { 
+        name: 'Peethmart', 
+        industry: 'Instant Mix Brand', 
+        result: 'Franchise expansion through digital storytelling',
+        image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&h=400&fit=crop',
+        description: [
+          'Showcased on-ground brand expansion through franchise launch content',
+          'Developed recipe reels to position the product as easy, reliable, and everyday-ready',
+          'Focused on clarity, consistency, and recall across digital platforms'
+        ]
       },
     ],
   },
@@ -157,22 +203,70 @@ const servicesData = {
     ],
     clientWork: [
       { 
-        name: 'B2B Solutions', 
-        industry: 'Enterprise', 
-        result: '400% increase in qualified leads',
-        image: 'https://images.unsplash.com/photo-1553028826-f4804a6dba3b?w=600&h=400&fit=crop'
+        name: 'The Choupaal – Ads & Lead Generation', 
+        industry: 'Commercial Real Estate', 
+        result: 'Targeted ads attracting serious buyers',
+        image: 'https://images.unsplash.com/photo-1553028826-f4804a6dba3b?w=600&h=400&fit=crop',
+        description: [
+          'Strategised and executed targeted ad campaigns for a premium commercial hub',
+          'Focused on attracting serious buyers and decision-makers, not mass enquiries',
+          'Creatives aligned with luxury positioning and community-driven workspace vision'
+        ]
       },
       { 
-        name: 'CourseCreator', 
+        name: 'SEWAH Education Hub', 
         industry: 'Education', 
-        result: '$2M in course sales from funnel campaigns',
-        image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=400&fit=crop'
+        result: 'Lead-focused creatives driving enrolments',
+        image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=400&fit=crop',
+        description: [
+          'Created performance-driven creatives and videos for orientation enrolments',
+          'Content designed to build trust, clarity, and intent before conversion',
+          'Supported a funnel-based approach to attract high-quality prospects'
+        ]
       },
       { 
-        name: 'ConsultingPro', 
-        industry: 'Professional Services', 
-        result: '60% reduction in cost per acquisition',
-        image: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&h=400&fit=crop'
+        name: 'Oxanto – Pharmaceutical Website', 
+        industry: 'Pharmaceutical Manufacturing', 
+        result: 'Credibility-driven website for B2B markets',
+        image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&h=400&fit=crop',
+        description: [
+          'Designed a credibility-driven website for a medicine manufacturing company',
+          'Focused on clarity, structure, and trust for B2B and regulated markets',
+          'Website positioned as a long-term asset for enquiries and brand authority'
+        ]
+      },
+      { 
+        name: 'Reliant Lab – Google Business', 
+        industry: 'Healthcare', 
+        result: 'Optimised local discovery and trust',
+        image: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=600&h=400&fit=crop',
+        description: [
+          'Optimised Google Business profile to improve visibility and trust',
+          'Structured listing to support local discovery and healthcare credibility',
+          'Focused on consistency and accuracy over promotional noise'
+        ]
+      },
+      { 
+        name: 'Monalisa Beauty Parlour – Brochure', 
+        industry: 'Beauty & Education', 
+        result: 'Professional course brochures',
+        image: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&h=400&fit=crop',
+        description: [
+          'Designed structured brochures for professional beauty courses',
+          'Focused on clear communication and aspirational positioning',
+          'Assets used across digital and offline promotions'
+        ]
+      },
+      { 
+        name: 'Krushnarpan Builders – Stationery', 
+        industry: 'Real Estate', 
+        result: 'Brand-aligned corporate identity',
+        image: krushnarpanLogo,
+        description: [
+          'Visiting cards and letterheads aligned with brand identity',
+          'Ensured consistency across official business communication',
+          'Professional assets reinforcing brand credibility'
+        ]
       },
     ],
   },
@@ -196,22 +290,81 @@ const servicesData = {
     ],
     clientWork: [
       { 
-        name: 'LuxuryBrand', 
-        industry: 'Fashion', 
-        result: 'AR try-on feature increasing conversions by 250%',
-        image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop'
+        name: 'PNR Puff n Rolls', 
+        industry: 'Cafe', 
+        result: 'Turning loyal customers into brand promoters',
+        image: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=600&h=400&fit=crop',
+        description: [
+          'Turned loyal customers into brand promoters by making the cafe part of their social moments',
+          'AR filter designed for shareability and organic reach',
+          'Strengthened community connection through interactive experiences'
+        ]
       },
       { 
-        name: 'FurnitureCo', 
-        industry: 'Home Decor', 
-        result: 'Room visualization reducing returns by 40%',
-        image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=600&h=400&fit=crop'
+        name: 'Cafe Nivara', 
+        industry: 'Cafe', 
+        result: 'Boosted local footfall through AR storytelling',
+        image: 'https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=600&h=400&fit=crop',
+        description: [
+          'Boosted local footfall by turning customer stories into address-led brand touchpoints',
+          'Location-embedded AR experience driving discovery',
+          'Social sharing amplified organic brand awareness'
+        ]
       },
       { 
-        name: 'BeverageBrand', 
-        industry: 'FMCG', 
-        result: 'Viral AR campaign with 5M+ interactions',
-        image: 'https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=600&h=400&fit=crop'
+        name: 'Sunburn Holi 2025 – Martin Garrix', 
+        industry: 'Events & Entertainment', 
+        result: 'Personalised concert experience filter',
+        image: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=600&h=400&fit=crop',
+        description: [
+          'Amplified event buzz and brand association by letting attendees share a personalised concert experience',
+          'Name filter created memorable, shareable moments',
+          'Viral potential maximised through event-specific design'
+        ]
+      },
+      { 
+        name: 'Peethmart – AR Filter', 
+        industry: 'Instant Mix Brand', 
+        result: 'Logo-led AR increasing brand recognition',
+        image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&h=400&fit=crop',
+        description: [
+          'Used a logo-led AR filter to increase brand recognition through organic user sharing',
+          'Simple, memorable design for maximum recall',
+          'Extended brand presence into social interactions'
+        ]
+      },
+      { 
+        name: 'Kabra Saree', 
+        industry: 'Retail', 
+        result: 'Store awareness through customer stories',
+        image: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=600&h=400&fit=crop',
+        description: [
+          'Drove store awareness by embedding the brand name and location directly into customer stories',
+          'AR filter designed for traditional retail engagement',
+          'Cultural relevance driving local connection'
+        ]
+      },
+      { 
+        name: 'Durvankur – AR Filter', 
+        industry: 'Agri Products', 
+        result: 'Brand discovery for farmers and dealers',
+        image: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=600&h=400&fit=crop',
+        description: [
+          'Helped farmers and dealers easily discover the brand location while engaging digitally',
+          'Location-focused AR bridging digital and physical presence',
+          'Accessible design for rural and regional audiences'
+        ]
+      },
+      { 
+        name: 'Suyog Hospital', 
+        industry: 'Multi & Critical Care', 
+        result: 'Trust and local recall through AR',
+        image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=600&h=400&fit=crop',
+        description: [
+          'Built trust and local recall by reinforcing the hospital\'s presence in everyday digital interactions',
+          'Healthcare-appropriate AR maintaining professional credibility',
+          'Community trust built through consistent digital presence'
+        ]
       },
     ],
   },
@@ -413,6 +566,15 @@ const ServiceDetailPage = () => {
                         {client.industry}
                       </span>
                     </div>
+
+                    {/* Multi-image indicator */}
+                    {client.images && client.images.length > 1 && (
+                      <div className="absolute top-4 right-4">
+                        <span className="px-2 py-1 rounded-full text-xs font-medium bg-background/80 text-foreground backdrop-blur-sm">
+                          {client.images.length} photos
+                        </span>
+                      </div>
+                    )}
                   </div>
 
                   {/* Content */}
