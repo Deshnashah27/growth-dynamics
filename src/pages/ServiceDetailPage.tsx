@@ -13,6 +13,14 @@ import absLogo from '@/assets/logos/abs-logo.png';
 import ruaCrystalsLogo from '@/assets/logos/rua-crystals-logo.png';
 import moryaDevelopersLogo from '@/assets/logos/morya-developers-logo.png';
 
+// Import Wonderful Toyland images
+import wonderfulToyland1 from '@/assets/wonderful-toyland-1.jpg';
+import wonderfulToyland2 from '@/assets/wonderful-toyland-2.jpg';
+import wonderfulToyland3 from '@/assets/wonderful-toyland-3.jpg';
+import wonderfulToyland4 from '@/assets/wonderful-toyland-4.jpg';
+import wonderfulToyland5 from '@/assets/wonderful-toyland-5.jpg';
+import wonderfulToyland6 from '@/assets/wonderful-toyland-6.jpg';
+
 interface ClientWork {
   name: string;
   industry: string;
@@ -101,14 +109,14 @@ const servicesData = {
         name: 'Wonderful Toyland', 
         industry: 'Product Photography', 
         result: 'Long-term brand asset, not just catalog photography',
-        image: 'https://images.unsplash.com/photo-1558060370-d644479cb6f7?w=600&h=400&fit=crop',
+        image: wonderfulToyland1,
         images: [
-          'https://images.unsplash.com/photo-1558060370-d644479cb6f7?w=600&h=400&fit=crop',
-          'https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=600&h=400&fit=crop',
-          'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=600&h=400&fit=crop',
-          'https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=600&h=400&fit=crop',
-          'https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=600&h=400&fit=crop',
-          'https://images.unsplash.com/photo-1560859251-d563a49c5e4a?w=600&h=400&fit=crop'
+          wonderfulToyland1,
+          wonderfulToyland2,
+          wonderfulToyland3,
+          wonderfulToyland4,
+          wonderfulToyland5,
+          wonderfulToyland6
         ],
         description: [
           'Executed as a long-term brand asset, not just catalog photography',

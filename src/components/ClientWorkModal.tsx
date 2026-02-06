@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { X } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 interface ClientWorkModalProps {
   isOpen: boolean;
@@ -8,12 +9,44 @@ interface ClientWorkModalProps {
     name: string;
     industry: string;
     result: string;
-    image: string;
+    image: string | string[];
     description?: string[];
   } | null;
 }
 
 const ClientWorkModal = ({ isOpen, onClose, client }: ClientWorkModalProps) => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  // Get image array
+  const images = client && typeof client.image === 'string' ? [client.image] : (client?.image || []);
+  const hasMultipleImages = Array.isArray(images) && images.length > 1;
+
+  // Auto-rotate images every 3 seconds
+  useEffect(() => {
+    if (!isOpen || !hasMultipleImages) return;
+
+    const timer = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % images.length);
+    }, 3000);
+
+    return () => clearInterval(timer);
+  }, [isOpen, hasMultipleImages, images.length]);
+
+  // Reset index when modal opens
+  useEffect(() => {
+    if (isOpen) {
+      setCurrentImageIndex(0);
+    }
+  }, [isOpen]);
+
+  const goToNextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % images.length);
+  };
+
+  const goToPrevImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+
   if (!client) return null;
 
   return (
@@ -49,15 +82,57 @@ const ClientWorkModal = ({ isOpen, onClose, client }: ClientWorkModalProps) => {
               </motion.button>
 
               {/* Image section */}
-              <div className="w-full md:w-1/2 h-64 md:h-full relative bg-muted flex items-center justify-center p-8">
-                <motion.img
-                  src={client.image}
-                  alt={`${client.name} logo`}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.2 }}
-                  className="max-w-full max-h-full object-contain"
-                />
+              <div className="w-full md:w-1/2 h-64 md:h-full relative bg-muted flex items-center justify-center p-8 overflow-hidden">
+                <AnimatePresence mode="wait">
+                  <motion.img
+                    key={currentImageIndex}
+                    src={Array.isArray(images) ? images[currentImageIndex] : images[0]}
+                    alt={`${client.name} image ${currentImageIndex + 1}`}
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{ duration: 0.4 }}
+                    className="max-w-full max-h-full object-contain"
+                  />
+                </AnimatePresence>
+
+                {/* Navigation arrows - only show if multiple images */}
+                {hasMultipleImages && (
+                  <>
+                    <motion.button
+                      onClick={goToPrevImage}
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-background/80 backdrop-blur-sm border border-border/50 flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-background transition-colors"
+                    >
+                      <ChevronLeft className="w-5 h-5" />
+                    </motion.button>
+                    <motion.button
+                      onClick={goToNextImage}
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-background/80 backdrop-blur-sm border border-border/50 flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-background transition-colors"
+                    >
+                      <ChevronRight className="w-5 h-5" />
+                    </motion.button>
+                  </>
+                )}
+
+                {/* Image indicators */}
+                {hasMultipleImages && (
+                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+                    {Array.from({ length: images.length }).map((_, idx) => (
+                      <motion.button
+                        key={idx}
+                        onClick={() => setCurrentImageIndex(idx)}
+                        className={`w-2 h-2 rounded-full transition-colors ${
+                          idx === currentImageIndex ? 'bg-primary' : 'bg-muted-foreground/40'
+                        }`}
+                        whileHover={{ scale: 1.2 }}
+                      />
+                    ))}
+                  </div>
+                )}
               </div>
 
               {/* Content section */}
