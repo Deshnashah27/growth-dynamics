@@ -9,7 +9,8 @@ interface ClientWorkModalProps {
     name: string;
     industry: string;
     result: string;
-    image: string | string[];
+    image: string;
+    images?: string[];
     description?: string[];
   } | null;
 }
@@ -17,9 +18,9 @@ interface ClientWorkModalProps {
 const ClientWorkModal = ({ isOpen, onClose, client }: ClientWorkModalProps) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  // Get image array
-  const images = client && typeof client.image === 'string' ? [client.image] : (client?.image || []);
-  const hasMultipleImages = Array.isArray(images) && images.length > 1;
+  // Get image array - prioritize images array if it exists, otherwise use single image
+  const images = client?.images && client.images.length > 0 ? client.images : (client?.image ? [client.image] : []);
+  const hasMultipleImages = images.length > 1;
 
   // Auto-rotate images every 3 seconds
   useEffect(() => {
@@ -86,7 +87,7 @@ const ClientWorkModal = ({ isOpen, onClose, client }: ClientWorkModalProps) => {
                 <AnimatePresence mode="wait">
                   <motion.img
                     key={currentImageIndex}
-                    src={Array.isArray(images) ? images[currentImageIndex] : images[0]}
+                    src={images[currentImageIndex]}
                     alt={`${client.name} image ${currentImageIndex + 1}`}
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
