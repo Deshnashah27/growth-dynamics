@@ -152,9 +152,18 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 2.0 }}
-          className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto mb-12"
+          className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto mb-4"
         >
           The question is — do they understand who you are and why you matter?
+        </motion.p>
+
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 2.1 }}
+          className="text-muted-foreground/70 text-sm max-w-xl mx-auto mb-12"
+        >
+          For businesses ready to move beyond random marketing and build long-term trust and visibility.
         </motion.p>
 
         <motion.div
@@ -169,7 +178,7 @@ const HeroSection = () => {
             whileTap={{ scale: 0.98 }}
             className="group relative inline-flex items-center gap-3 px-8 py-4 bg-primary text-primary-foreground font-display font-semibold text-lg rounded-full overflow-hidden transition-all duration-300"
           >
-            <span className="relative z-10">See How We Build Brands</span>
+            <span className="relative z-10">Start Building a Brand People Remember</span>
             <ArrowRight className="relative z-10 w-5 h-5 group-hover:translate-x-1 transition-transform" />
             <motion.div
               className="absolute inset-0 bg-foreground"
