@@ -41,14 +41,6 @@ const AnimatedCounter = ({ target, suffix }: { target: number; suffix: string })
   );
 };
 
-const clientLogos = [
-  { name: 'Vertex', initials: 'VX' },
-  { name: 'Horizon', initials: 'HZ' },
-  { name: 'Quantum', initials: 'QT' },
-  { name: 'Nexus', initials: 'NX' },
-  { name: 'Pulse', initials: 'PL' },
-  { name: 'Apex', initials: 'AX' },
-];
 
 const testimonials = [
   {
@@ -82,23 +74,6 @@ const ProofSection = () => {
           </h2>
         </RevealOnScroll>
 
-        {/* Client logos */}
-        <RevealOnScroll delay={0.1}>
-          <div className="flex flex-wrap justify-center gap-4 md:gap-6 mb-16">
-            {clientLogos.map((client, index) => (
-              <motion.div
-                key={client.name}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.1 + index * 0.05 }}
-                whileHover={{ scale: 1.05, y: -2 }}
-                className="flex items-center justify-center w-20 h-12 md:w-24 md:h-14 rounded-lg border border-border/50 bg-card/50 text-muted-foreground hover:border-primary/50 hover:text-foreground transition-all duration-300"
-              >
-                <span className="font-display text-lg font-bold">{client.initials}</span>
-              </motion.div>
-            ))}
-          </div>
-        </RevealOnScroll>
 
         {/* Stats grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 mb-20 max-w-3xl mx-auto">
