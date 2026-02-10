@@ -157,14 +157,7 @@ const HeroSection = () => {
           The question is — do they understand who you are and why you matter?
         </motion.p>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 2.1 }}
-          className="text-muted-foreground/70 text-sm max-w-xl mx-auto mb-12"
-        >
-          For businesses ready to move beyond random marketing and build long-term trust and visibility.
-        </motion.p>
+        <div className="mb-12" />
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}
