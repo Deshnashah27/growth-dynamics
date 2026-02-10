@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { ArrowRight, Instagram, Mail, Linkedin, Youtube, Facebook, Send, CheckCircle, Download, Calendar } from 'lucide-react';
+import { ArrowRight, Instagram, Mail, Linkedin, Youtube, Facebook, Send, CheckCircle, Calendar } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -96,15 +96,6 @@ const ContactSection = () => {
               />
             </motion.a>
             
-            <motion.a
-              href="#"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.98 }}
-              className="group inline-flex items-center gap-3 px-8 py-4 border border-border bg-card/50 text-foreground font-display font-semibold text-lg rounded-full hover:border-primary/50 transition-all duration-300"
-            >
-              <Download className="w-5 h-5" />
-              <span>Download Portfolio</span>
-            </motion.a>
           </div>
         </RevealOnScroll>
 

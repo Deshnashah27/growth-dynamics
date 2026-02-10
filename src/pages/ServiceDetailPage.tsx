@@ -427,9 +427,9 @@ const ServiceDetailPage = () => {
         <div className="container mx-auto px-6 relative z-10">
           <Link 
             to="/#services" 
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-card border border-border/50 text-muted-foreground hover:text-primary hover:border-primary/50 transition-all mb-8"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-card/80 border border-border/50 text-muted-foreground hover:text-primary hover:border-primary/50 transition-all text-xs absolute top-4 left-6 z-20"
           >
-            <ArrowLeft className="w-4 h-4" />
+            <ArrowLeft className="w-3 h-3" />
             <span>Back to Services</span>
           </Link>
 
