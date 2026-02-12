@@ -64,8 +64,8 @@ const Navbar = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <Link to="/" className="font-display text-2xl font-bold tracking-tight">
-              <span className="text-gradient">Jinanshé</span>
+            <Link to="/" className="text-2xl font-bold tracking-tight" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+              <span className="text-white">Jinanshé</span>
             </Link>
           </motion.div>
 
