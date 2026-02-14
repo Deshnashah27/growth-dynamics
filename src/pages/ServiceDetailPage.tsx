@@ -12,6 +12,7 @@ import evaraLogo from '@/assets/logos/evara-logo.png';
 import absLogo from '@/assets/logos/abs-logo.png';
 import ruaCrystalsLogo from '@/assets/logos/rua-crystals-logo.png';
 import moryaDevelopersLogo from '@/assets/logos/morya-developers-logo.png';
+import ruaCrystalsMockup from '@/assets/logos/rua-crystals-mockup.png';
 
 // Import AR snapcode images
 import pnrSnapcode from '@/assets/ar/pnr-snapcode.png';
@@ -97,6 +98,7 @@ const servicesData = {
         industry: 'Luxury Jewellery', 
         result: 'Minimal luxury reflecting purity',
         image: ruaCrystalsLogo,
+        images: [ruaCrystalsLogo, ruaCrystalsMockup],
         description: [
           'Crafted as a soft, minimal luxury identity reflecting delicacy and purity',
           'Restrained typography keeps the product as the visual hero',
