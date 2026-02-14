@@ -13,6 +13,15 @@ import absLogo from '@/assets/logos/abs-logo.png';
 import ruaCrystalsLogo from '@/assets/logos/rua-crystals-logo.png';
 import moryaDevelopersLogo from '@/assets/logos/morya-developers-logo.png';
 
+// Import AR snapcode images
+import pnrSnapcode from '@/assets/ar/pnr-snapcode.png';
+import nivaraSnapcode from '@/assets/ar/nivara-snapcode.png';
+import sunburnSnapcode from '@/assets/ar/sunburn-snapcode.png';
+import peethmartSnapcode from '@/assets/ar/peethmart-snapcode.png';
+import kabraSnapcode from '@/assets/ar/kabra-snapcode.png';
+import durvankurSnapcode from '@/assets/ar/durvankur-snapcode.png';
+import suyogSnapcode from '@/assets/ar/suyog-snapcode.png';
+
 // Import Wonderful Toyland images
 import wonderfulToyland1 from '@/assets/wonderful-toyland-1.jpg';
 import wonderfulToyland2 from '@/assets/wonderful-toyland-2.jpg';
@@ -302,6 +311,7 @@ const servicesData = {
         industry: 'Cafe', 
         result: 'Turning loyal customers into brand promoters',
         image: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=600&h=400&fit=crop',
+        images: [pnrSnapcode],
         description: [
           'Turned loyal customers into brand promoters by making the cafe part of their social moments',
           'AR filter designed for shareability and organic reach',
@@ -313,6 +323,7 @@ const servicesData = {
         industry: 'Cafe', 
         result: 'Boosted local footfall through AR storytelling',
         image: 'https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=600&h=400&fit=crop',
+        images: [nivaraSnapcode],
         description: [
           'Boosted local footfall by turning customer stories into address-led brand touchpoints',
           'Location-embedded AR experience driving discovery',
@@ -324,6 +335,7 @@ const servicesData = {
         industry: 'Events & Entertainment', 
         result: 'Personalised concert experience filter',
         image: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=600&h=400&fit=crop',
+        images: [sunburnSnapcode],
         description: [
           'Amplified event buzz and brand association by letting attendees share a personalised concert experience',
           'Name filter created memorable, shareable moments',
@@ -335,6 +347,7 @@ const servicesData = {
         industry: 'Instant Mix Brand', 
         result: 'Logo-led AR increasing brand recognition',
         image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&h=400&fit=crop',
+        images: [peethmartSnapcode],
         description: [
           'Used a logo-led AR filter to increase brand recognition through organic user sharing',
           'Simple, memorable design for maximum recall',
@@ -346,6 +359,7 @@ const servicesData = {
         industry: 'Retail', 
         result: 'Store awareness through customer stories',
         image: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=600&h=400&fit=crop',
+        images: [kabraSnapcode],
         description: [
           'Drove store awareness by embedding the brand name and location directly into customer stories',
           'AR filter designed for traditional retail engagement',
@@ -357,6 +371,7 @@ const servicesData = {
         industry: 'Agri Products', 
         result: 'Brand discovery for farmers and dealers',
         image: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=600&h=400&fit=crop',
+        images: [durvankurSnapcode],
         description: [
           'Helped farmers and dealers easily discover the brand location while engaging digitally',
           'Location-focused AR bridging digital and physical presence',
@@ -368,6 +383,7 @@ const servicesData = {
         industry: 'Multi & Critical Care', 
         result: 'Trust and local recall through AR',
         image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=600&h=400&fit=crop',
+        images: [suyogSnapcode],
         description: [
           'Built trust and local recall by reinforcing the hospital\'s presence in everyday digital interactions',
           'Healthcare-appropriate AR maintaining professional credibility',
