@@ -97,8 +97,8 @@ const servicesData = {
         name: 'RUA Crystals', 
         industry: 'Luxury Jewellery', 
         result: 'Minimal luxury reflecting purity',
-        image: ruaCrystalsLogo,
-        images: [ruaCrystalsLogo, ruaCrystalsMockup],
+        image: ruaCrystalsMockup,
+        images: [ruaCrystalsMockup],
         description: [
           'Crafted as a soft, minimal luxury identity reflecting delicacy and purity',
           'Restrained typography keeps the product as the visual hero',
