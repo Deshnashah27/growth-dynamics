@@ -24,6 +24,7 @@ import durvankurSnapcode from '@/assets/ar/durvankur-snapcode.png';
 import suyogSnapcode from '@/assets/ar/suyog-snapcode.png';
 
 // Import Wonderful Toyland images
+import wonderfulToylandThumbnail from '@/assets/wonderful-toyland-thumbnail.png';
 import wonderfulToyland1 from '@/assets/wonderful-toyland-1.jpg';
 import wonderfulToyland2 from '@/assets/wonderful-toyland-2.jpg';
 import wonderfulToyland3 from '@/assets/wonderful-toyland-3.jpg';
@@ -120,7 +121,7 @@ const servicesData = {
         name: 'Wonderful Toyland', 
         industry: 'Product Photography', 
         result: 'Long-term brand asset, not just catalog photography',
-        image: wonderfulToyland1,
+        image: wonderfulToylandThumbnail,
         images: [
           wonderfulToyland1,
           wonderfulToyland2,
