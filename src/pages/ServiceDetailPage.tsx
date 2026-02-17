@@ -44,6 +44,7 @@ import reliantLabThumbnail from '@/assets/thumbnails/reliant-lab.png';
 import sewahThumbnail from '@/assets/thumbnails/sewah.png';
 import suyogHospitalThumbnail from '@/assets/thumbnails/suyog-hospital.png';
 import theChoupaalThumbnail from '@/assets/thumbnails/the-choupaal.png';
+import sunburnHoliThumbnail from '@/assets/thumbnails/sunburn-holi.png';
 
 interface ClientWork {
   name: string;
@@ -350,7 +351,7 @@ const servicesData = {
         name: 'Sunburn Holi 2025 – Martin Garrix', 
         industry: 'Events & Entertainment', 
         result: 'Personalised concert experience filter',
-        image: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=600&h=400&fit=crop',
+        image: sunburnHoliThumbnail,
         images: [sunburnSnapcode],
         description: [
           'Amplified event buzz and brand association by letting attendees share a personalised concert experience',
