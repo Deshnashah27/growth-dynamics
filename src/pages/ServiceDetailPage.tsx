@@ -32,6 +32,17 @@ import wonderfulToyland4 from '@/assets/wonderful-toyland-4.jpg';
 import wonderfulToyland5 from '@/assets/wonderful-toyland-5.jpg';
 import wonderfulToyland6 from '@/assets/wonderful-toyland-6.jpg';
 
+// Import client thumbnails
+import cafeNivaraThumbnail from '@/assets/thumbnails/cafe-nivara.png';
+import durvankurThumbnail from '@/assets/thumbnails/durvankur.png';
+import kabraFashionistaThumbnail from '@/assets/thumbnails/kabra-fashionista.png';
+import monalisaThumbnail from '@/assets/thumbnails/monalisa.png';
+import oxantoThumbnail from '@/assets/thumbnails/oxanto.png';
+import peethmartThumbnail from '@/assets/thumbnails/peethmart.png';
+import pnrThumbnail from '@/assets/thumbnails/pnr-puff-n-rolls.avif';
+import reliantLabThumbnail from '@/assets/thumbnails/reliant-lab.png';
+import sewahThumbnail from '@/assets/thumbnails/sewah.png';
+
 interface ClientWork {
   name: string;
   industry: string;
@@ -172,7 +183,7 @@ const servicesData = {
         name: 'Monalisa Training Institute & Salon', 
         industry: 'Beauty & Education', 
         result: 'Knowledge-led platform empowering women',
-        image: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?w=600&h=400&fit=crop',
+        image: monalisaThumbnail,
         description: [
           'Built educational content to upskill existing and aspiring beauticians',
           'Positioned the brand as a knowledge-led platform empowering women',
@@ -183,7 +194,7 @@ const servicesData = {
         name: 'Durvankur', 
         industry: 'Agri Brand – Regional Markets', 
         result: 'Multi-language content breaking regional barriers',
-        image: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=600&h=400&fit=crop',
+        image: durvankurThumbnail,
         description: [
           'Solved language and regional entry barriers through multi-language content',
           'Used farmer psychology and AI-led localization to build personal connection',
@@ -194,7 +205,7 @@ const servicesData = {
         name: 'Peethmart', 
         industry: 'Instant Mix Brand', 
         result: 'Franchise expansion through digital storytelling',
-        image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&h=400&fit=crop',
+        image: peethmartThumbnail,
         description: [
           'Showcased on-ground brand expansion through franchise launch content',
           'Developed recipe reels to position the product as easy, reliable, and everyday-ready',
@@ -237,7 +248,7 @@ const servicesData = {
         name: 'SEWAH Education Hub', 
         industry: 'Education', 
         result: 'Lead-focused creatives driving enrolments',
-        image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=400&fit=crop',
+        image: sewahThumbnail,
         description: [
           'Created performance-driven creatives and videos for orientation enrolments',
           'Content designed to build trust, clarity, and intent before conversion',
@@ -248,7 +259,7 @@ const servicesData = {
         name: 'Oxanto – Pharmaceutical Website', 
         industry: 'Pharmaceutical Manufacturing', 
         result: 'Credibility-driven website for B2B markets',
-        image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&h=400&fit=crop',
+        image: oxantoThumbnail,
         description: [
           'Designed a credibility-driven website for a medicine manufacturing company',
           'Focused on clarity, structure, and trust for B2B and regulated markets',
@@ -259,7 +270,7 @@ const servicesData = {
         name: 'Reliant Lab – Google Business', 
         industry: 'Healthcare', 
         result: 'Optimised local discovery and trust',
-        image: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=600&h=400&fit=crop',
+        image: reliantLabThumbnail,
         description: [
           'Optimised Google Business profile to improve visibility and trust',
           'Structured listing to support local discovery and healthcare credibility',
@@ -270,7 +281,7 @@ const servicesData = {
         name: 'Monalisa Beauty Parlour – Brochure', 
         industry: 'Beauty & Education', 
         result: 'Professional course brochures',
-        image: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&h=400&fit=crop',
+        image: monalisaThumbnail,
         description: [
           'Designed structured brochures for professional beauty courses',
           'Focused on clear communication and aspirational positioning',
@@ -313,7 +324,7 @@ const servicesData = {
         name: 'PNR Puff n Rolls', 
         industry: 'Cafe', 
         result: 'Turning loyal customers into brand promoters',
-        image: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=600&h=400&fit=crop',
+        image: pnrThumbnail,
         images: [pnrSnapcode],
         description: [
           'Turned loyal customers into brand promoters by making the cafe part of their social moments',
@@ -325,7 +336,7 @@ const servicesData = {
         name: 'Cafe Nivara', 
         industry: 'Cafe', 
         result: 'Boosted local footfall through AR storytelling',
-        image: 'https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=600&h=400&fit=crop',
+        image: cafeNivaraThumbnail,
         images: [nivaraSnapcode],
         description: [
           'Boosted local footfall by turning customer stories into address-led brand touchpoints',
@@ -349,7 +360,7 @@ const servicesData = {
         name: 'Peethmart – AR Filter', 
         industry: 'Instant Mix Brand', 
         result: 'Logo-led AR increasing brand recognition',
-        image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&h=400&fit=crop',
+        image: peethmartThumbnail,
         images: [peethmartSnapcode],
         description: [
           'Used a logo-led AR filter to increase brand recognition through organic user sharing',
@@ -361,7 +372,7 @@ const servicesData = {
         name: 'Kabra Saree', 
         industry: 'Retail', 
         result: 'Store awareness through customer stories',
-        image: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=600&h=400&fit=crop',
+        image: kabraFashionistaThumbnail,
         images: [kabraSnapcode],
         description: [
           'Drove store awareness by embedding the brand name and location directly into customer stories',
@@ -373,7 +384,7 @@ const servicesData = {
         name: 'Durvankur – AR Filter', 
         industry: 'Agri Products', 
         result: 'Brand discovery for farmers and dealers',
-        image: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=600&h=400&fit=crop',
+        image: durvankurThumbnail,
         images: [durvankurSnapcode],
         description: [
           'Helped farmers and dealers easily discover the brand location while engaging digitally',
