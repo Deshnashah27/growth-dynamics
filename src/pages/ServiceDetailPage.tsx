@@ -42,6 +42,8 @@ import peethmartThumbnail from '@/assets/thumbnails/peethmart.png';
 import pnrThumbnail from '@/assets/thumbnails/pnr-puff-n-rolls.avif';
 import reliantLabThumbnail from '@/assets/thumbnails/reliant-lab.png';
 import sewahThumbnail from '@/assets/thumbnails/sewah.png';
+import suyogHospitalThumbnail from '@/assets/thumbnails/suyog-hospital.png';
+import theChoupaalThumbnail from '@/assets/thumbnails/the-choupaal.png';
 
 interface ClientWork {
   name: string;
@@ -172,7 +174,7 @@ const servicesData = {
         name: 'The Choupaal', 
         industry: 'Commercial Real Estate', 
         result: 'Positioned as a premium community-driven commercial hub',
-        image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&h=400&fit=crop',
+        image: theChoupaalThumbnail,
         description: [
           'Crafted content to portray true luxury, exclusivity, and a premium work ecosystem',
           'Positioned the project as a community-driven commercial hub enabling work–life balance',
@@ -237,7 +239,7 @@ const servicesData = {
         name: 'The Choupaal – Ads & Lead Generation', 
         industry: 'Commercial Real Estate', 
         result: 'Targeted ads attracting serious buyers',
-        image: 'https://images.unsplash.com/photo-1553028826-f4804a6dba3b?w=600&h=400&fit=crop',
+        image: theChoupaalThumbnail,
         description: [
           'Strategised and executed targeted ad campaigns for a premium commercial hub',
           'Focused on attracting serious buyers and decision-makers, not mass enquiries',
@@ -396,7 +398,7 @@ const servicesData = {
         name: 'Suyog Hospital', 
         industry: 'Multi & Critical Care', 
         result: 'Trust and local recall through AR',
-        image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=600&h=400&fit=crop',
+        image: suyogHospitalThumbnail,
         images: [suyogSnapcode],
         description: [
           'Built trust and local recall by reinforcing the hospital\'s presence in everyday digital interactions',
