@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useParams, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { ArrowLeft, Check, ArrowUpRight, Palette, Share2, LineChart, Box, Instagram, Linkedin, Youtube, Mail } from 'lucide-react';
+import { ArrowLeft, Check, ArrowUpRight, Palette, Share2, LineChart, Box } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import RevealOnScroll from '@/components/RevealOnScroll';
 import ClientWorkModal from '@/components/ClientWorkModal';
@@ -411,12 +411,6 @@ const servicesData = {
   },
 };
 
-const socialLinks = [
-  { icon: Instagram, name: 'Instagram', href: 'https://instagram.com/yourhandle', color: '#E4405F' },
-  { icon: Linkedin, name: 'LinkedIn', href: 'https://linkedin.com/company/yourcompany', color: '#0A66C2' },
-  { icon: Youtube, name: 'YouTube', href: 'https://youtube.com/@yourchannel', color: '#FF0000' },
-  { icon: Mail, name: 'Email', href: 'mailto:hello@example.com', color: '#D44638' },
-];
 
 const ServiceDetailPage = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -488,29 +482,6 @@ const ServiceDetailPage = () => {
             </p>
           </motion.div>
 
-          {/* Social Links */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex items-center gap-4 mt-10"
-          >
-            <span className="text-muted-foreground text-sm">Follow us:</span>
-            <div className="flex items-center gap-3">
-              {socialLinks.map((social) => (
-                <motion.a
-                  key={social.name}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.1, backgroundColor: social.color }}
-                  className="w-10 h-10 rounded-xl bg-card border border-border/50 flex items-center justify-center text-muted-foreground hover:text-white transition-colors"
-                >
-                  <social.icon className="w-5 h-5" />
-                </motion.a>
-              ))}
-            </div>
-          </motion.div>
         </div>
       </section>
 
@@ -673,23 +644,10 @@ const ServiceDetailPage = () => {
 
       {/* Footer */}
       <footer className="py-8 border-t border-border/30">
-        <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="container mx-auto px-6 flex items-center justify-center">
           <p className="text-muted-foreground text-sm">
             © 2024 Jinanshé. All rights reserved.
           </p>
-          <div className="flex items-center gap-4">
-            {socialLinks.map((social) => (
-              <a
-                key={social.name}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-primary transition-colors"
-              >
-                <social.icon className="w-5 h-5" />
-              </a>
-            ))}
-          </div>
         </div>
       </footer>
     </div>
