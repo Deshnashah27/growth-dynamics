@@ -194,8 +194,9 @@ const servicesData = {
 
 const socialLinks = [
   { name: 'Instagram', icon: Instagram, href: 'https://instagram.com/jinanshe' },
+  { name: 'Facebook', icon: Facebook, href: 'https://facebook.com/jinanshe' },
   { name: 'LinkedIn', icon: Linkedin, href: 'https://linkedin.com/company/jinanshe' },
-  { name: 'YouTube', icon: Youtube, href: 'https://youtube.com/@jinanshe' },
+  { name: 'WhatsApp', icon: MessageCircle, href: 'https://wa.me/jinanshe' },
 ];
 
 const ServiceDetailPage = () => {
