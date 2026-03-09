@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useParams, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { ArrowLeft, Check, ArrowUpRight, Palette, Share2, LineChart, Box, Quote, Instagram, Linkedin, Youtube } from 'lucide-react';
+import { ArrowLeft, Check, ArrowUpRight, Palette, Share2, LineChart, Box, Quote, Instagram, Linkedin, Facebook, MessageCircle } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import RevealOnScroll from '@/components/RevealOnScroll';
 import ClientWorkModal from '@/components/ClientWorkModal';
@@ -194,8 +194,9 @@ const servicesData = {
 
 const socialLinks = [
   { name: 'Instagram', icon: Instagram, href: 'https://instagram.com/jinanshe' },
+  { name: 'Facebook', icon: Facebook, href: 'https://facebook.com/jinanshe' },
   { name: 'LinkedIn', icon: Linkedin, href: 'https://linkedin.com/company/jinanshe' },
-  { name: 'YouTube', icon: Youtube, href: 'https://youtube.com/@jinanshe' },
+  { name: 'WhatsApp', icon: MessageCircle, href: 'https://wa.me/jinanshe' },
 ];
 
 const ServiceDetailPage = () => {

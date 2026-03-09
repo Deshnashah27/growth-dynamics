@@ -2,6 +2,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import jinansheLogoImg from '@/assets/logos/jinanshe-logo.png';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -64,8 +65,8 @@ const Navbar = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <Link to="/" className="text-3xl font-bold tracking-wide" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-              <span className="text-white">Jinanshé</span>
+            <Link to="/">
+              <img src={jinansheLogoImg} alt="Jinanshé" className="h-8 invert brightness-0 invert" style={{ filter: 'brightness(0) invert(1)' }} />
             </Link>
           </motion.div>
 
