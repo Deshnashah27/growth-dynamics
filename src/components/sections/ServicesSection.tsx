@@ -1,11 +1,10 @@
 import { motion } from 'framer-motion';
-import { Palette, Share2, LineChart, Box, ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import RevealOnScroll from '../RevealOnScroll';
 
 const services = [
   {
-    icon: Palette,
     title: 'Brand Foundation',
     slug: 'brand-foundation',
     tagline: 'From vision to a recognizable brand',
@@ -14,7 +13,6 @@ const services = [
     gradient: 'from-amber-500/10 via-orange-500/5 to-transparent',
   },
   {
-    icon: Share2,
     title: 'Social Media Brand Engine',
     slug: 'social-media-marketing',
     tagline: "We don't post to fill calendars. We publish with intent.",
@@ -23,17 +21,21 @@ const services = [
     gradient: 'from-primary/10 via-yellow-500/5 to-transparent',
   },
   {
-    icon: LineChart,
-    title: 'Sales & Lead Support',
+    title: 'Growth Systems & Business Infrastructure',
     slug: 'sales-lead-generation',
-    tagline: 'Trust before conversion',
-    description: 'Ad creatives aligned with brand perception. Campaign content that supports trust before conversion. Monthly insights focused on direction, not vanity metrics.',
-    features: ['Brand-Aligned Ads', 'Trust-First Campaigns', 'Strategic Insights', 'Direction-Focused Metrics'],
+    tagline: 'Strong brands need more than visibility',
+    description: 'Structured systems that support discovery, trust, conversion, and long-term business credibility.',
+    features: [
+      'Performance-driven ad and lead systems',
+      'Websites structured for credibility and enquiries',
+      'Google presence optimisation for local discovery',
+      'Conversion-focused brochures and communication assets',
+      'Corporate touchpoints aligned with brand identity',
+    ],
     gradient: 'from-yellow-500/10 via-amber-500/5 to-transparent',
   },
   {
-    icon: Box,
-    title: 'AR Experiences & Interactive Branding',
+    title: 'AR Experiences',
     slug: 'ar-experiences',
     tagline: 'Engage, involve, and organically amplify your brand',
     description: 'Custom AR filters designed to turn your audience into active brand participants. Drives organic reach through user-generated content and social sharing.',
@@ -81,24 +83,6 @@ const ServicesSection = () => {
                     <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/5 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
                     <div className="relative z-10">
-                      {/* Icon and arrow */}
-                      <div className="flex items-start justify-between mb-8">
-                        <motion.div
-                          whileHover={{ rotate: -5, scale: 1.1 }}
-                          className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary/10 text-primary"
-                        >
-                          <service.icon className="w-8 h-8" />
-                        </motion.div>
-                        
-                        <motion.div
-                          initial={{ opacity: 0, x: -10 }}
-                          whileHover={{ opacity: 1, x: 0 }}
-                          className="opacity-0 group-hover:opacity-100 transition-all duration-300"
-                        >
-                          <ArrowUpRight className="w-6 h-6 text-primary" />
-                        </motion.div>
-                      </div>
-
                       {/* Content */}
                       <h3 className="font-display text-2xl md:text-3xl font-bold mb-3 group-hover:text-primary transition-colors duration-300">
                         {service.title}
