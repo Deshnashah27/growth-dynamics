@@ -12,7 +12,7 @@ import {
 const serviceLinks = [
   { name: 'Brand Foundation', href: '/services/brand-foundation' },
   { name: 'Social Media Marketing', href: '/services/social-media-marketing' },
-  { name: 'Sales & Lead Generation', href: '/services/sales-lead-generation' },
+  { name: 'Growth Systems & Business Infrastructure', href: '/services/sales-lead-generation' },
   { name: 'AR Experiences', href: '/services/ar-experiences' },
 ];
 
