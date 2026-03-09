@@ -2,6 +2,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import jinansheLogoImg from '@/assets/logos/jinanshe-logo.png';
 import {
   DropdownMenu,
   DropdownMenuContent,
