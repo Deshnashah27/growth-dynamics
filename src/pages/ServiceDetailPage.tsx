@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useParams, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { ArrowLeft, Check, ArrowUpRight, Palette, Share2, LineChart, Box } from 'lucide-react';
+import { ArrowLeft, Check, ArrowUpRight, Palette, Share2, LineChart, Box, Quote, Instagram, Linkedin, Youtube } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import RevealOnScroll from '@/components/RevealOnScroll';
 import ClientWorkModal from '@/components/ClientWorkModal';
@@ -10,9 +10,8 @@ import ClientWorkModal from '@/components/ClientWorkModal';
 import krushnarpanLogo from '@/assets/logos/krushnarpan-logo.png';
 import evaraLogo from '@/assets/logos/evara-logo.png';
 import absLogo from '@/assets/logos/abs-logo.png';
-import ruaCrystalsLogo from '@/assets/logos/rua-crystals-logo.png';
-import moryaDevelopersLogo from '@/assets/logos/morya-developers-logo.png';
 import ruaCrystalsMockup from '@/assets/logos/rua-crystals-mockup.png';
+import moryaDevelopersLogo from '@/assets/logos/morya-developers-logo.png';
 
 // Import AR snapcode images
 import pnrSnapcode from '@/assets/ar/pnr-snapcode.png';
@@ -55,6 +54,12 @@ interface ClientWork {
   description?: string[];
 }
 
+interface Testimonial {
+  quote: string;
+  author: string;
+  company: string;
+}
+
 const servicesData = {
   'brand-foundation': {
     icon: Palette,
@@ -75,81 +80,19 @@ const servicesData = {
       { step: '04', title: 'Delivery', description: 'Comprehensive brand assets and guidelines for implementation.' },
     ],
     clientWork: [
-      { 
-        name: 'Krushnarpan Builders', 
-        industry: 'Real Estate', 
-        result: 'Cultural symbolism meets modern credibility',
-        image: krushnarpanLogo,
-        description: [
-          'Inspired by Krishna\'s tilak to reflect trust, protection, and auspicious beginnings',
-          'Blends cultural symbolism with structural clarity suited for a real estate brand',
-          'Designed to feel emotionally rooted while remaining professionally credible'
-        ]
-      },
-      { 
-        name: 'Evara Ventures', 
-        industry: 'Investment', 
-        result: 'Growth-oriented identity for multi-vertical brand',
-        image: evaraLogo,
-        description: [
-          'Conceptualised as a growth-oriented parent brand focused on trust and scalability',
-          'Upward visual movement symbolises progress and long-term vision',
-          'Clean, adaptable identity suitable across multiple business verticals'
-        ]
-      },
-      { 
-        name: 'ABS Realty', 
-        industry: 'Real Estate', 
-        result: 'Bold visibility in competitive markets',
-        image: absLogo,
-        description: [
-          'Built with bold typography for strong visibility in competitive real estate markets',
-          'Focuses on strength, stability, and sales-driven clarity',
-          'Designed for instant recognition across digital and offline platforms'
-        ]
-      },
-      { 
-        name: 'RUA Crystals', 
-        industry: 'Luxury Jewellery', 
-        result: 'Minimal luxury reflecting purity',
-        image: ruaCrystalsMockup,
-        images: [ruaCrystalsMockup],
-        description: [
-          'Crafted as a soft, minimal luxury identity reflecting delicacy and purity',
-          'Restrained typography keeps the product as the visual hero',
-          'Designed to appeal to conscious, premium jewellery buyers'
-        ]
-      },
-      { 
-        name: 'Morya Developers', 
-        industry: 'Real Estate', 
-        result: 'Cultural relevance with modern form',
-        image: moryaDevelopersLogo,
-        description: [
-          'Subtle integration of Lord Ganesha\'s outline symbolising prosperity and new beginnings',
-          'Cultural relevance balanced with a modern, uncluttered form',
-          'Created to build trust without overt or heavy symbolism'
-        ]
-      },
-      { 
-        name: 'Wonderful Toyland', 
-        industry: 'Product Photography', 
-        result: 'Long-term brand asset, not just catalog photography',
-        image: wonderfulToylandThumbnail,
-        images: [
-          wonderfulToyland1,
-          wonderfulToyland2,
-          wonderfulToyland3,
-          wonderfulToyland4,
-          wonderfulToyland5,
-          wonderfulToyland6
-        ],
-        description: [
-          'Executed as a long-term brand asset, not just catalog photography',
-          'Visual consistency maintained across toys and books for brand coherence',
-          'Assets designed for reuse across brochures, campaigns, and digital branding'
-        ]
-      },
+      { name: 'Krushnarpan Builders', industry: 'Real Estate', result: 'Cultural symbolism meets modern credibility', image: krushnarpanLogo, description: ['Inspired by Krishna\'s tilak to reflect trust, protection, and auspicious beginnings', 'Blends cultural symbolism with structural clarity suited for a real estate brand', 'Designed to feel emotionally rooted while remaining professionally credible'] },
+      { name: 'Evara Ventures', industry: 'Investment', result: 'Growth-oriented identity for multi-vertical brand', image: evaraLogo, description: ['Conceptualised as a growth-oriented parent brand focused on trust and scalability', 'Upward visual movement symbolises progress and long-term vision', 'Clean, adaptable identity suitable across multiple business verticals'] },
+      { name: 'ABS Realty', industry: 'Real Estate', result: 'Bold visibility in competitive markets', image: absLogo, description: ['Built with bold typography for strong visibility in competitive real estate markets', 'Focuses on strength, stability, and sales-driven clarity', 'Designed for instant recognition across digital and offline platforms'] },
+      { name: 'RUA Crystals', industry: 'Luxury Jewellery', result: 'Minimal luxury reflecting purity', image: ruaCrystalsMockup, images: [ruaCrystalsMockup], description: ['Crafted as a soft, minimal luxury identity reflecting delicacy and purity', 'Restrained typography keeps the product as the visual hero', 'Designed to appeal to conscious, premium jewellery buyers'] },
+      { name: 'Morya Developers', industry: 'Real Estate', result: 'Cultural relevance with modern form', image: moryaDevelopersLogo, description: ['Subtle integration of Lord Ganesha\'s outline symbolising prosperity and new beginnings', 'Cultural relevance balanced with a modern, uncluttered form', 'Created to build trust without overt or heavy symbolism'] },
+      { name: 'Wonderful Toyland', industry: 'Product Photography', result: 'Long-term brand asset, not just catalog photography', image: wonderfulToylandThumbnail, images: [wonderfulToyland1, wonderfulToyland2, wonderfulToyland3, wonderfulToyland4, wonderfulToyland5, wonderfulToyland6], description: ['Executed as a long-term brand asset, not just catalog photography', 'Visual consistency maintained across toys and books for brand coherence', 'Assets designed for reuse across brochures, campaigns, and digital branding'] },
+    ],
+    testimonials: [
+      { quote: "Jinanshé understood our vision from the beginning. The brand identity they created reflects trust and professionalism exactly the way we wanted. Their approach is thoughtful and long-term.", author: "Mr. Shivaji Gaikhe", company: "Krushnarpan Builders" },
+      { quote: "They don't just design — they think. The identity built for Evara feels scalable and future-ready. It truly represents our growth vision.", author: "Mr. Rushabh Rambhia", company: "Evara Ventures" },
+      { quote: "The branding created clarity in our market positioning. Everything from logo to stationery feels strong and consistent. It gave us a professional edge.", author: "Mr. Sankhpal", company: "ABS Realty" },
+      { quote: "They balanced cultural elements of Shree Ganesha with modern branding beautifully. The logo carries meaning without being overwhelming. Exactly what we were looking for.", author: "Mr. Sandip", company: "Morya Developers" },
+      { quote: "The product shoot was executed very professionally. The photos gave our brand a clean and consistent digital presence across platforms.", author: "Miss. Rutuja Kotkar", company: "Wonderful Toyland" },
     ],
   },
   'social-media-marketing': {
@@ -171,63 +114,29 @@ const servicesData = {
       { step: '04', title: 'Optimize', description: 'Continuous improvement based on performance data.' },
     ],
     clientWork: [
-      { 
-        name: 'The Choupaal', 
-        industry: 'Commercial Real Estate', 
-        result: 'Positioned as a premium community-driven commercial hub',
-        image: theChoupaalThumbnail,
-        description: [
-          'Crafted content to portray true luxury, exclusivity, and a premium work ecosystem',
-          'Positioned the project as a community-driven commercial hub enabling work–life balance',
-          'Focused on aspiration, lifestyle, and long-term brand perception'
-        ]
-      },
-      { 
-        name: 'Monalisa Training Institute & Salon', 
-        industry: 'Beauty & Education', 
-        result: 'Knowledge-led platform empowering women',
-        image: monalisaThumbnail,
-        description: [
-          'Built educational content to upskill existing and aspiring beauticians',
-          'Positioned the brand as a knowledge-led platform empowering women',
-          'Focused on community building and long-term trust over promotions'
-        ]
-      },
-      { 
-        name: 'Durvankur', 
-        industry: 'Agri Brand – Regional Markets', 
-        result: 'Multi-language content breaking regional barriers',
-        image: durvankurThumbnail,
-        description: [
-          'Solved language and regional entry barriers through multi-language content',
-          'Used farmer psychology and AI-led localization to build personal connection',
-          'Created relatable content that educated, built trust, and supported sales'
-        ]
-      },
-      { 
-        name: 'Peethmart', 
-        industry: 'Instant Mix Brand', 
-        result: 'Franchise expansion through digital storytelling',
-        image: peethmartThumbnail,
-        description: [
-          'Showcased on-ground brand expansion through franchise launch content',
-          'Developed recipe reels to position the product as easy, reliable, and everyday-ready',
-          'Focused on clarity, consistency, and recall across digital platforms'
-        ]
-      },
+      { name: 'The Choupaal', industry: 'Commercial Real Estate', result: 'Positioned as a premium community-driven commercial hub', image: theChoupaalThumbnail, description: ['Crafted content to portray true luxury, exclusivity, and a premium work ecosystem', 'Positioned the project as a community-driven commercial hub enabling work–life balance', 'Focused on aspiration, lifestyle, and long-term brand perception'] },
+      { name: 'Monalisa Training Institute & Salon', industry: 'Beauty & Education', result: 'Knowledge-led platform empowering women', image: monalisaThumbnail, description: ['Built educational content to upskill existing and aspiring beauticians', 'Positioned the brand as a knowledge-led platform empowering women', 'Focused on community building and long-term trust over promotions'] },
+      { name: 'Durvankur', industry: 'Agri Brand – Regional Markets', result: 'Multi-language content breaking regional barriers', image: durvankurThumbnail, description: ['Solved language and regional entry barriers through multi-language content', 'Used farmer psychology and AI-led localization to build personal connection', 'Created relatable content that educated, built trust, and supported sales'] },
+      { name: 'Peethmart', industry: 'Instant Mix Brand', result: 'Franchise expansion through digital storytelling', image: peethmartThumbnail, description: ['Showcased on-ground brand expansion through franchise launch content', 'Developed recipe reels to position the product as easy, reliable, and everyday-ready', 'Focused on clarity, consistency, and recall across digital platforms'] },
+    ],
+    testimonials: [
+      { quote: "The team positioned our project as more than just commercial space — they highlighted lifestyle and community. The content truly reflects our premium vision.", author: "Mrs. Rutuja Tiwari", company: "The Choupaal" },
+      { quote: "They helped us build educational content that actually connects with aspiring beauticians. The response and engagement have been very positive.", author: "Mrs. Jayashree Mundaware", company: "Monalisa Beauty Parlour" },
+      { quote: "They understood the farmer mindset and language gap very well. The regional content helped us connect better with our audience.", author: "Mr. Rahul Sanap", company: "Durvankur" },
+      { quote: "The reels and franchise coverage strengthened our digital presence. The content feels aligned and consistent with our brand.", author: "Mr. Vedant Kotkar", company: "Peethmart" },
     ],
   },
   'sales-lead-generation': {
     icon: LineChart,
-    title: 'Sales & Lead Generation',
+    title: 'Growth Systems & Business Infrastructure',
     tagline: 'Growth that scales',
-    heroDescription: 'Turn cold traffic into qualified leads and loyal customers. Our high-converting funnels and strategic campaigns deliver consistent, scalable growth.',
+    heroDescription: 'Strong brands need more than visibility. They need structured systems that support discovery, trust, conversion, and long-term business credibility. At Jinanshé, we build and optimise the assets that move businesses forward — from lead engines to brand touchpoints.',
     gradient: 'from-yellow-500/20 via-amber-500/10 to-transparent',
     features: [
-      { title: 'Funnel Design', description: 'Strategic conversion funnels optimized for maximum ROI.' },
-      { title: 'Lead Magnets', description: 'Compelling offers that attract and capture qualified prospects.' },
-      { title: 'Email Sequences', description: 'Automated nurture campaigns that convert leads to customers.' },
-      { title: 'Conversion Optimization', description: 'Continuous testing and improvement of conversion rates.' },
+      { title: 'Ad & Lead Systems', description: 'Performance-driven ad and lead systems designed for qualified conversions.' },
+      { title: 'Website Development', description: 'Websites structured for credibility and enquiries.' },
+      { title: 'Google Presence', description: 'Google presence optimisation for local discovery.' },
+      { title: 'Communication Assets', description: 'Conversion-focused brochures and communication assets aligned with brand identity.' },
     ],
     process: [
       { step: '01', title: 'Analyze', description: 'Map your customer journey and identify conversion opportunities.' },
@@ -236,72 +145,17 @@ const servicesData = {
       { step: '04', title: 'Scale', description: 'Optimize and expand successful campaigns for growth.' },
     ],
     clientWork: [
-      { 
-        name: 'The Choupaal – Ads & Lead Generation', 
-        industry: 'Commercial Real Estate', 
-        result: 'Targeted ads attracting serious buyers',
-        image: theChoupaalThumbnail,
-        description: [
-          'Strategised and executed targeted ad campaigns for a premium commercial hub',
-          'Focused on attracting serious buyers and decision-makers, not mass enquiries',
-          'Creatives aligned with luxury positioning and community-driven workspace vision'
-        ]
-      },
-      { 
-        name: 'SEWAH Education Hub', 
-        industry: 'Education', 
-        result: 'Lead-focused creatives driving enrolments',
-        image: sewahThumbnail,
-        description: [
-          'Created performance-driven creatives and videos for orientation enrolments',
-          'Content designed to build trust, clarity, and intent before conversion',
-          'Supported a funnel-based approach to attract high-quality prospects'
-        ]
-      },
-      { 
-        name: 'Oxanto – Pharmaceutical Website', 
-        industry: 'Pharmaceutical Manufacturing', 
-        result: 'Credibility-driven website for B2B markets',
-        image: oxantoThumbnail,
-        description: [
-          'Designed a credibility-driven website for a medicine manufacturing company',
-          'Focused on clarity, structure, and trust for B2B and regulated markets',
-          'Website positioned as a long-term asset for enquiries and brand authority'
-        ]
-      },
-      { 
-        name: 'Reliant Lab – Google Business', 
-        industry: 'Healthcare', 
-        result: 'Optimised local discovery and trust',
-        image: reliantLabThumbnail,
-        description: [
-          'Optimised Google Business profile to improve visibility and trust',
-          'Structured listing to support local discovery and healthcare credibility',
-          'Focused on consistency and accuracy over promotional noise'
-        ]
-      },
-      { 
-        name: 'Monalisa Beauty Parlour – Brochure', 
-        industry: 'Beauty & Education', 
-        result: 'Professional course brochures',
-        image: monalisaThumbnail,
-        description: [
-          'Designed structured brochures for professional beauty courses',
-          'Focused on clear communication and aspirational positioning',
-          'Assets used across digital and offline promotions'
-        ]
-      },
-      { 
-        name: 'Krushnarpan Builders – Stationery', 
-        industry: 'Real Estate', 
-        result: 'Brand-aligned corporate identity',
-        image: krushnarpanLogo,
-        description: [
-          'Visiting cards and letterheads aligned with brand identity',
-          'Ensured consistency across official business communication',
-          'Professional assets reinforcing brand credibility'
-        ]
-      },
+      { name: 'The Choupaal – Ads & Lead Generation', industry: 'Commercial Real Estate', result: 'Targeted ads attracting serious buyers', image: theChoupaalThumbnail, description: ['Strategised and executed targeted ad campaigns for a premium commercial hub', 'Focused on attracting serious buyers and decision-makers, not mass enquiries', 'Creatives aligned with luxury positioning and community-driven workspace vision'] },
+      { name: 'SEWAH Education Hub', industry: 'Education', result: 'Lead-focused creatives driving enrolments', image: sewahThumbnail, description: ['Created performance-driven creatives and videos for orientation enrolments', 'Content designed to build trust, clarity, and intent before conversion', 'Supported a funnel-based approach to attract high-quality prospects'] },
+      { name: 'Oxanto – Pharmaceutical Website', industry: 'Pharmaceutical Manufacturing', result: 'Credibility-driven website for B2B markets', image: oxantoThumbnail, description: ['Designed a credibility-driven website for a medicine manufacturing company', 'Focused on clarity, structure, and trust for B2B and regulated markets', 'Website positioned as a long-term asset for enquiries and brand authority'] },
+      { name: 'Reliant Lab – Google Business', industry: 'Healthcare', result: 'Optimised local discovery and trust', image: reliantLabThumbnail, description: ['Optimised Google Business profile to improve visibility and trust', 'Structured listing to support local discovery and healthcare credibility', 'Focused on consistency and accuracy over promotional noise'] },
+      { name: 'Monalisa Beauty Parlour – Brochure', industry: 'Beauty & Education', result: 'Professional course brochures', image: monalisaThumbnail, description: ['Designed structured brochures for professional beauty courses', 'Focused on clear communication and aspirational positioning', 'Assets used across digital and offline promotions'] },
+      { name: 'Krushnarpan Builders – Stationery', industry: 'Real Estate', result: 'Brand-aligned corporate identity', image: krushnarpanLogo, description: ['Visiting cards and letterheads aligned with brand identity', 'Ensured consistency across official business communication', 'Professional assets reinforcing brand credibility'] },
+    ],
+    testimonials: [
+      { quote: "The creatives and videos were strategically aligned to attract the right audience for our orientation. The approach was structured and result-focused.", author: "Mrs. Ashwini Dhuppe", company: "SEWAH Education Hub" },
+      { quote: "Our Google presence improved in terms of clarity and professionalism. It helped strengthen our credibility locally.", author: "Mrs. Archana Joshi", company: "Reliant Lab" },
+      { quote: "The website built for us is clean, informative, and structured. It represents our pharmaceutical business professionally.", author: "Mr. Mahesh Chavan", company: "Oxanto" },
     ],
   },
   'ar-experiences': {
@@ -323,101 +177,32 @@ const servicesData = {
       { step: '04', title: 'Launch', description: 'Deploy, monitor, and optimize for maximum engagement.' },
     ],
     clientWork: [
-      { 
-        name: 'PNR Puff n Rolls', 
-        industry: 'Cafe', 
-        result: 'Turning loyal customers into brand promoters',
-        image: pnrThumbnail,
-        images: [pnrSnapcode],
-        description: [
-          'Turned loyal customers into brand promoters by making the cafe part of their social moments',
-          'AR filter designed for shareability and organic reach',
-          'Strengthened community connection through interactive experiences'
-        ]
-      },
-      { 
-        name: 'Cafe Nivara', 
-        industry: 'Cafe', 
-        result: 'Boosted local footfall through AR storytelling',
-        image: cafeNivaraThumbnail,
-        images: [nivaraSnapcode],
-        description: [
-          'Boosted local footfall by turning customer stories into address-led brand touchpoints',
-          'Location-embedded AR experience driving discovery',
-          'Social sharing amplified organic brand awareness'
-        ]
-      },
-      { 
-        name: 'Sunburn Holi 2025 – Martin Garrix', 
-        industry: 'Events & Entertainment', 
-        result: 'Personalised concert experience filter',
-        image: sunburnHoliThumbnail,
-        images: [sunburnSnapcode],
-        description: [
-          'Amplified event buzz and brand association by letting attendees share a personalised concert experience',
-          'Name filter created memorable, shareable moments',
-          'Viral potential maximised through event-specific design'
-        ]
-      },
-      { 
-        name: 'Peethmart – AR Filter', 
-        industry: 'Instant Mix Brand', 
-        result: 'Logo-led AR increasing brand recognition',
-        image: peethmartThumbnail,
-        images: [peethmartSnapcode],
-        description: [
-          'Used a logo-led AR filter to increase brand recognition through organic user sharing',
-          'Simple, memorable design for maximum recall',
-          'Extended brand presence into social interactions'
-        ]
-      },
-      { 
-        name: 'Kabra Saree', 
-        industry: 'Retail', 
-        result: 'Store awareness through customer stories',
-        image: kabraFashionistaThumbnail,
-        images: [kabraSnapcode],
-        description: [
-          'Drove store awareness by embedding the brand name and location directly into customer stories',
-          'AR filter designed for traditional retail engagement',
-          'Cultural relevance driving local connection'
-        ]
-      },
-      { 
-        name: 'Durvankur – AR Filter', 
-        industry: 'Agri Products', 
-        result: 'Brand discovery for farmers and dealers',
-        image: durvankurThumbnail,
-        images: [durvankurSnapcode],
-        description: [
-          'Helped farmers and dealers easily discover the brand location while engaging digitally',
-          'Location-focused AR bridging digital and physical presence',
-          'Accessible design for rural and regional audiences'
-        ]
-      },
-      { 
-        name: 'Suyog Hospital', 
-        industry: 'Multi & Critical Care', 
-        result: 'Trust and local recall through AR',
-        image: suyogHospitalThumbnail,
-        images: [suyogSnapcode],
-        description: [
-          'Built trust and local recall by reinforcing the hospital\'s presence in everyday digital interactions',
-          'Healthcare-appropriate AR maintaining professional credibility',
-          'Community trust built through consistent digital presence'
-        ]
-      },
+      { name: 'PNR Puff n Rolls', industry: 'Cafe', result: 'Turning loyal customers into brand promoters', image: pnrThumbnail, images: [pnrSnapcode], description: ['Turned loyal customers into brand promoters by making the cafe part of their social moments', 'AR filter designed for shareability and organic reach', 'Strengthened community connection through interactive experiences'] },
+      { name: 'Cafe Nivara', industry: 'Cafe', result: 'Boosted local footfall through AR storytelling', image: cafeNivaraThumbnail, images: [nivaraSnapcode], description: ['Boosted local footfall by turning customer stories into address-led brand touchpoints', 'Location-embedded AR experience driving discovery', 'Social sharing amplified organic brand awareness'] },
+      { name: 'Sunburn Holi 2025 – Martin Garrix', industry: 'Events & Entertainment', result: 'Personalised concert experience filter', image: sunburnHoliThumbnail, images: [sunburnSnapcode], description: ['Amplified event buzz and brand association by letting attendees share a personalised concert experience', 'Name filter created memorable, shareable moments', 'Viral potential maximised through event-specific design'] },
+      { name: 'Peethmart – AR Filter', industry: 'Instant Mix Brand', result: 'Logo-led AR increasing brand recognition', image: peethmartThumbnail, images: [peethmartSnapcode], description: ['Used a logo-led AR filter to increase brand recognition through organic user sharing', 'Simple, memorable design for maximum recall', 'Extended brand presence into social interactions'] },
+      { name: 'Kabra Saree', industry: 'Retail', result: 'Store awareness through customer stories', image: kabraFashionistaThumbnail, images: [kabraSnapcode], description: ['Drove store awareness by embedding the brand name and location directly into customer stories', 'AR filter designed for traditional retail engagement', 'Cultural relevance driving local connection'] },
+      { name: 'Durvankur – AR Filter', industry: 'Agri Products', result: 'Brand discovery for farmers and dealers', image: durvankurThumbnail, images: [durvankurSnapcode], description: ['Helped farmers and dealers easily discover the brand location while engaging digitally', 'Location-focused AR bridging digital and physical presence', 'Accessible design for rural and regional audiences'] },
+      { name: 'Suyog Hospital', industry: 'Multi & Critical Care', result: 'Trust and local recall through AR', image: suyogHospitalThumbnail, images: [suyogSnapcode], description: ['Built trust and local recall by reinforcing the hospital\'s presence in everyday digital interactions', 'Healthcare-appropriate AR maintaining professional credibility', 'Community trust built through consistent digital presence'] },
+    ],
+    testimonials: [
+      { quote: "The branded filter with our address helped increase store awareness. It was a creative way to stay visible in customer stories.", author: "Mrs. Poonam Kabra", company: "Kabra Fashionista" },
+      { quote: "The AR filter helped customers share their experience while keeping our location visible. It added a modern touch to our cafe branding.", author: "Miss. Mahima Lad", company: "Cafe Nivara" },
     ],
   },
 };
 
+const socialLinks = [
+  { name: 'Instagram', icon: Instagram, href: 'https://instagram.com/jinanshe' },
+  { name: 'LinkedIn', icon: Linkedin, href: 'https://linkedin.com/company/jinanshe' },
+  { name: 'YouTube', icon: Youtube, href: 'https://youtube.com/@jinanshe' },
+];
 
 const ServiceDetailPage = () => {
   const { slug } = useParams<{ slug: string }>();
   const service = servicesData[slug as keyof typeof servicesData];
   const [selectedClient, setSelectedClient] = useState<ClientWork | null>(null);
 
-  // Scroll to top when page loads
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [slug]);
@@ -439,7 +224,6 @@ const ServiceDetailPage = () => {
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
       
-      {/* Client Work Modal */}
       <ClientWorkModal 
         isOpen={!!selectedClient} 
         onClose={() => setSelectedClient(null)} 
@@ -465,10 +249,6 @@ const ServiceDetailPage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="inline-flex items-center justify-center w-20 h-20 rounded-3xl bg-primary/10 text-primary mb-8">
-              <Icon className="w-10 h-10" />
-            </div>
-            
             <p className="text-primary text-sm tracking-[0.3em] uppercase mb-4 font-medium">
               {service.tagline}
             </p>
@@ -481,7 +261,6 @@ const ServiceDetailPage = () => {
               {service.heroDescription}
             </p>
           </motion.div>
-
         </div>
       </section>
 
@@ -543,7 +322,7 @@ const ServiceDetailPage = () => {
         </div>
       </section>
 
-      {/* Client Work Section - Portfolio */}
+      {/* Client Work Section */}
       <section className="py-20 md:py-32 border-t border-border/30">
         <div className="container mx-auto px-6">
           <RevealOnScroll className="mb-16">
@@ -563,7 +342,6 @@ const ServiceDetailPage = () => {
                   className="group relative rounded-3xl overflow-hidden bg-card border border-border/50 hover:border-primary/30 transition-all duration-500 cursor-pointer"
                   onClick={() => setSelectedClient(client)}
                 >
-                  {/* Image */}
                   <div className="relative h-56 overflow-hidden bg-muted flex items-center justify-center p-6">
                     <motion.img
                       src={client.image}
@@ -571,15 +349,11 @@ const ServiceDetailPage = () => {
                       className="max-w-full max-h-full object-contain transition-transform duration-700 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
-                    
-                    {/* Industry badge */}
                     <div className="absolute top-4 left-4">
                       <span className="px-3 py-1 rounded-full text-xs font-medium bg-primary/20 text-primary backdrop-blur-sm">
                         {client.industry}
                       </span>
                     </div>
-
-                    {/* Multi-image indicator */}
                     {client.images && client.images.length > 1 && (
                       <div className="absolute top-4 right-4">
                         <span className="px-2 py-1 rounded-full text-xs font-medium bg-background/80 text-foreground backdrop-blur-sm">
@@ -588,18 +362,12 @@ const ServiceDetailPage = () => {
                       </div>
                     )}
                   </div>
-
-                  {/* Content */}
                   <div className="p-6">
                     <h3 className="font-display text-2xl font-bold mb-3 group-hover:text-primary transition-colors">
                       {client.name}
                     </h3>
                     <p className="text-muted-foreground leading-relaxed">{client.result}</p>
-                    
-                    {/* View Project button - always visible, bigger */}
-                    <motion.div 
-                      className="mt-6 inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary/10 text-primary font-medium group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300"
-                    >
+                    <motion.div className="mt-6 inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary/10 text-primary font-medium group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
                       <span>View Project</span>
                       <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                     </motion.div>
@@ -610,6 +378,39 @@ const ServiceDetailPage = () => {
           </div>
         </div>
       </section>
+
+      {/* Testimonials Section */}
+      {service.testimonials && service.testimonials.length > 0 && (
+        <section className="py-20 md:py-32 border-t border-border/30 bg-card/30">
+          <div className="container mx-auto px-6">
+            <RevealOnScroll className="mb-16">
+              <p className="text-primary text-sm tracking-[0.3em] uppercase mb-4 font-medium">
+                Client Feedback
+              </p>
+              <h2 className="font-display text-3xl md:text-5xl font-bold">
+                What Our Clients <span className="text-gradient">Say</span>
+              </h2>
+            </RevealOnScroll>
+
+            <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+              {service.testimonials.map((testimonial: Testimonial, index: number) => (
+                <RevealOnScroll key={index} delay={index * 0.1}>
+                  <div className="p-8 rounded-2xl bg-card border border-border/50">
+                    <Quote className="w-8 h-8 text-primary/40 mb-4" />
+                    <p className="text-foreground text-lg mb-6 leading-relaxed">
+                      "{testimonial.quote}"
+                    </p>
+                    <div>
+                      <p className="font-medium text-foreground">{testimonial.author}</p>
+                      <p className="text-muted-foreground text-sm">{testimonial.company}</p>
+                    </div>
+                  </div>
+                </RevealOnScroll>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* CTA Section */}
       <section className="py-20 md:py-32 border-t border-border/30">
@@ -644,10 +445,24 @@ const ServiceDetailPage = () => {
 
       {/* Footer */}
       <footer className="py-8 border-t border-border/30">
-        <div className="container mx-auto px-6 flex items-center justify-center">
+        <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-muted-foreground text-sm">
             © 2024 Jinanshé. All rights reserved.
           </p>
+          <div className="flex items-center gap-4">
+            {socialLinks.map((social) => (
+              <a
+                key={social.name}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-full bg-card border border-border/50 flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/50 transition-all"
+                aria-label={social.name}
+              >
+                <social.icon className="w-4 h-4" />
+              </a>
+            ))}
+          </div>
         </div>
       </footer>
     </div>
