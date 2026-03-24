@@ -12,6 +12,7 @@ interface ClientWorkModalProps {
     image: string;
     images?: string[];
     description?: string[];
+    link?: string;
   } | null;
 }
 
