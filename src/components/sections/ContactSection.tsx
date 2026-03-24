@@ -266,7 +266,7 @@ const ContactSection = () => {
         <RevealOnScroll delay={0.5}>
           <div className="text-center mt-16 pt-16 border-t border-border/30">
             <p className="text-muted-foreground text-sm">
-              © 2024 Jinanshé. All rights reserved.
+              © 2026 Jinanshé. All rights reserved.
             </p>
           </div>
         </RevealOnScroll>
