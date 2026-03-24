@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 interface ClientWorkModalProps {
