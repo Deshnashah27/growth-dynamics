@@ -12,7 +12,7 @@ const stats = [
   { number: 135, suffix: '+', label: 'Snapchat AR Filters Created' },
 ];
 
-const AnimatedCounter = ({ target, suffix }: { target: number; suffix: string }) => {
+const AnimatedCounter = ({ target, suffix, decimals = 0 }: { target: number; suffix: string; decimals?: number }) => {
   const [count, setCount] = useState(0);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -29,15 +29,15 @@ const AnimatedCounter = ({ target, suffix }: { target: number; suffix: string })
         setCount(target);
         clearInterval(timer);
       } else {
-        setCount(Math.floor(current));
+        setCount(Number(current.toFixed(decimals)));
       }
     }, duration / steps);
     return () => clearInterval(timer);
-  }, [isInView, target]);
+  }, [isInView, target, decimals]);
 
   return (
     <span ref={ref} className="tabular-nums">
-      {count}{suffix}
+      {decimals > 0 ? count.toFixed(decimals) : count}{suffix}
     </span>
   );
 };
