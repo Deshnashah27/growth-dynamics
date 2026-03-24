@@ -6,9 +6,13 @@ import RevealOnScroll from '../RevealOnScroll';
 const stats = [
   { number: 170, suffix: '+', label: 'Qualified Leads in 45 Days' },
   { number: 3, suffix: 'x', label: 'Stronger Engagement in 60 Days' },
+  { number: 41.7, suffix: 'M+', label: 'Total Plays Across Filters', decimals: 1 },
+  { number: 56.2, suffix: 'M+', label: 'Views Generated via Snapchat', decimals: 1 },
+  { number: 24.5, suffix: 'M+', label: 'Audience Reach Achieved', decimals: 1 },
+  { number: 135, suffix: '+', label: 'Snapchat AR Filters Created' },
 ];
 
-const AnimatedCounter = ({ target, suffix }: { target: number; suffix: string }) => {
+const AnimatedCounter = ({ target, suffix, decimals = 0 }: { target: number; suffix: string; decimals?: number }) => {
   const [count, setCount] = useState(0);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -25,15 +29,15 @@ const AnimatedCounter = ({ target, suffix }: { target: number; suffix: string })
         setCount(target);
         clearInterval(timer);
       } else {
-        setCount(Math.floor(current));
+        setCount(Number(current.toFixed(decimals)));
       }
     }, duration / steps);
     return () => clearInterval(timer);
-  }, [isInView, target]);
+  }, [isInView, target, decimals]);
 
   return (
     <span ref={ref} className="tabular-nums">
-      {count}{suffix}
+      {decimals > 0 ? count.toFixed(decimals) : count}{suffix}
     </span>
   );
 };
@@ -56,17 +60,17 @@ const ProofSection = () => {
           </h2>
         </RevealOnScroll>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 max-w-3xl mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-6 lg:gap-8 max-w-5xl mx-auto">
           {stats.map((stat, index) => (
             <RevealOnScroll key={stat.label} delay={index * 0.1}>
               <motion.div
                 whileHover={{ y: -5 }}
-                className="text-center p-8 md:p-10 rounded-2xl bg-card border border-border/50"
+                className="text-center p-6 md:p-8 rounded-2xl bg-card border border-border/50"
               >
-                <div className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-gradient mb-3">
-                  <AnimatedCounter target={stat.number} suffix={stat.suffix} />
+                <div className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-gradient mb-3">
+                  <AnimatedCounter target={stat.number} suffix={stat.suffix} decimals={stat.decimals} />
                 </div>
-                <div className="text-muted-foreground text-sm md:text-base">
+                <div className="text-muted-foreground text-xs md:text-sm">
                   {stat.label}
                 </div>
               </motion.div>

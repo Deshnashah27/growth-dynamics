@@ -21,7 +21,7 @@ const services = [
     gradient: 'from-primary/10 via-yellow-500/5 to-transparent',
   },
   {
-    title: 'Growth Systems & Business Infrastructure',
+    title: 'Business Growth Systems',
     slug: 'sales-lead-generation',
     tagline: 'Strong brands need more than visibility',
     description: 'Structured systems that support discovery, trust, conversion, and long-term business credibility.',
