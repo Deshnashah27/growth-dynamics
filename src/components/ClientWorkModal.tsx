@@ -170,14 +170,6 @@ const ClientWorkModal = ({ isOpen, onClose, client }: ClientWorkModalProps) => {
                     </div>
                   )}
                   
-                  <motion.button
-                    onClick={onClose}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="mt-8 px-6 py-3 rounded-full border border-border hover:border-primary/50 text-muted-foreground hover:text-foreground transition-colors"
-                  >
-                    Close
-                  </motion.button>
                 </motion.div>
               </div>
             </div>
