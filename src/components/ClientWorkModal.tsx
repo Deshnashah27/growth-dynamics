@@ -171,6 +171,20 @@ const ClientWorkModal = ({ isOpen, onClose, client }: ClientWorkModalProps) => {
                     </div>
                   )}
                   
+                  {client.link && (
+                    <motion.a
+                      href={client.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.6 }}
+                      className="mt-6 inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary/10 text-primary font-medium hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                    >
+                      <span>Try AR Filter</span>
+                      <ExternalLink className="w-4 h-4" />
+                    </motion.a>
+                  )}
                 </motion.div>
               </div>
             </div>
