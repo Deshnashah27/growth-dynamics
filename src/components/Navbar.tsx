@@ -13,7 +13,7 @@ import {
 const serviceLinks = [
   { name: 'Brand Foundation', href: '/services/brand-foundation' },
   { name: 'Social Media Marketing', href: '/services/social-media-marketing' },
-  { name: 'Business Growth Systems', href: '/services/sales-lead-generation' },
+  { name: 'Growth Systems', href: '/services/sales-lead-generation' },
   { name: 'AR Experiences', href: '/services/ar-experiences' },
 ];
 
@@ -66,7 +66,7 @@ const Navbar = () => {
             transition={{ duration: 0.5 }}
           >
             <Link to="/">
-              <img src={jinansheLogoImg} alt="Jinanshé" className="h-12 md:h-14" style={{ filter: 'brightness(0) invert(1)' }} />
+              <img src={jinansheLogoImg} alt="Jinanshé" className="h-16 md:h-20" style={{ filter: 'brightness(0) invert(1)' }} />
             </Link>
           </motion.div>
 

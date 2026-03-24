@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 interface ClientWorkModalProps {
@@ -12,6 +12,7 @@ interface ClientWorkModalProps {
     image: string;
     images?: string[];
     description?: string[];
+    link?: string;
   } | null;
 }
 
@@ -143,7 +144,7 @@ const ClientWorkModal = ({ isOpen, onClose, client }: ClientWorkModalProps) => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.3 }}
                 >
-                  <span className="px-3 py-1 rounded-full text-xs font-medium bg-primary/20 text-primary">
+                  <span className="px-3 py-1.5 rounded-full text-xs font-medium bg-primary/20 text-primary border border-primary/30">
                     {client.industry}
                   </span>
                   
@@ -170,14 +171,20 @@ const ClientWorkModal = ({ isOpen, onClose, client }: ClientWorkModalProps) => {
                     </div>
                   )}
                   
-                  <motion.button
-                    onClick={onClose}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="mt-8 px-6 py-3 rounded-full border border-border hover:border-primary/50 text-muted-foreground hover:text-foreground transition-colors"
-                  >
-                    Close
-                  </motion.button>
+                  {client.link && (
+                    <motion.a
+                      href={client.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.6 }}
+                      className="mt-6 inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary/10 text-primary font-medium hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                    >
+                      <span>Try AR Filter</span>
+                      <ExternalLink className="w-4 h-4" />
+                    </motion.a>
+                  )}
                 </motion.div>
               </div>
             </div>

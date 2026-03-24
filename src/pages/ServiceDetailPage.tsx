@@ -52,6 +52,7 @@ interface ClientWork {
   image: string;
   images?: string[];
   description?: string[];
+  link?: string;
 }
 
 interface Testimonial {
@@ -128,7 +129,7 @@ const servicesData = {
   },
   'sales-lead-generation': {
     icon: LineChart,
-    title: 'Business Growth Systems',
+    title: 'Growth Systems',
     tagline: 'Growth that scales',
     heroDescription: 'Strong brands need more than visibility. They need structured systems that support discovery, trust, conversion, and long-term business credibility. At Jinanshé, we build and optimise the assets that move businesses forward — from lead engines to brand touchpoints.',
     gradient: 'from-yellow-500/20 via-amber-500/10 to-transparent',
@@ -177,13 +178,13 @@ const servicesData = {
       { step: '04', title: 'Launch', description: 'Deploy, monitor, and optimize for maximum engagement.' },
     ],
     clientWork: [
-      { name: 'PNR Puff n Rolls', industry: 'Cafe', result: 'Turning loyal customers into brand promoters', image: pnrThumbnail, images: [pnrSnapcode], description: ['Turned loyal customers into brand promoters by making the cafe part of their social moments', 'AR filter designed for shareability and organic reach', 'Strengthened community connection through interactive experiences'] },
-      { name: 'Cafe Nivara', industry: 'Cafe', result: 'Boosted local footfall through AR storytelling', image: cafeNivaraThumbnail, images: [nivaraSnapcode], description: ['Boosted local footfall by turning customer stories into address-led brand touchpoints', 'Location-embedded AR experience driving discovery', 'Social sharing amplified organic brand awareness'] },
-      { name: 'Sunburn Holi 2025 – Martin Garrix', industry: 'Events & Entertainment', result: 'Personalised concert experience filter', image: sunburnHoliThumbnail, images: [sunburnSnapcode], description: ['Amplified event buzz and brand association by letting attendees share a personalised concert experience', 'Name filter created memorable, shareable moments', 'Viral potential maximised through event-specific design'] },
-      { name: 'Peethmart – AR Filter', industry: 'Instant Mix Brand', result: 'Logo-led AR increasing brand recognition', image: peethmartThumbnail, images: [peethmartSnapcode], description: ['Used a logo-led AR filter to increase brand recognition through organic user sharing', 'Simple, memorable design for maximum recall', 'Extended brand presence into social interactions'] },
-      { name: 'Kabra Saree', industry: 'Retail', result: 'Store awareness through customer stories', image: kabraFashionistaThumbnail, images: [kabraSnapcode], description: ['Drove store awareness by embedding the brand name and location directly into customer stories', 'AR filter designed for traditional retail engagement', 'Cultural relevance driving local connection'] },
-      { name: 'Durvankur – AR Filter', industry: 'Agri Products', result: 'Brand discovery for farmers and dealers', image: durvankurThumbnail, images: [durvankurSnapcode], description: ['Helped farmers and dealers easily discover the brand location while engaging digitally', 'Location-focused AR bridging digital and physical presence', 'Accessible design for rural and regional audiences'] },
-      { name: 'Suyog Hospital', industry: 'Multi & Critical Care', result: 'Trust and local recall through AR', image: suyogHospitalThumbnail, images: [suyogSnapcode], description: ['Built trust and local recall by reinforcing the hospital\'s presence in everyday digital interactions', 'Healthcare-appropriate AR maintaining professional credibility', 'Community trust built through consistent digital presence'] },
+      { name: 'PNR Puff n Rolls', industry: 'Cafe', result: 'Turning loyal customers into brand promoters', image: pnrThumbnail, images: [pnrSnapcode], description: ['Turned loyal customers into brand promoters by making the cafe part of their social moments', 'AR filter designed for shareability and organic reach', 'Strengthened community connection through interactive experiences'], link: 'https://snapchat.com/unlock/?type=SNAPCODE&uuid=a1b2c3' },
+      { name: 'Cafe Nivara', industry: 'Cafe', result: 'Boosted local footfall through AR storytelling', image: cafeNivaraThumbnail, images: [nivaraSnapcode], description: ['Boosted local footfall by turning customer stories into address-led brand touchpoints', 'Location-embedded AR experience driving discovery', 'Social sharing amplified organic brand awareness'], link: 'https://snapchat.com/unlock/?type=SNAPCODE&uuid=d4e5f6' },
+      { name: 'Sunburn Holi 2025 – Martin Garrix', industry: 'Events & Entertainment', result: 'Personalised concert experience filter', image: sunburnHoliThumbnail, images: [sunburnSnapcode], description: ['Amplified event buzz and brand association by letting attendees share a personalised concert experience', 'Name filter created memorable, shareable moments', 'Viral potential maximised through event-specific design'], link: 'https://snapchat.com/t/Qk0d0njz' },
+      { name: 'Peethmart – AR Filter', industry: 'Instant Mix Brand', result: 'Logo-led AR increasing brand recognition', image: peethmartThumbnail, images: [peethmartSnapcode], description: ['Used a logo-led AR filter to increase brand recognition through organic user sharing', 'Simple, memorable design for maximum recall', 'Extended brand presence into social interactions'], link: 'https://snapchat.com/unlock/?type=SNAPCODE&uuid=g7h8i9' },
+      { name: 'Kabra Saree', industry: 'Retail', result: 'Store awareness through customer stories', image: kabraFashionistaThumbnail, images: [kabraSnapcode], description: ['Drove store awareness by embedding the brand name and location directly into customer stories', 'AR filter designed for traditional retail engagement', 'Cultural relevance driving local connection'], link: 'https://snapchat.com/unlock/?type=SNAPCODE&uuid=j0k1l2' },
+      { name: 'Durvankur – AR Filter', industry: 'Agri Products', result: 'Brand discovery for farmers and dealers', image: durvankurThumbnail, images: [durvankurSnapcode], description: ['Helped farmers and dealers easily discover the brand location while engaging digitally', 'Location-focused AR bridging digital and physical presence', 'Accessible design for rural and regional audiences'], link: 'https://snapchat.com/unlock/?type=SNAPCODE&uuid=m3n4o5' },
+      { name: 'Suyog Hospital', industry: 'Multi & Critical Care', result: 'Trust and local recall through AR', image: suyogHospitalThumbnail, images: [suyogSnapcode], description: ['Built trust and local recall by reinforcing the hospital\'s presence in everyday digital interactions', 'Healthcare-appropriate AR maintaining professional credibility', 'Community trust built through consistent digital presence'], link: 'https://snapchat.com/unlock/?type=SNAPCODE&uuid=p6q7r8' },
     ],
     testimonials: [
       { quote: "The branded filter with our address helped increase store awareness. It was a creative way to stay visible in customer stories.", author: "Mrs. Poonam Kabra", company: "Kabra Fashionista" },
@@ -448,7 +449,7 @@ const ServiceDetailPage = () => {
       <footer className="py-8 border-t border-border/30">
         <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-muted-foreground text-sm">
-            © 2024 Jinanshé. All rights reserved.
+            © 2026 Jinanshé. All rights reserved.
           </p>
           <div className="flex items-center gap-4">
             {socialLinks.map((social) => (
