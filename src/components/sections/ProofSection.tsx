@@ -6,6 +6,10 @@ import RevealOnScroll from '../RevealOnScroll';
 const stats = [
   { number: 170, suffix: '+', label: 'Qualified Leads in 45 Days' },
   { number: 3, suffix: 'x', label: 'Stronger Engagement in 60 Days' },
+  { number: 41.7, suffix: 'M+', label: 'Total Plays Across Filters', decimals: 1 },
+  { number: 56.2, suffix: 'M+', label: 'Views Generated via Snapchat', decimals: 1 },
+  { number: 24.5, suffix: 'M+', label: 'Audience Reach Achieved', decimals: 1 },
+  { number: 135, suffix: '+', label: 'Snapchat AR Filters Created' },
 ];
 
 const AnimatedCounter = ({ target, suffix }: { target: number; suffix: string }) => {

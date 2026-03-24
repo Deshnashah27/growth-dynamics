@@ -128,7 +128,7 @@ const servicesData = {
   },
   'sales-lead-generation': {
     icon: LineChart,
-    title: 'Growth Systems & Business Infrastructure',
+    title: 'Business Growth Systems',
     tagline: 'Growth that scales',
     heroDescription: 'Strong brands need more than visibility. They need structured systems that support discovery, trust, conversion, and long-term business credibility. At Jinanshé, we build and optimise the assets that move businesses forward — from lead engines to brand touchpoints.',
     gradient: 'from-yellow-500/20 via-amber-500/10 to-transparent',
