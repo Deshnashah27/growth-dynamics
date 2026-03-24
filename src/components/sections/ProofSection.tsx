@@ -60,17 +60,17 @@ const ProofSection = () => {
           </h2>
         </RevealOnScroll>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 max-w-3xl mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-6 lg:gap-8 max-w-5xl mx-auto">
           {stats.map((stat, index) => (
             <RevealOnScroll key={stat.label} delay={index * 0.1}>
               <motion.div
                 whileHover={{ y: -5 }}
-                className="text-center p-8 md:p-10 rounded-2xl bg-card border border-border/50"
+                className="text-center p-6 md:p-8 rounded-2xl bg-card border border-border/50"
               >
-                <div className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-gradient mb-3">
-                  <AnimatedCounter target={stat.number} suffix={stat.suffix} />
+                <div className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-gradient mb-3">
+                  <AnimatedCounter target={stat.number} suffix={stat.suffix} decimals={stat.decimals} />
                 </div>
-                <div className="text-muted-foreground text-sm md:text-base">
+                <div className="text-muted-foreground text-xs md:text-sm">
                   {stat.label}
                 </div>
               </motion.div>
