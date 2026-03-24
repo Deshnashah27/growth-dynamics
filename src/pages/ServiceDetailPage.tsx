@@ -52,6 +52,7 @@ interface ClientWork {
   image: string;
   images?: string[];
   description?: string[];
+  link?: string;
 }
 
 interface Testimonial {
