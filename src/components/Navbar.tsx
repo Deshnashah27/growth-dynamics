@@ -66,7 +66,7 @@ const Navbar = () => {
             transition={{ duration: 0.5 }}
           >
             <Link to="/">
-              <img src={jinansheLogoImg} alt="Jinanshé" className="h-16 md:h-20" style={{ filter: 'brightness(0) invert(1)' }} />
+              <img src={jinansheLogoImg} alt="Jinanshé" className="h-20 md:h-28" style={{ filter: 'brightness(0) invert(1)' }} />
             </Link>
           </motion.div>
 
