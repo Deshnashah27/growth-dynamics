@@ -448,7 +448,7 @@ const ServiceDetailPage = () => {
       <footer className="py-8 border-t border-border/30">
         <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-muted-foreground text-sm">
-            © 2024 Jinanshé. All rights reserved.
+            © 2026 Jinanshé. All rights reserved.
           </p>
           <div className="flex items-center gap-4">
             {socialLinks.map((social) => (
