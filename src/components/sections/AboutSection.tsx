@@ -87,13 +87,14 @@ const AboutSection = () => {
               >
                 {/* Portrait */}
                 <div className="relative h-80 overflow-hidden">
-                  <motion.img
+                  <img
                     src={founder.image}
                     alt={founder.name}
                     className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
                   />
-                  {/* Gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-card via-card/20 to-transparent" />
+                  {/* Gradient overlay - seamless blend into card */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-card via-card/30 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 h-16 bg-card" style={{ marginBottom: '-1px' }} />
 
                   {/* Role badge */}
                   <div className="absolute top-5 left-5">

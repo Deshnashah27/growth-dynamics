@@ -144,7 +144,7 @@ const ClientWorkModal = ({ isOpen, onClose, client }: ClientWorkModalProps) => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.3 }}
                 >
-                  <span className="px-3 py-1.5 rounded-full text-xs font-medium bg-primary/20 text-primary border border-primary/30">
+                  <span className="px-3 py-1.5 rounded-full text-xs font-medium bg-background/90 text-foreground border border-border/50">
                     {client.industry}
                   </span>
                   
