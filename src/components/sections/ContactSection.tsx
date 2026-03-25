@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { ArrowRight, Instagram, Mail, Linkedin, Youtube, Facebook, Send, CheckCircle, Calendar } from 'lucide-react';
+import { ArrowRight, Instagram, Linkedin, Facebook, Send, CheckCircle, Calendar, Phone, MapPin, MessageCircle } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -20,11 +20,10 @@ const contactSchema = z.object({
 type ContactFormData = z.infer<typeof contactSchema>;
 
 const socialIcons = [
-  { icon: Instagram, name: 'Instagram', color: '#E4405F', delay: 0 },
-  { icon: Mail, name: 'Email', color: '#D44638', delay: 0.1 },
-  { icon: Linkedin, name: 'LinkedIn', color: '#0A66C2', delay: 0.2 },
-  { icon: Youtube, name: 'YouTube', color: '#FF0000', delay: 0.3 },
-  { icon: Facebook, name: 'Facebook', color: '#1877F2', delay: 0.4 },
+  { icon: Instagram, name: 'Instagram', color: '#E4405F', delay: 0, href: 'https://instagram.com/jinanshe' },
+  { icon: Facebook, name: 'Facebook', color: '#1877F2', delay: 0.1, href: 'https://facebook.com/jinanshe' },
+  { icon: Linkedin, name: 'LinkedIn', color: '#0A66C2', delay: 0.2, href: 'https://linkedin.com/company/jinanshe' },
+  { icon: MessageCircle, name: 'WhatsApp', color: '#25D366', delay: 0.3, href: 'https://wa.me/918433994339' },
 ];
 
 const ContactSection = () => {
