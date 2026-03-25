@@ -202,6 +202,7 @@ const socialLinks = [
 
 const ServiceDetailPage = () => {
   const { slug } = useParams<{ slug: string }>();
+  const navigate = useNavigate();
   const service = servicesData[slug as keyof typeof servicesData];
   const [selectedClient, setSelectedClient] = useState<ClientWork | null>(null);
 
