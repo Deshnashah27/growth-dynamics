@@ -422,9 +422,8 @@ const ServiceDetailPage = () => {
             <h2 className="font-display text-3xl md:text-5xl font-bold mb-6">
               Ready to get started?
             </h2>
-            <motion.a
-              href="/#contact"
-              onClick={(e) => { e.preventDefault(); window.location.href = '/#contact'; }}
+            <motion.button
+              onClick={() => { navigate('/'); setTimeout(() => { const el = document.getElementById('contact'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }, 300); }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
               className="group relative inline-flex items-center gap-3 px-8 py-4 bg-primary text-primary-foreground font-display font-semibold text-lg rounded-full overflow-hidden transition-all duration-300 mb-4"
