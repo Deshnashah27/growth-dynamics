@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { ArrowLeft, Check, ArrowUpRight, Palette, Share2, LineChart, Box, Quote, Instagram, Linkedin, Facebook, MessageCircle } from 'lucide-react';
 import Navbar from '@/components/Navbar';
