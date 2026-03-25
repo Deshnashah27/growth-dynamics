@@ -352,7 +352,7 @@ const ServiceDetailPage = () => {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
                     <div className="absolute top-4 left-4">
-                      <span className="px-3 py-1 rounded-full text-xs font-medium bg-primary/20 text-primary backdrop-blur-sm">
+                      <span className="px-3 py-1 rounded-full text-xs font-medium bg-background/90 text-foreground backdrop-blur-sm border border-border/50">
                         {client.industry}
                       </span>
                     </div>
