@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { ArrowLeft, Check, ArrowUpRight, Palette, Share2, LineChart, Box, Quote, Instagram, Linkedin, Facebook, MessageCircle } from 'lucide-react';
 import Navbar from '@/components/Navbar';
@@ -202,7 +202,6 @@ const socialLinks = [
 
 const ServiceDetailPage = () => {
   const { slug } = useParams<{ slug: string }>();
-  const navigate = useNavigate();
   const service = servicesData[slug as keyof typeof servicesData];
   const [selectedClient, setSelectedClient] = useState<ClientWork | null>(null);
 
@@ -353,7 +352,7 @@ const ServiceDetailPage = () => {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
                     <div className="absolute top-4 left-4">
-                      <span className="px-3 py-1 rounded-full text-xs font-medium bg-background/90 text-foreground backdrop-blur-sm border border-border/50">
+                      <span className="px-3 py-1 rounded-full text-xs font-medium bg-primary/20 text-primary backdrop-blur-sm">
                         {client.industry}
                       </span>
                     </div>
@@ -422,8 +421,8 @@ const ServiceDetailPage = () => {
             <h2 className="font-display text-3xl md:text-5xl font-bold mb-6">
               Ready to get started?
             </h2>
-            <motion.button
-              onClick={() => { navigate('/'); setTimeout(() => { const el = document.getElementById('contact'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }, 300); }}
+            <motion.a
+              href="/#contact"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
               className="group relative inline-flex items-center gap-3 px-8 py-4 bg-primary text-primary-foreground font-display font-semibold text-lg rounded-full overflow-hidden transition-all duration-300 mb-4"
@@ -435,7 +434,7 @@ const ServiceDetailPage = () => {
                 {slug === 'ar-experiences' && "Turn Your Customers into Brand Advocates with AR"}
               </span>
               <ArrowUpRight className="relative z-10 w-5 h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-            </motion.button>
+            </motion.a>
             <p className="text-muted-foreground text-base max-w-xl mx-auto mt-4">
               {slug === 'brand-foundation' && "For businesses ready to move from scattered identity to a clear, respected brand."}
               {slug === 'social-media-marketing' && "No random posts. Only content aligned with your vision, values, and long-term goals."}

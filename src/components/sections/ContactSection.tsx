@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { ArrowRight, Instagram, Linkedin, Facebook, Send, CheckCircle, Calendar, Phone, MapPin, MessageCircle } from 'lucide-react';
+import { ArrowRight, Instagram, Mail, Linkedin, Youtube, Facebook, Send, CheckCircle, Calendar } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -20,10 +20,11 @@ const contactSchema = z.object({
 type ContactFormData = z.infer<typeof contactSchema>;
 
 const socialIcons = [
-  { icon: Instagram, name: 'Instagram', color: '#E4405F', delay: 0, href: 'https://instagram.com/jinanshe' },
-  { icon: Facebook, name: 'Facebook', color: '#1877F2', delay: 0.1, href: 'https://facebook.com/jinanshe' },
-  { icon: Linkedin, name: 'LinkedIn', color: '#0A66C2', delay: 0.2, href: 'https://linkedin.com/company/jinanshe' },
-  { icon: MessageCircle, name: 'WhatsApp', color: '#25D366', delay: 0.3, href: 'https://wa.me/918433994339' },
+  { icon: Instagram, name: 'Instagram', color: '#E4405F', delay: 0 },
+  { icon: Mail, name: 'Email', color: '#D44638', delay: 0.1 },
+  { icon: Linkedin, name: 'LinkedIn', color: '#0A66C2', delay: 0.2 },
+  { icon: Youtube, name: 'YouTube', color: '#FF0000', delay: 0.3 },
+  { icon: Facebook, name: 'Facebook', color: '#1877F2', delay: 0.4 },
 ];
 
 const ContactSection = () => {
@@ -184,41 +185,85 @@ const ContactSection = () => {
           </div>
         </RevealOnScroll>
 
-        {/* Contact Info */}
-        <RevealOnScroll delay={0.25}>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-8 mb-16">
-            <a href="tel:+918433994339" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
-              <Phone className="w-4 h-4" />
-              <span>+91 84339 94339</span>
-            </a>
-            <div className="flex items-center gap-2 text-muted-foreground">
-              <MapPin className="w-4 h-4" />
-              <span>Nashik, Maharashtra, India</span>
-            </div>
-          </div>
-        </RevealOnScroll>
-
-        {/* Social Icons */}
+        {/* 3D Orbiting Social Icons */}
         <RevealOnScroll delay={0.3}>
-          <div className="flex items-center justify-center gap-4 mb-16">
-            {socialIcons.map((social) => (
-              <motion.a
-                key={social.name}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.15, backgroundColor: social.color }}
-                className="w-12 h-12 rounded-full bg-card border border-border/50 flex items-center justify-center text-muted-foreground hover:text-white transition-colors duration-300"
-                aria-label={social.name}
-              >
-                <social.icon className="w-5 h-5" />
-              </motion.a>
-            ))}
+          <div className="relative h-[300px] md:h-[400px] flex items-center justify-center perspective-1000">
+            {/* Central glow */}
+            <div className="absolute w-24 h-24 rounded-full bg-primary/20 blur-xl" />
+            
+            {/* Orbit path (decorative) */}
+            <div className="absolute w-[200px] h-[200px] md:w-[280px] md:h-[280px] rounded-full border border-border/20" />
+
+            {/* Social icons */}
+            {socialIcons.map((social, index) => {
+              const angle = (index / socialIcons.length) * 360;
+              const radius = 120;
+              const isHovered = hoveredIcon === social.name;
+
+              return (
+                <motion.div
+                  key={social.name}
+                  className="absolute"
+                  initial={{ 
+                    x: Math.cos((angle * Math.PI) / 180) * radius,
+                    y: Math.sin((angle * Math.PI) / 180) * radius,
+                    opacity: 0,
+                    scale: 0,
+                  }}
+                  animate={{ 
+                    x: Math.cos(((angle + (Date.now() / 50)) * Math.PI) / 180) * radius,
+                    y: Math.sin(((angle + (Date.now() / 50)) * Math.PI) / 180) * radius,
+                    opacity: 1,
+                    scale: 1,
+                  }}
+                  transition={{
+                    opacity: { delay: social.delay, duration: 0.5 },
+                    scale: { delay: social.delay, duration: 0.5 },
+                  }}
+                  style={{
+                    animation: `orbit ${20 + index * 2}s linear infinite`,
+                    animationDelay: `${-index * 4}s`,
+                  }}
+                  onHoverStart={() => setHoveredIcon(social.name)}
+                  onHoverEnd={() => setHoveredIcon(null)}
+                >
+                  <motion.div
+                    whileHover={{ scale: 1.3 }}
+                    className="relative cursor-pointer"
+                  >
+                    <motion.div
+                      animate={{
+                        backgroundColor: isHovered ? social.color : 'hsl(var(--card))',
+                        boxShadow: isHovered 
+                          ? `0 0 30px ${social.color}80` 
+                          : '0 0 0 transparent',
+                      }}
+                      transition={{ duration: 0.3 }}
+                      className="w-14 h-14 md:w-16 md:h-16 rounded-2xl border border-border/50 flex items-center justify-center"
+                    >
+                      <social.icon 
+                        className="w-6 h-6 md:w-7 md:h-7 transition-colors duration-300" 
+                        style={{ color: isHovered ? '#fff' : 'hsl(var(--muted-foreground))' }}
+                      />
+                    </motion.div>
+
+                    {/* Platform name tooltip */}
+                    <motion.span
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 10 }}
+                      className="absolute top-full left-1/2 -translate-x-1/2 mt-2 text-xs font-medium whitespace-nowrap text-foreground"
+                    >
+                      {social.name}
+                    </motion.span>
+                  </motion.div>
+                </motion.div>
+              );
+            })}
           </div>
         </RevealOnScroll>
 
         {/* Footer info */}
-        <RevealOnScroll delay={0.4}>
+        <RevealOnScroll delay={0.5}>
           <div className="text-center mt-16 pt-16 border-t border-border/30">
             <p className="text-muted-foreground text-sm">
               © 2026 Jinanshé. All rights reserved.
