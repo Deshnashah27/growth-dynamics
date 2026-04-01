@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { ArrowRight, Instagram, Mail, Linkedin, Youtube, Facebook, Send, CheckCircle, Calendar } from 'lucide-react';
+import { ArrowRight, Instagram, Mail, Linkedin, MessageCircle, Facebook, Send, CheckCircle, Calendar } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -23,7 +23,7 @@ const socialIcons = [
   { icon: Instagram, name: 'Instagram', color: '#E4405F', delay: 0 },
   { icon: Mail, name: 'Email', color: '#D44638', delay: 0.1 },
   { icon: Linkedin, name: 'LinkedIn', color: '#0A66C2', delay: 0.2 },
-  { icon: Youtube, name: 'YouTube', color: '#FF0000', delay: 0.3 },
+  { icon: MessageCircle, name: 'WhatsApp', color: '#25D366', delay: 0.3 },
   { icon: Facebook, name: 'Facebook', color: '#1877F2', delay: 0.4 },
 ];
 
