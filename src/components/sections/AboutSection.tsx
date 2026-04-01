@@ -80,10 +80,8 @@ const AboutSection = () => {
         <div className="grid md:grid-cols-2 gap-8 lg:gap-12 max-w-5xl mx-auto">
           {founders.map((founder, index) => (
             <RevealOnScroll key={founder.name} delay={0.2 + index * 0.15}>
-              <motion.div
-                whileHover={{ y: -6 }}
-                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                className="group relative rounded-3xl overflow-hidden bg-card border border-border/50 hover:border-primary/30 transition-colors duration-500"
+              <div
+                className="group relative rounded-3xl overflow-hidden bg-card border border-border/50 transition-colors duration-500"
               >
                 {/* Portrait */}
                 <div className="relative h-80 overflow-hidden">
