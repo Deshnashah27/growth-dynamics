@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { ArrowRight, Instagram, Mail, Linkedin, Youtube, Facebook, Send, CheckCircle, Calendar } from 'lucide-react';
+import { ArrowRight, Instagram, Mail, Linkedin, MessageCircle, Facebook, Send, CheckCircle, Calendar } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
