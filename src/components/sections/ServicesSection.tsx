@@ -29,8 +29,6 @@ const services = [
       'Performance-driven ad and lead systems',
       'Websites structured for credibility and enquiries',
       'Google presence optimisation for local discovery',
-      'Conversion-focused brochures and communication assets',
-      'Corporate touchpoints aligned with brand identity',
     ],
     gradient: 'from-yellow-500/10 via-amber-500/5 to-transparent',
   },
