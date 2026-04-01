@@ -434,7 +434,7 @@ const ServiceDetailPage = () => {
                 {slug === 'ar-experiences' && "Turn Your Customers into Brand Advocates with AR"}
               </span>
               <ArrowUpRight className="relative z-10 w-5 h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-            </motion.a>
+            </motion.button>
             <p className="text-muted-foreground text-base max-w-xl mx-auto mt-4">
               {slug === 'brand-foundation' && "For businesses ready to move from scattered identity to a clear, respected brand."}
               {slug === 'social-media-marketing' && "No random posts. Only content aligned with your vision, values, and long-term goals."}
