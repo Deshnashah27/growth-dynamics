@@ -351,11 +351,6 @@ const ServiceDetailPage = () => {
                       className="max-w-full max-h-full object-contain transition-transform duration-700 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
-                    <div className="absolute top-4 left-4">
-                      <span className="px-3 py-1 rounded-full text-xs font-medium bg-primary/20 text-primary backdrop-blur-sm">
-                        {client.industry}
-                      </span>
-                    </div>
                     {client.images && client.images.length > 1 && (
                       <div className="absolute top-4 right-4">
                         <span className="px-2 py-1 rounded-full text-xs font-medium bg-background/80 text-foreground backdrop-blur-sm">
