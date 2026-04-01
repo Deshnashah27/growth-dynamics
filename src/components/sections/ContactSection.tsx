@@ -47,6 +47,20 @@ const ContactSection = () => {
     }
   });
 
+  const handleMailClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const mailtoUrl = 'mailto:info.jinanshe@gmail.com';
+    const gmailUrl = 'https://mail.google.com/mail/?view=cm&to=info.jinanshe@gmail.com';
+
+    window.location.href = mailtoUrl;
+
+    const timeout = setTimeout(() => {
+      window.open(gmailUrl, '_blank');
+    }, 1000);
+
+    window.addEventListener('blur', () => clearTimeout(timeout), { once: true });
+  };
+
   const onSubmit = async (data: ContactFormData) => {
     setIsLoading(true);
     try {
@@ -285,6 +299,7 @@ const ContactSection = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={social.name}
+                    onClick={social.name === 'Email' ? handleMailClick : undefined}
                   >
                     <motion.div
                       whileHover={{ scale: 1.3 }}
