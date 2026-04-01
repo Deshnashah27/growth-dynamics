@@ -282,7 +282,7 @@ const ContactSection = () => {
                 >
                   <a
                     href={social.href}
-                    target={social.href.startsWith('mailto:') ? undefined : '_blank'}
+                    target="_blank"
                     rel="noopener noreferrer"
                     aria-label={social.name}
                   >
