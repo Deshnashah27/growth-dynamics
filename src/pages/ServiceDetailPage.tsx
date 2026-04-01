@@ -178,13 +178,13 @@ const servicesData = {
       { step: '04', title: 'Launch', description: 'Deploy, monitor, and optimize for maximum engagement.' },
     ],
     clientWork: [
-      { name: 'PNR Puff n Rolls', industry: 'Cafe', result: 'Turning loyal customers into brand promoters', image: pnrThumbnail, images: [pnrSnapcode], description: ['Turned loyal customers into brand promoters by making the cafe part of their social moments', 'AR filter designed for shareability and organic reach', 'Strengthened community connection through interactive experiences'], link: 'https://snapchat.com/unlock/?type=SNAPCODE&uuid=a1b2c3' },
-      { name: 'Cafe Nivara', industry: 'Cafe', result: 'Boosted local footfall through AR storytelling', image: cafeNivaraThumbnail, images: [nivaraSnapcode], description: ['Boosted local footfall by turning customer stories into address-led brand touchpoints', 'Location-embedded AR experience driving discovery', 'Social sharing amplified organic brand awareness'], link: 'https://snapchat.com/unlock/?type=SNAPCODE&uuid=d4e5f6' },
+      { name: 'PNR Puff n Rolls', industry: 'Cafe', result: 'Turning loyal customers into brand promoters', image: pnrThumbnail, images: [pnrSnapcode], description: ['Turned loyal customers into brand promoters by making the cafe part of their social moments', 'AR filter designed for shareability and organic reach', 'Strengthened community connection through interactive experiences'], link: 'https://snapchat.com/t/FYAYEkHN' },
+      { name: 'Cafe Nivara', industry: 'Cafe', result: 'Boosted local footfall through AR storytelling', image: cafeNivaraThumbnail, images: [nivaraSnapcode], description: ['Boosted local footfall by turning customer stories into address-led brand touchpoints', 'Location-embedded AR experience driving discovery', 'Social sharing amplified organic brand awareness'], link: 'https://snapchat.com/t/ehz2RNVE' },
       { name: 'Sunburn Holi 2025 – Martin Garrix', industry: 'Events & Entertainment', result: 'Personalised concert experience filter', image: sunburnHoliThumbnail, images: [sunburnSnapcode], description: ['Amplified event buzz and brand association by letting attendees share a personalised concert experience', 'Name filter created memorable, shareable moments', 'Viral potential maximised through event-specific design'], link: 'https://snapchat.com/t/Qk0d0njz' },
-      { name: 'Peethmart – AR Filter', industry: 'Instant Mix Brand', result: 'Logo-led AR increasing brand recognition', image: peethmartThumbnail, images: [peethmartSnapcode], description: ['Used a logo-led AR filter to increase brand recognition through organic user sharing', 'Simple, memorable design for maximum recall', 'Extended brand presence into social interactions'], link: 'https://snapchat.com/unlock/?type=SNAPCODE&uuid=g7h8i9' },
-      { name: 'Kabra Saree', industry: 'Retail', result: 'Store awareness through customer stories', image: kabraFashionistaThumbnail, images: [kabraSnapcode], description: ['Drove store awareness by embedding the brand name and location directly into customer stories', 'AR filter designed for traditional retail engagement', 'Cultural relevance driving local connection'], link: 'https://snapchat.com/unlock/?type=SNAPCODE&uuid=j0k1l2' },
+      { name: 'Peethmart – AR Filter', industry: 'Instant Mix Brand', result: 'Logo-led AR increasing brand recognition', image: peethmartThumbnail, images: [peethmartSnapcode], description: ['Used a logo-led AR filter to increase brand recognition through organic user sharing', 'Simple, memorable design for maximum recall', 'Extended brand presence into social interactions'], link: 'https://snapchat.com/t/GkK4xkyb' },
+      { name: 'Kabra Saree', industry: 'Retail', result: 'Store awareness through customer stories', image: kabraFashionistaThumbnail, images: [kabraSnapcode], description: ['Drove store awareness by embedding the brand name and location directly into customer stories', 'AR filter designed for traditional retail engagement', 'Cultural relevance driving local connection'], link: 'https://snapchat.com/t/MmdDeBs3' },
       { name: 'Durvankur – AR Filter', industry: 'Agri Products', result: 'Brand discovery for farmers and dealers', image: durvankurThumbnail, images: [durvankurSnapcode], description: ['Helped farmers and dealers easily discover the brand location while engaging digitally', 'Location-focused AR bridging digital and physical presence', 'Accessible design for rural and regional audiences'], link: 'https://snapchat.com/unlock/?type=SNAPCODE&uuid=m3n4o5' },
-      { name: 'Suyog Hospital', industry: 'Multi & Critical Care', result: 'Trust and local recall through AR', image: suyogHospitalThumbnail, images: [suyogSnapcode], description: ['Built trust and local recall by reinforcing the hospital\'s presence in everyday digital interactions', 'Healthcare-appropriate AR maintaining professional credibility', 'Community trust built through consistent digital presence'], link: 'https://snapchat.com/unlock/?type=SNAPCODE&uuid=p6q7r8' },
+      { name: 'Suyog Hospital', industry: 'Multi & Critical Care', result: 'Trust and local recall through AR', image: suyogHospitalThumbnail, images: [suyogSnapcode], description: ['Built trust and local recall by reinforcing the hospital\'s presence in everyday digital interactions', 'Healthcare-appropriate AR maintaining professional credibility', 'Community trust built through consistent digital presence'], link: 'https://snapchat.com/t/sE1bxjVd' },
     ],
     testimonials: [
       { quote: "The branded filter with our address helped increase store awareness. It was a creative way to stay visible in customer stories.", author: "Mrs. Poonam Kabra", company: "Kabra Fashionista" },
@@ -194,10 +194,10 @@ const servicesData = {
 };
 
 const socialLinks = [
-  { name: 'Instagram', icon: Instagram, href: 'https://instagram.com/jinanshe' },
-  { name: 'Facebook', icon: Facebook, href: 'https://facebook.com/jinanshe' },
-  { name: 'LinkedIn', icon: Linkedin, href: 'https://linkedin.com/company/jinanshe' },
-  { name: 'WhatsApp', icon: MessageCircle, href: 'https://wa.me/jinanshe' },
+  { name: 'Instagram', icon: Instagram, href: 'https://www.instagram.com/jinanshe_ar/' },
+  { name: 'Facebook', icon: Facebook, href: 'https://www.facebook.com/people/Jinansh%C3%A9-Marketing/61581153410106/' },
+  { name: 'LinkedIn', icon: Linkedin, href: 'https://www.linkedin.com/company/jinansh%C3%A9-marketing/' },
+  { name: 'WhatsApp', icon: MessageCircle, href: 'https://wa.me/918433994339' },
 ];
 
 const ServiceDetailPage = () => {
@@ -450,7 +450,7 @@ const ServiceDetailPage = () => {
         <div className="container mx-auto px-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-6">
             <div className="flex flex-col sm:flex-row items-center gap-4 text-muted-foreground text-sm">
-              <span>📞 +91 84339 94339</span>
+              <a href="tel:+918433994339" className="hover:text-primary transition-colors">📞 +91 84339 94339</a>
               <span className="hidden sm:inline">•</span>
               <span>📍 Nashik, Maharashtra, India</span>
             </div>

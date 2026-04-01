@@ -4,12 +4,18 @@ import { ArrowRight, Instagram, Mail, Linkedin, MessageCircle, Facebook, Send, C
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
+import emailjs from '@emailjs/browser';
 import RevealOnScroll from '../RevealOnScroll';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '../ui/form';
 import { useToast } from '@/hooks/use-toast';
+
+// Replace these with your actual EmailJS credentials from https://dashboard.emailjs.com
+const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';
+const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
 
 const contactSchema = z.object({
   name: z.string().trim().min(2, { message: "Name must be at least 2 characters" }).max(100, { message: "Name must be less than 100 characters" }),
@@ -20,16 +26,17 @@ const contactSchema = z.object({
 type ContactFormData = z.infer<typeof contactSchema>;
 
 const socialIcons = [
-  { icon: Instagram, name: 'Instagram', color: '#E4405F', delay: 0 },
-  { icon: Mail, name: 'Email', color: '#D44638', delay: 0.1 },
-  { icon: Linkedin, name: 'LinkedIn', color: '#0A66C2', delay: 0.2 },
-  { icon: MessageCircle, name: 'WhatsApp', color: '#25D366', delay: 0.3 },
-  { icon: Facebook, name: 'Facebook', color: '#1877F2', delay: 0.4 },
+  { icon: Instagram, name: 'Instagram', color: '#E4405F', delay: 0, href: 'https://www.instagram.com/jinanshe_ar/' },
+  { icon: Mail, name: 'Email', color: '#D44638', delay: 0.1, href: 'mailto:info.jinanshe@gmail.com' },
+  { icon: Linkedin, name: 'LinkedIn', color: '#0A66C2', delay: 0.2, href: 'https://www.linkedin.com/company/jinansh%C3%A9-marketing/' },
+  { icon: MessageCircle, name: 'WhatsApp', color: '#25D366', delay: 0.3, href: 'https://wa.me/918433994339' },
+  { icon: Facebook, name: 'Facebook', color: '#1877F2', delay: 0.4, href: 'https://www.facebook.com/people/Jinansh%C3%A9-Marketing/61581153410106/' },
 ];
 
 const ContactSection = () => {
   const [hoveredIcon, setHoveredIcon] = useState<string | null>(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const { toast } = useToast();
 
   const form = useForm<ContactFormData>({
@@ -41,26 +48,48 @@ const ContactSection = () => {
     }
   });
 
-  const onSubmit = (data: ContactFormData) => {
-    console.log('Form submitted:', data);
-    setIsSubmitted(true);
-    toast({
-      title: "Message sent!",
-      description: "We'll get back to you as soon as possible.",
-    });
-    form.reset();
-    setTimeout(() => setIsSubmitted(false), 3000);
+  const onSubmit = async (data: ContactFormData) => {
+    setIsLoading(true);
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          from_name: data.name,
+          from_email: data.email,
+          message: data.message,
+          to_email: 'info.jinanshe@gmail.com',
+        },
+        EMAILJS_PUBLIC_KEY
+      );
+      setIsSubmitted(true);
+      toast({
+        title: "Message sent!",
+        description: "We'll get back to you as soon as possible.",
+      });
+      form.reset();
+      setTimeout(() => setIsSubmitted(false), 3000);
+    } catch (error) {
+      console.error('EmailJS error:', error);
+      toast({
+        title: "Something went wrong",
+        description: "Please try again or contact us directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
     <section className="relative py-32 md:py-48 overflow-hidden">
       {/* Gradient background */}
       <div className="absolute inset-0">
-        <div 
+        <div
           className="absolute inset-0 opacity-60"
           style={{ background: 'var(--gradient-radial)' }}
         />
-        <div 
+        <div
           className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] opacity-40"
           style={{ background: 'var(--gradient-glow)' }}
         />
@@ -75,7 +104,9 @@ const ContactSection = () => {
             If you want marketing that aligns with your vision and grows with your business, let's talk.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-muted-foreground">
-            <span className="flex items-center gap-2">📞 +91 84339 94339</span>
+            <a href="tel:+918433994339" className="flex items-center gap-2 hover:text-primary transition-colors">
+              📞 +91 84339 94339
+            </a>
             <span className="hidden sm:inline">•</span>
             <span className="flex items-center gap-2">📍 Nashik, Maharashtra, India</span>
           </div>
@@ -85,7 +116,7 @@ const ContactSection = () => {
         <RevealOnScroll delay={0.1}>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
             <motion.a
-              href="#"
+              href="#contact-form"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
               className="group relative inline-flex items-center gap-3 px-8 py-4 bg-primary text-primary-foreground font-display font-semibold text-lg rounded-full overflow-hidden transition-all duration-300"
@@ -100,13 +131,13 @@ const ContactSection = () => {
                 transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
               />
             </motion.a>
-            
+
           </div>
         </RevealOnScroll>
 
         {/* Contact Form */}
         <RevealOnScroll delay={0.2}>
-          <div className="max-w-xl mx-auto mb-20">
+          <div id="contact-form" className="max-w-xl mx-auto mb-20">
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                 <FormField
@@ -116,10 +147,10 @@ const ContactSection = () => {
                     <FormItem>
                       <FormLabel className="text-foreground">Name</FormLabel>
                       <FormControl>
-                        <Input 
-                          placeholder="Your name" 
+                        <Input
+                          placeholder="Your name"
                           className="bg-card/50 border-border/50 focus:border-primary/50 transition-colors"
-                          {...field} 
+                          {...field}
                         />
                       </FormControl>
                       <FormMessage />
@@ -133,11 +164,11 @@ const ContactSection = () => {
                     <FormItem>
                       <FormLabel className="text-foreground">Email</FormLabel>
                       <FormControl>
-                        <Input 
+                        <Input
                           type="email"
-                          placeholder="your@email.com" 
+                          placeholder="your@email.com"
                           className="bg-card/50 border-border/50 focus:border-primary/50 transition-colors"
-                          {...field} 
+                          {...field}
                         />
                       </FormControl>
                       <FormMessage />
@@ -151,10 +182,10 @@ const ContactSection = () => {
                     <FormItem>
                       <FormLabel className="text-foreground">Message</FormLabel>
                       <FormControl>
-                        <Textarea 
-                          placeholder="Tell us about your project..." 
+                        <Textarea
+                          placeholder="Tell us about your project..."
                           className="bg-card/50 border-border/50 focus:border-primary/50 transition-colors min-h-[120px] resize-none"
-                          {...field} 
+                          {...field}
                         />
                       </FormControl>
                       <FormMessage />
@@ -165,14 +196,23 @@ const ContactSection = () => {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <Button 
-                    type="submit" 
+                  <Button
+                    type="submit"
                     variant="hero"
                     size="xl"
                     className="w-full"
-                    disabled={isSubmitted}
+                    disabled={isLoading || isSubmitted}
                   >
-                    {isSubmitted ? (
+                    {isLoading ? (
+                      <>
+                        <motion.div
+                          animate={{ rotate: 360 }}
+                          transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
+                          className="w-5 h-5 mr-2 border-2 border-current border-t-transparent rounded-full"
+                        />
+                        Sending...
+                      </>
+                    ) : isSubmitted ? (
                       <>
                         <CheckCircle className="w-5 h-5 mr-2" />
                         Message Sent
@@ -195,7 +235,7 @@ const ContactSection = () => {
           <div className="relative h-[300px] md:h-[400px] flex items-center justify-center perspective-1000">
             {/* Central glow */}
             <div className="absolute w-24 h-24 rounded-full bg-primary/20 blur-xl" />
-            
+
             {/* Orbit path (decorative) */}
             <div className="absolute w-[200px] h-[200px] md:w-[280px] md:h-[280px] rounded-full border border-border/20" />
 
@@ -209,13 +249,13 @@ const ContactSection = () => {
                 <motion.div
                   key={social.name}
                   className="absolute"
-                  initial={{ 
+                  initial={{
                     x: Math.cos((angle * Math.PI) / 180) * radius,
                     y: Math.sin((angle * Math.PI) / 180) * radius,
                     opacity: 0,
                     scale: 0,
                   }}
-                  animate={{ 
+                  animate={{
                     x: Math.cos(((angle + (Date.now() / 50)) * Math.PI) / 180) * radius,
                     y: Math.sin(((angle + (Date.now() / 50)) * Math.PI) / 180) * radius,
                     opacity: 1,
@@ -232,35 +272,42 @@ const ContactSection = () => {
                   onHoverStart={() => setHoveredIcon(social.name)}
                   onHoverEnd={() => setHoveredIcon(null)}
                 >
-                  <motion.div
-                    whileHover={{ scale: 1.3 }}
-                    className="relative cursor-pointer"
+                  <a
+                    href={social.href}
+                    target={social.href.startsWith('mailto:') ? undefined : '_blank'}
+                    rel="noopener noreferrer"
+                    aria-label={social.name}
                   >
                     <motion.div
-                      animate={{
-                        backgroundColor: isHovered ? social.color : 'hsl(var(--card))',
-                        boxShadow: isHovered 
-                          ? `0 0 30px ${social.color}80` 
-                          : '0 0 0 transparent',
-                      }}
-                      transition={{ duration: 0.3 }}
-                      className="w-14 h-14 md:w-16 md:h-16 rounded-2xl border border-border/50 flex items-center justify-center"
+                      whileHover={{ scale: 1.3 }}
+                      className="relative cursor-pointer"
                     >
-                      <social.icon 
-                        className="w-6 h-6 md:w-7 md:h-7 transition-colors duration-300" 
-                        style={{ color: isHovered ? '#fff' : 'hsl(var(--muted-foreground))' }}
-                      />
-                    </motion.div>
+                      <motion.div
+                        animate={{
+                          backgroundColor: isHovered ? social.color : 'hsl(var(--card))',
+                          boxShadow: isHovered
+                            ? `0 0 30px ${social.color}80`
+                            : '0 0 0 transparent',
+                        }}
+                        transition={{ duration: 0.3 }}
+                        className="w-14 h-14 md:w-16 md:h-16 rounded-2xl border border-border/50 flex items-center justify-center"
+                      >
+                        <social.icon
+                          className="w-6 h-6 md:w-7 md:h-7 transition-colors duration-300"
+                          style={{ color: isHovered ? '#fff' : 'hsl(var(--muted-foreground))' }}
+                        />
+                      </motion.div>
 
-                    {/* Platform name tooltip */}
-                    <motion.span
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 10 }}
-                      className="absolute top-full left-1/2 -translate-x-1/2 mt-2 text-xs font-medium whitespace-nowrap text-foreground"
-                    >
-                      {social.name}
-                    </motion.span>
-                  </motion.div>
+                      {/* Platform name tooltip */}
+                      <motion.span
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 10 }}
+                        className="absolute top-full left-1/2 -translate-x-1/2 mt-2 text-xs font-medium whitespace-nowrap text-foreground"
+                      >
+                        {social.name}
+                      </motion.span>
+                    </motion.div>
+                  </a>
                 </motion.div>
               );
             })}
