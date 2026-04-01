@@ -4,18 +4,12 @@ import { ArrowRight, Instagram, Mail, Linkedin, MessageCircle, Facebook, Send, C
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import emailjs from '@emailjs/browser';
 import RevealOnScroll from '../RevealOnScroll';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '../ui/form';
 import { useToast } from '@/hooks/use-toast';
-
-// Replace these with your actual EmailJS credentials from https://dashboard.emailjs.com
-const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';
-const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
-const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
 
 const contactSchema = z.object({
   name: z.string().trim().min(2, { message: "Name must be at least 2 characters" }).max(100, { message: "Name must be less than 100 characters" }),
@@ -33,10 +27,15 @@ const socialIcons = [
   { icon: Facebook, name: 'Facebook', color: '#1877F2', delay: 0.4, href: 'https://www.facebook.com/people/Jinansh%C3%A9-Marketing/61581153410106/' },
 ];
 
+const encode = (data: Record<string, string>) =>
+  Object.keys(data)
+    .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+    .join('&');
+
 const ContactSection = () => {
   const [hoveredIcon, setHoveredIcon] = useState<string | null>(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
   const form = useForm<ContactFormData>({
@@ -51,17 +50,16 @@ const ContactSection = () => {
   const onSubmit = async (data: ContactFormData) => {
     setIsLoading(true);
     try {
-      await emailjs.send(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_ID,
-        {
-          from_name: data.name,
-          from_email: data.email,
+      await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: encode({
+          'form-name': 'contact',
+          name: data.name,
+          email: data.email,
           message: data.message,
-          to_email: 'info.jinanshe@gmail.com',
-        },
-        EMAILJS_PUBLIC_KEY
-      );
+        }),
+      });
       setIsSubmitted(true);
       toast({
         title: "Message sent!",
@@ -70,7 +68,7 @@ const ContactSection = () => {
       form.reset();
       setTimeout(() => setIsSubmitted(false), 3000);
     } catch (error) {
-      console.error('EmailJS error:', error);
+      console.error('Form submission error:', error);
       toast({
         title: "Something went wrong",
         description: "Please try again or contact us directly.",
@@ -131,7 +129,6 @@ const ContactSection = () => {
                 transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
               />
             </motion.a>
-
           </div>
         </RevealOnScroll>
 
@@ -139,7 +136,18 @@ const ContactSection = () => {
         <RevealOnScroll delay={0.2}>
           <div id="contact-form" className="max-w-xl mx-auto mb-20">
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+              <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                name="contact"
+                data-netlify="true"
+                netlify-honeypot="bot-field"
+                className="space-y-6"
+              >
+                {/* Hidden field required by Netlify */}
+                <input type="hidden" name="form-name" value="contact" />
+                {/* Honeypot field — hides spam bots */}
+                <p hidden><input name="bot-field" /></p>
+
                 <FormField
                   control={form.control}
                   name="name"
