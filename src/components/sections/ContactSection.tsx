@@ -71,9 +71,14 @@ const ContactSection = () => {
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-8">
             Ready to build a brand, <span className="text-gradient">not just content?</span>
           </h2>
-          <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto">
+          <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto mb-8">
             If you want marketing that aligns with your vision and grows with your business, let's talk.
           </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-muted-foreground">
+            <span className="flex items-center gap-2">📞 +91 84339 94339</span>
+            <span className="hidden sm:inline">•</span>
+            <span className="flex items-center gap-2">📍 Nashik, Maharashtra, India</span>
+          </div>
         </RevealOnScroll>
 
         {/* CTA Buttons */}

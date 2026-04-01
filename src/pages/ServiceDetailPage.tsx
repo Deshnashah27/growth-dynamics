@@ -447,24 +447,31 @@ const ServiceDetailPage = () => {
 
       {/* Footer */}
       <footer className="py-8 border-t border-border/30">
-        <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-muted-foreground text-sm">
+        <div className="container mx-auto px-6">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-6">
+            <div className="flex flex-col sm:flex-row items-center gap-4 text-muted-foreground text-sm">
+              <span>📞 +91 84339 94339</span>
+              <span className="hidden sm:inline">•</span>
+              <span>📍 Nashik, Maharashtra, India</span>
+            </div>
+            <div className="flex items-center gap-4">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.name}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-9 h-9 rounded-full bg-card border border-border/50 flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/50 transition-all"
+                  aria-label={social.name}
+                >
+                  <social.icon className="w-4 h-4" />
+                </a>
+              ))}
+            </div>
+          </div>
+          <p className="text-muted-foreground text-sm text-center">
             © 2026 Jinanshé. All rights reserved.
           </p>
-          <div className="flex items-center gap-4">
-            {socialLinks.map((social) => (
-              <a
-                key={social.name}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-card border border-border/50 flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/50 transition-all"
-                aria-label={social.name}
-              >
-                <social.icon className="w-4 h-4" />
-              </a>
-            ))}
-          </div>
         </div>
       </footer>
     </div>

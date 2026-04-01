@@ -119,9 +119,7 @@ const AboutSection = () => {
                   </div>
                 </div>
 
-                {/* Subtle bottom accent line */}
-                <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              </motion.div>
+              </div>
             </RevealOnScroll>
           ))}
         </div>
