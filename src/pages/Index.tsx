@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import HeroSection from '../components/sections/HeroSection';
 import ValuesSection from '../components/sections/ValuesSection';
@@ -8,6 +9,21 @@ import AboutSection from '../components/sections/AboutSection';
 import ContactSection from '../components/sections/ContactSection';
 
 const Index = () => {
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (!hash) return;
+    const el = document.getElementById(hash.slice(1));
+    if (el) {
+      // Wait for React to fully render, then scroll to section
+      setTimeout(() => {
+        el.scrollIntoView({ behavior: 'smooth' });
+        // Nudge scroll by 60px after smooth scroll completes so RevealOnScroll
+        // IntersectionObservers (which use margin: -50px) fire correctly
+        setTimeout(() => window.scrollBy({ top: 60, behavior: 'smooth' }), 900);
+      }, 300);
+    }
+  }, []);
+
   return (
     <main className="relative">
       <Navbar />

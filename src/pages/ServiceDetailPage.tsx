@@ -416,13 +416,8 @@ const ServiceDetailPage = () => {
             <h2 className="font-display text-3xl md:text-5xl font-bold mb-6">
               Ready to get started?
             </h2>
-            <motion.button
-              onClick={() => {
-                window.location.href = '/#contact';
-                setTimeout(() => {
-                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-                }, 300);
-              }}
+            <motion.a
+              href="/#contact"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
               className="group relative inline-flex items-center gap-3 px-8 py-4 bg-primary text-primary-foreground font-display font-semibold text-lg rounded-full overflow-hidden transition-all duration-300 mb-4"
@@ -434,7 +429,7 @@ const ServiceDetailPage = () => {
                 {slug === 'ar-experiences' && "Turn Your Customers into Brand Advocates with AR"}
               </span>
               <ArrowUpRight className="relative z-10 w-5 h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-            </motion.button>
+            </motion.a>
             <p className="text-muted-foreground text-base max-w-xl mx-auto mt-4">
               {slug === 'brand-foundation' && "For businesses ready to move from scattered identity to a clear, respected brand."}
               {slug === 'social-media-marketing' && "No random posts. Only content aligned with your vision, values, and long-term goals."}
