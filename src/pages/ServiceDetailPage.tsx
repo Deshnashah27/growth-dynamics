@@ -351,11 +351,6 @@ const ServiceDetailPage = () => {
                       className="max-w-full max-h-full object-contain transition-transform duration-700 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
-                    <div className="absolute top-4 left-4">
-                      <span className="px-3 py-1 rounded-full text-xs font-medium bg-primary/20 text-primary backdrop-blur-sm">
-                        {client.industry}
-                      </span>
-                    </div>
                     {client.images && client.images.length > 1 && (
                       <div className="absolute top-4 right-4">
                         <span className="px-2 py-1 rounded-full text-xs font-medium bg-background/80 text-foreground backdrop-blur-sm">
@@ -421,8 +416,13 @@ const ServiceDetailPage = () => {
             <h2 className="font-display text-3xl md:text-5xl font-bold mb-6">
               Ready to get started?
             </h2>
-            <motion.a
-              href="/#contact"
+            <motion.button
+              onClick={() => {
+                window.location.href = '/#contact';
+                setTimeout(() => {
+                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                }, 300);
+              }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
               className="group relative inline-flex items-center gap-3 px-8 py-4 bg-primary text-primary-foreground font-display font-semibold text-lg rounded-full overflow-hidden transition-all duration-300 mb-4"
@@ -434,7 +434,7 @@ const ServiceDetailPage = () => {
                 {slug === 'ar-experiences' && "Turn Your Customers into Brand Advocates with AR"}
               </span>
               <ArrowUpRight className="relative z-10 w-5 h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-            </motion.a>
+            </motion.button>
             <p className="text-muted-foreground text-base max-w-xl mx-auto mt-4">
               {slug === 'brand-foundation' && "For businesses ready to move from scattered identity to a clear, respected brand."}
               {slug === 'social-media-marketing' && "No random posts. Only content aligned with your vision, values, and long-term goals."}
@@ -447,24 +447,31 @@ const ServiceDetailPage = () => {
 
       {/* Footer */}
       <footer className="py-8 border-t border-border/30">
-        <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-muted-foreground text-sm">
+        <div className="container mx-auto px-6">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-6">
+            <div className="flex flex-col sm:flex-row items-center gap-4 text-muted-foreground text-sm">
+              <span>📞 +91 84339 94339</span>
+              <span className="hidden sm:inline">•</span>
+              <span>📍 Nashik, Maharashtra, India</span>
+            </div>
+            <div className="flex items-center gap-4">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.name}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-9 h-9 rounded-full bg-card border border-border/50 flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/50 transition-all"
+                  aria-label={social.name}
+                >
+                  <social.icon className="w-4 h-4" />
+                </a>
+              ))}
+            </div>
+          </div>
+          <p className="text-muted-foreground text-sm text-center">
             © 2026 Jinanshé. All rights reserved.
           </p>
-          <div className="flex items-center gap-4">
-            {socialLinks.map((social) => (
-              <a
-                key={social.name}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-card border border-border/50 flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/50 transition-all"
-                aria-label={social.name}
-              >
-                <social.icon className="w-4 h-4" />
-              </a>
-            ))}
-          </div>
         </div>
       </footer>
     </div>
