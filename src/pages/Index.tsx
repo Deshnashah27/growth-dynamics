@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import HeroSection from '../components/sections/HeroSection';
@@ -7,19 +7,20 @@ import ServicesSection from '../components/sections/ServicesSection';
 import ProofSection from '../components/sections/ProofSection';
 import ContactSection from '../components/sections/ContactSection';
 import RevealOnScroll from '../components/RevealOnScroll';
+import { scrollToSection } from '../lib/scrollToSection';
 
 const Index = () => {
+  const location = useLocation();
+
+  // Scroll to section when hash changes (handles both initial load and in-page nav)
   useEffect(() => {
-    const hash = window.location.hash;
+    const hash = location.hash;
     if (!hash) return;
-    const el = document.getElementById(hash.slice(1));
-    if (el) {
-      setTimeout(() => {
-        el.scrollIntoView({ behavior: 'smooth' });
-        setTimeout(() => window.scrollBy({ top: 60, behavior: 'smooth' }), 900);
-      }, 300);
-    }
-  }, []);
+    const sectionId = hash.slice(1);
+    // Wait for React to render, then scroll with navbar offset
+    const timer = setTimeout(() => scrollToSection(sectionId), 300);
+    return () => clearTimeout(timer);
+  }, [location.hash]);
 
   return (
     <main className="relative">

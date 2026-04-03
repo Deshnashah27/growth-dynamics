@@ -40,24 +40,15 @@ const ContactSection = () => {
 
   const form = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
-    defaultValues: {
-      name: '',
-      email: '',
-      message: ''
-    }
+    defaultValues: { name: '', email: '', message: '' }
   });
 
   const handleMailClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     const mailtoUrl = 'mailto:info.jinanshe@gmail.com';
     const gmailUrl = 'https://mail.google.com/mail/?view=cm&to=info.jinanshe@gmail.com';
-
     window.location.href = mailtoUrl;
-
-    const timeout = setTimeout(() => {
-      window.open(gmailUrl, '_blank');
-    }, 1000);
-
+    const timeout = setTimeout(() => window.open(gmailUrl, '_blank'), 1000);
     window.addEventListener('blur', () => clearTimeout(timeout), { once: true });
   };
 
@@ -81,11 +72,10 @@ const ContactSection = () => {
       });
       form.reset();
       setTimeout(() => setIsSubmitted(false), 3000);
-    } catch (error) {
-      console.error('Form submission error:', error);
+    } catch {
       toast({
-        title: "Something went wrong",
-        description: "Please try again or contact us directly.",
+        title: "Submission failed",
+        description: "Please reach us directly on WhatsApp (+91 84339 94339) or email info.jinanshe@gmail.com",
         variant: "destructive",
       });
     } finally {
@@ -94,13 +84,10 @@ const ContactSection = () => {
   };
 
   return (
-    <section className="relative py-32 md:py-48 overflow-hidden">
+    <section className="relative py-20 md:py-28 overflow-hidden">
       {/* Gradient background */}
       <div className="absolute inset-0">
-        <div
-          className="absolute inset-0 opacity-60"
-          style={{ background: 'var(--gradient-radial)' }}
-        />
+        <div className="absolute inset-0 opacity-60" style={{ background: 'var(--gradient-radial)' }} />
         <div
           className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] opacity-40"
           style={{ background: 'var(--gradient-glow)' }}
@@ -157,9 +144,7 @@ const ContactSection = () => {
                 netlify-honeypot="bot-field"
                 className="space-y-6"
               >
-                {/* Hidden field required by Netlify */}
                 <input type="hidden" name="form-name" value="contact" />
-                {/* Honeypot field — hides spam bots */}
                 <p hidden><input name="bot-field" /></p>
 
                 <FormField
@@ -169,11 +154,7 @@ const ContactSection = () => {
                     <FormItem>
                       <FormLabel className="text-foreground">Name</FormLabel>
                       <FormControl>
-                        <Input
-                          placeholder="Your name"
-                          className="bg-card/50 border-border/50 focus:border-primary/50 transition-colors"
-                          {...field}
-                        />
+                        <Input placeholder="Your name" className="bg-card/50 border-border/50 focus:border-primary/50 transition-colors" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -186,12 +167,7 @@ const ContactSection = () => {
                     <FormItem>
                       <FormLabel className="text-foreground">Email</FormLabel>
                       <FormControl>
-                        <Input
-                          type="email"
-                          placeholder="your@email.com"
-                          className="bg-card/50 border-border/50 focus:border-primary/50 transition-colors"
-                          {...field}
-                        />
+                        <Input type="email" placeholder="your@email.com" className="bg-card/50 border-border/50 focus:border-primary/50 transition-colors" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -204,27 +180,14 @@ const ContactSection = () => {
                     <FormItem>
                       <FormLabel className="text-foreground">Message</FormLabel>
                       <FormControl>
-                        <Textarea
-                          placeholder="Tell us about your project..."
-                          className="bg-card/50 border-border/50 focus:border-primary/50 transition-colors min-h-[120px] resize-none"
-                          {...field}
-                        />
+                        <Textarea placeholder="Tell us about your project..." className="bg-card/50 border-border/50 focus:border-primary/50 transition-colors min-h-[120px] resize-none" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <Button
-                    type="submit"
-                    variant="hero"
-                    size="xl"
-                    className="w-full"
-                    disabled={isLoading || isSubmitted}
-                  >
+                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                  <Button type="submit" variant="hero" size="xl" className="w-full" disabled={isLoading || isSubmitted}>
                     {isLoading ? (
                       <>
                         <motion.div
@@ -252,86 +215,67 @@ const ContactSection = () => {
           </div>
         </RevealOnScroll>
 
-        {/* 3D Orbiting Social Icons */}
+        {/* Orbiting Social Icons — CSS animation handles the orbit */}
         <RevealOnScroll delay={0.3}>
-          <div className="relative h-[300px] md:h-[400px] flex items-center justify-center perspective-1000">
+          <div className="relative h-[300px] md:h-[360px] flex items-center justify-center">
             {/* Central glow */}
             <div className="absolute w-24 h-24 rounded-full bg-primary/20 blur-xl" />
+            {/* Orbit path */}
+            <div className="absolute w-[240px] h-[240px] rounded-full border border-border/20" />
 
-            {/* Orbit path (decorative) */}
-            <div className="absolute w-[200px] h-[200px] md:w-[280px] md:h-[280px] rounded-full border border-border/20" />
-
-            {/* Social icons */}
             {socialIcons.map((social, index) => {
-              const angle = (index / socialIcons.length) * 360;
-              const radius = 120;
+              const animDuration = 20 + index * 3;
+              const animDelay = -((index / socialIcons.length) * animDuration);
               const isHovered = hoveredIcon === social.name;
 
               return (
-                <motion.div
+                <div
                   key={social.name}
                   className="absolute"
-                  initial={{
-                    x: Math.cos((angle * Math.PI) / 180) * radius,
-                    y: Math.sin((angle * Math.PI) / 180) * radius,
-                    opacity: 0,
-                    scale: 0,
-                  }}
-                  animate={{
-                    x: Math.cos(((angle + (Date.now() / 50)) * Math.PI) / 180) * radius,
-                    y: Math.sin(((angle + (Date.now() / 50)) * Math.PI) / 180) * radius,
-                    opacity: 1,
-                    scale: 1,
-                  }}
-                  transition={{
-                    opacity: { delay: social.delay, duration: 0.5 },
-                    scale: { delay: social.delay, duration: 0.5 },
-                  }}
                   style={{
-                    animation: `orbit ${20 + index * 2}s linear infinite`,
-                    animationDelay: `${-index * 4}s`,
+                    animation: `orbit ${animDuration}s linear infinite`,
+                    animationDelay: `${animDelay}s`,
                   }}
-                  onHoverStart={() => setHoveredIcon(social.name)}
-                  onHoverEnd={() => setHoveredIcon(null)}
+                  onMouseEnter={() => setHoveredIcon(social.name)}
+                  onMouseLeave={() => setHoveredIcon(null)}
                 >
-                  <a
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={social.name}
-                    onClick={social.name === 'Email' ? handleMailClick : undefined}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: social.delay, duration: 0.5 }}
                   >
-                    <motion.div
-                      whileHover={{ scale: 1.3 }}
-                      className="relative cursor-pointer"
+                    <a
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={social.name}
+                      onClick={social.name === 'Email' ? handleMailClick : undefined}
                     >
-                      <motion.div
-                        animate={{
-                          backgroundColor: isHovered ? social.color : 'hsl(var(--card))',
-                          boxShadow: isHovered
-                            ? `0 0 30px ${social.color}80`
-                            : '0 0 0 transparent',
-                        }}
-                        transition={{ duration: 0.3 }}
-                        className="w-14 h-14 md:w-16 md:h-16 rounded-2xl border border-border/50 flex items-center justify-center"
-                      >
-                        <social.icon
-                          className="w-6 h-6 md:w-7 md:h-7 transition-colors duration-300"
-                          style={{ color: isHovered ? '#fff' : 'hsl(var(--muted-foreground))' }}
-                        />
+                      <motion.div whileHover={{ scale: 1.3 }} className="relative cursor-pointer">
+                        <motion.div
+                          animate={{
+                            backgroundColor: isHovered ? social.color : 'hsl(var(--card))',
+                            boxShadow: isHovered ? `0 0 30px ${social.color}80` : '0 0 0 transparent',
+                          }}
+                          transition={{ duration: 0.3 }}
+                          className="w-14 h-14 md:w-16 md:h-16 rounded-2xl border border-border/50 flex items-center justify-center"
+                        >
+                          <social.icon
+                            className="w-6 h-6 md:w-7 md:h-7 transition-colors duration-300"
+                            style={{ color: isHovered ? '#fff' : 'hsl(var(--muted-foreground))' }}
+                          />
+                        </motion.div>
+                        <motion.span
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 10 }}
+                          className="absolute top-full left-1/2 -translate-x-1/2 mt-2 text-xs font-medium whitespace-nowrap text-foreground"
+                        >
+                          {social.name}
+                        </motion.span>
                       </motion.div>
-
-                      {/* Platform name tooltip */}
-                      <motion.span
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 10 }}
-                        className="absolute top-full left-1/2 -translate-x-1/2 mt-2 text-xs font-medium whitespace-nowrap text-foreground"
-                      >
-                        {social.name}
-                      </motion.span>
-                    </motion.div>
-                  </a>
-                </motion.div>
+                    </a>
+                  </motion.div>
+                </div>
               );
             })}
           </div>
@@ -339,7 +283,7 @@ const ContactSection = () => {
 
         {/* Footer info */}
         <RevealOnScroll delay={0.5}>
-          <div className="text-center mt-16 pt-16 border-t border-border/30">
+          <div className="text-center mt-8 pt-8 border-t border-border/30">
             <p className="text-muted-foreground text-sm">
               © 2026 Jinanshé. All rights reserved.
             </p>

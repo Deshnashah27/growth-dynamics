@@ -34,12 +34,23 @@ const ClientWorkModal = ({ isOpen, onClose, client }: ClientWorkModalProps) => {
     return () => clearInterval(timer);
   }, [isOpen, hasMultipleImages, images.length]);
 
-  // Reset index when modal opens
+  // Reset index + lock body scroll + Escape to close
   useEffect(() => {
     if (isOpen) {
       setCurrentImageIndex(0);
+      document.body.style.overflow = 'hidden';
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') onClose();
+      };
+      window.addEventListener('keydown', handleKeyDown);
+      return () => {
+        document.body.style.overflow = '';
+        window.removeEventListener('keydown', handleKeyDown);
+      };
+    } else {
+      document.body.style.overflow = '';
     }
-  }, [isOpen]);
+  }, [isOpen, onClose]);
 
   const goToNextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % images.length);

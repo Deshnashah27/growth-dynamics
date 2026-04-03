@@ -1,49 +1,49 @@
 import { motion } from 'framer-motion';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { ArrowLeft, Check, ArrowUpRight, Palette, Share2, LineChart, Box, Quote, Instagram, Linkedin, Facebook, MessageCircle } from 'lucide-react';
+import { ArrowLeft, ArrowUp, Check, ArrowUpRight, Palette, Share2, LineChart, Box, Quote, Instagram, Linkedin, Facebook, MessageCircle } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import RevealOnScroll from '@/components/RevealOnScroll';
 import ClientWorkModal from '@/components/ClientWorkModal';
 
-// Import logos
-import krushnarpanLogo from '@/assets/logos/krushnarpan-logo.png';
-import evaraLogo from '@/assets/logos/evara-logo.png';
-import absLogo from '@/assets/logos/abs-logo.png';
-import ruaCrystalsMockup from '@/assets/logos/rua-crystals-mockup.png';
-import moryaDevelopersLogo from '@/assets/logos/morya-developers-logo.png';
+// Logo paths (served from public/assets — not bundled into JS)
+const krushnarpanLogo = '/assets/logos/krushnarpan-logo.png';
+const evaraLogo = '/assets/logos/evara-logo.png';
+const absLogo = '/assets/logos/abs-logo.png';
+const ruaCrystalsMockup = '/assets/logos/rua-crystals-mockup.png';
+const moryaDevelopersLogo = '/assets/logos/morya-developers-logo.png';
 
-// Import AR snapcode images
-import pnrSnapcode from '@/assets/ar/pnr-snapcode.png';
-import nivaraSnapcode from '@/assets/ar/nivara-snapcode.png';
-import sunburnSnapcode from '@/assets/ar/sunburn-snapcode.png';
-import peethmartSnapcode from '@/assets/ar/peethmart-snapcode.png';
-import kabraSnapcode from '@/assets/ar/kabra-snapcode.png';
-import durvankurSnapcode from '@/assets/ar/durvankur-snapcode.png';
-import suyogSnapcode from '@/assets/ar/suyog-snapcode.png';
+// AR snapcode paths
+const pnrSnapcode = '/assets/ar/pnr-snapcode.png';
+const nivaraSnapcode = '/assets/ar/nivara-snapcode.png';
+const sunburnSnapcode = '/assets/ar/sunburn-snapcode.png';
+const peethmartSnapcode = '/assets/ar/peethmart-snapcode.png';
+const kabraSnapcode = '/assets/ar/kabra-snapcode.png';
+const durvankurSnapcode = '/assets/ar/durvankur-snapcode.png';
+const suyogSnapcode = '/assets/ar/suyog-snapcode.png';
 
-// Import Wonderful Toyland images
-import wonderfulToylandThumbnail from '@/assets/wonderful-toyland-thumbnail.png';
-import wonderfulToyland1 from '@/assets/wonderful-toyland-1.jpg';
-import wonderfulToyland2 from '@/assets/wonderful-toyland-2.jpg';
-import wonderfulToyland3 from '@/assets/wonderful-toyland-3.jpg';
-import wonderfulToyland4 from '@/assets/wonderful-toyland-4.jpg';
-import wonderfulToyland5 from '@/assets/wonderful-toyland-5.jpg';
-import wonderfulToyland6 from '@/assets/wonderful-toyland-6.jpg';
+// Wonderful Toyland image paths
+const wonderfulToylandThumbnail = '/assets/wonderful-toyland-thumbnail.png';
+const wonderfulToyland1 = '/assets/wonderful-toyland-1.jpg';
+const wonderfulToyland2 = '/assets/wonderful-toyland-2.jpg';
+const wonderfulToyland3 = '/assets/wonderful-toyland-3.jpg';
+const wonderfulToyland4 = '/assets/wonderful-toyland-4.jpg';
+const wonderfulToyland5 = '/assets/wonderful-toyland-5.jpg';
+const wonderfulToyland6 = '/assets/wonderful-toyland-6.jpg';
 
-// Import client thumbnails
-import cafeNivaraThumbnail from '@/assets/thumbnails/cafe-nivara.png';
-import durvankurThumbnail from '@/assets/thumbnails/durvankur.png';
-import kabraFashionistaThumbnail from '@/assets/thumbnails/kabra-fashionista.png';
-import monalisaThumbnail from '@/assets/thumbnails/monalisa.png';
-import oxantoThumbnail from '@/assets/thumbnails/oxanto.png';
-import peethmartThumbnail from '@/assets/thumbnails/peethmart.png';
-import pnrThumbnail from '@/assets/thumbnails/pnr-puff-n-rolls.avif';
-import reliantLabThumbnail from '@/assets/thumbnails/reliant-lab.png';
-import sewahThumbnail from '@/assets/thumbnails/sewah.png';
-import suyogHospitalThumbnail from '@/assets/thumbnails/suyog-hospital.png';
-import theChoupaalThumbnail from '@/assets/thumbnails/the-choupaal.png';
-import sunburnHoliThumbnail from '@/assets/thumbnails/sunburn-holi.png';
+// Client thumbnail paths
+const cafeNivaraThumbnail = '/assets/thumbnails/cafe-nivara.png';
+const durvankurThumbnail = '/assets/thumbnails/durvankur.png';
+const kabraFashionistaThumbnail = '/assets/thumbnails/kabra-fashionista.png';
+const monalisaThumbnail = '/assets/thumbnails/monalisa.png';
+const oxantoThumbnail = '/assets/thumbnails/oxanto.png';
+const peethmartThumbnail = '/assets/thumbnails/peethmart.png';
+const pnrThumbnail = '/assets/thumbnails/pnr-puff-n-rolls.avif';
+const reliantLabThumbnail = '/assets/thumbnails/reliant-lab.png';
+const sewahThumbnail = '/assets/thumbnails/sewah.png';
+const suyogHospitalThumbnail = '/assets/thumbnails/suyog-hospital.png';
+const theChoupaalThumbnail = '/assets/thumbnails/the-choupaal.png';
+const sunburnHoliThumbnail = '/assets/thumbnails/sunburn-holi.png';
 
 interface ClientWork {
   name: string;
@@ -202,19 +202,41 @@ const socialLinks = [
 
 const ServiceDetailPage = () => {
   const { slug } = useParams<{ slug: string }>();
+  const navigate = useNavigate();
   const service = servicesData[slug as keyof typeof servicesData];
   const [selectedClient, setSelectedClient] = useState<ClientWork | null>(null);
+  const [showScrollTop, setShowScrollTop] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [slug]);
 
+  useEffect(() => {
+    const handleScroll = () => setShowScrollTop(window.scrollY > 400);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   if (!service) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="font-display text-4xl font-bold mb-4">Service Not Found</h1>
-          <Link to="/" className="text-primary hover:underline">Return Home</Link>
+      <div className="min-h-screen bg-background text-foreground">
+        <Navbar />
+        <div className="flex items-center justify-center min-h-[80vh] px-6">
+          <div className="text-center max-w-md">
+            <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-8">
+              <Box className="w-8 h-8 text-primary" />
+            </div>
+            <h1 className="font-display text-4xl font-bold mb-4">Service Not Found</h1>
+            <p className="text-muted-foreground mb-8">
+              The service you're looking for doesn't exist. Browse our available services below.
+            </p>
+            <Link
+              to="/#services"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground font-semibold rounded-full hover:scale-105 transition-all"
+            >
+              View All Services
+            </Link>
+          </div>
         </div>
       </div>
     );
@@ -238,13 +260,13 @@ const ServiceDetailPage = () => {
         <div className="absolute inset-0 bg-background/50" />
         
         <div className="container mx-auto px-6 relative z-10">
-          <Link 
-            to="/#services" 
+          <button
+            onClick={() => { navigate('/'); setTimeout(() => { const el = document.getElementById('services'); if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 80, behavior: 'smooth' }); }, 350); }}
             className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-card/80 border border-border/50 text-muted-foreground hover:text-primary hover:border-primary/50 transition-all text-xs absolute top-4 right-6 z-20"
           >
             <ArrowLeft className="w-3 h-3" />
             <span>Back to Services</span>
-          </Link>
+          </button>
 
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -307,7 +329,7 @@ const ServiceDetailPage = () => {
             </h2>
           </RevealOnScroll>
 
-          <div className="grid md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             {service.process.map((step, index) => (
               <RevealOnScroll key={step.step} delay={index * 0.15}>
                 <div className="relative">
@@ -347,7 +369,7 @@ const ServiceDetailPage = () => {
                   <div className="relative h-56 overflow-hidden bg-muted flex items-center justify-center p-6">
                     <motion.img
                       src={client.image}
-                      alt={`${client.name} project`}
+                      alt={`${client.name} — ${client.industry}`}
                       className="max-w-full max-h-full object-contain transition-transform duration-700 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
@@ -394,7 +416,7 @@ const ServiceDetailPage = () => {
                 <RevealOnScroll key={index} delay={index * 0.1}>
                   <div className="p-8 rounded-2xl bg-card border border-border/50">
                     <Quote className="w-8 h-8 text-primary/40 mb-4" />
-                    <p className="text-foreground text-lg mb-6 leading-relaxed">
+                    <p className="text-foreground text-lg mb-6 leading-relaxed line-clamp-5">
                       "{testimonial.quote}"
                     </p>
                     <div>
@@ -439,6 +461,17 @@ const ServiceDetailPage = () => {
           </RevealOnScroll>
         </div>
       </section>
+
+      {/* Scroll-to-top button */}
+      <motion.button
+        animate={{ scale: showScrollTop ? 1 : 0, opacity: showScrollTop ? 1 : 0 }}
+        transition={{ type: 'spring', damping: 15 }}
+        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        className="fixed bottom-24 right-6 z-40 w-12 h-12 rounded-full bg-card border border-border/50 flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/50 shadow-lg transition-colors"
+        aria-label="Scroll to top"
+      >
+        <ArrowUp className="w-5 h-5" />
+      </motion.button>
 
       {/* Footer */}
       <footer className="py-8 border-t border-border/30">

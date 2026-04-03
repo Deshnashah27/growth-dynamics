@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import RevealOnScroll from '../RevealOnScroll';
-import deshnaShah from '@/assets/deshna-shah.jpg';
-import pavanMundaware from '@/assets/pavan-mundaware.jpg';
+const deshnaShah = '/assets/deshna-shah.jpg';
+const pavanMundaware = '/assets/pavan-mundaware.jpg';
 
 const founders = [
   {

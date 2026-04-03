@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__Claude_Preview__preview_start",
+      "Bash(export PATH=\"$PATH:/opt/homebrew/bin:/usr/local/bin\")",
+      "Bash(npm run:*)",
+      "Bash(git push:*)",
+      "Bash(npm install:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
+    ]
+  }
+}
