@@ -254,7 +254,7 @@ const ContactSection = () => {
                       <motion.div whileHover={{ scale: 1.3 }} className="relative cursor-pointer">
                         <motion.div
                           animate={{
-                            backgroundColor: isHovered ? social.color : 'hsl(var(--card))',
+                            backgroundColor: isHovered ? social.color : '#121212',
                             boxShadow: isHovered ? `0 0 30px ${social.color}80` : '0 0 0 transparent',
                           }}
                           transition={{ duration: 0.3 }}
