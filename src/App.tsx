@@ -8,6 +8,7 @@ import FloatingWhatsApp from "./components/FloatingWhatsApp";
 
 const Index = React.lazy(() => import('./pages/Index'));
 const AboutPage = React.lazy(() => import('./pages/AboutPage'));
+const ProcessPage = React.lazy(() => import('./pages/ProcessPage'));
 const ServiceDetailPage = React.lazy(() => import('./pages/ServiceDetailPage'));
 const NotFound = React.lazy(() => import('./pages/NotFound'));
 
@@ -23,6 +24,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/about" element={<AboutPage />} />
+            <Route path="/process" element={<ProcessPage />} />
             <Route path="/services/:slug" element={<ServiceDetailPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

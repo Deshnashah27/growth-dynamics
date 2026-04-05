@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
-import { Search, Target, Palette, Rocket, TrendingUp } from 'lucide-react';
+import { Search, Target, Palette, Rocket, TrendingUp, ArrowUpRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import RevealOnScroll from '../RevealOnScroll';
 
 const steps = [
@@ -31,7 +32,7 @@ const steps = [
   {
     number: '05',
     icon: TrendingUp,
-    title: 'Optimization',
+    title: 'Optimisation',
     description: 'Refining direction through insights, not trends',
   },
 ];
@@ -64,7 +65,7 @@ const FunnelSection = () => {
         <div className="relative max-w-5xl mx-auto">
           {/* Progress line */}
           <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-border -translate-x-1/2 hidden md:block">
-            <motion.div 
+            <motion.div
               className="absolute top-0 left-0 w-full bg-gradient-to-b from-primary via-primary to-primary/50"
               style={{ height: lineProgress }}
             />
@@ -72,14 +73,14 @@ const FunnelSection = () => {
 
           {/* Mobile progress line */}
           <div className="absolute left-8 top-0 bottom-0 w-px bg-border md:hidden">
-            <motion.div 
+            <motion.div
               className="absolute top-0 left-0 w-full bg-gradient-to-b from-primary via-primary to-primary/50"
               style={{ height: lineProgress }}
             />
           </div>
 
           {steps.map((step, index) => (
-            <RevealOnScroll 
+            <RevealOnScroll
               key={step.number}
               delay={index * 0.1}
               direction={index % 2 === 0 ? 'left' : 'right'}
@@ -87,15 +88,17 @@ const FunnelSection = () => {
               <div className={`relative flex items-start gap-8 mb-16 last:mb-0 ${
                 index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
               }`}>
-                {/* Step indicator */}
+                {/* Step indicator — links to /process */}
                 <div className="absolute left-8 md:left-1/2 -translate-x-1/2 z-10">
-                  <motion.div
-                    whileHover={{ scale: 1.2 }}
-                    className="w-16 h-16 rounded-full bg-card border-2 border-primary flex items-center justify-center shadow-lg"
-                    style={{ boxShadow: 'var(--shadow-glow)' }}
-                  >
-                    <step.icon className="w-6 h-6 text-primary" />
-                  </motion.div>
+                  <Link to="/process">
+                    <motion.div
+                      whileHover={{ scale: 1.2 }}
+                      className="w-16 h-16 rounded-full bg-card border-2 border-primary flex items-center justify-center shadow-lg cursor-pointer"
+                      style={{ boxShadow: 'var(--shadow-glow)' }}
+                    >
+                      <step.icon className="w-6 h-6 text-primary" />
+                    </motion.div>
+                  </Link>
                 </div>
 
                 {/* Content card */}
@@ -125,6 +128,18 @@ const FunnelSection = () => {
             </RevealOnScroll>
           ))}
         </div>
+
+        {/* See Our Process CTA */}
+        <RevealOnScroll delay={0.3}>
+          <div className="text-center mt-16">
+            <Link
+              to="/process"
+              className="inline-flex items-center gap-2 text-primary font-medium hover:gap-3 transition-all duration-300"
+            >
+              See Our Process <ArrowUpRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </RevealOnScroll>
       </div>
     </section>
   );

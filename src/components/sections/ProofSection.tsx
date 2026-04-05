@@ -1,14 +1,15 @@
 import { useRef, useEffect, useState } from 'react';
 import { useInView } from 'framer-motion';
 import { motion } from 'framer-motion';
-import { ArrowUpRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
 import RevealOnScroll from '../RevealOnScroll';
 
 const stats = [
   { number: 170, suffix: '+', label: 'Qualified Leads in 45 Days' },
   { number: 3, suffix: 'x', label: 'Stronger Engagement in 60 Days' },
-  { number: 41.7, suffix: 'M+', label: 'Total Plays Across AR Filters', decimals: 1 },
+  { number: 41.7, suffix: 'M+', label: 'Total Plays Across Filters', decimals: 1 },
+  { number: 56.2, suffix: 'M+', label: 'Views Generated via Snapchat', decimals: 1 },
+  { number: 24.5, suffix: 'M+', label: 'Audience Reach Achieved', decimals: 1 },
+  { number: 135, suffix: '+', label: 'Snapchat AR Filters Created' },
 ];
 
 const AnimatedCounter = ({ target, suffix, decimals = 0 }: { target: number; suffix: string; decimals?: number }) => {
@@ -59,7 +60,7 @@ const ProofSection = () => {
           </h2>
         </RevealOnScroll>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 lg:gap-8 max-w-4xl mx-auto mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-6 lg:gap-8 max-w-4xl mx-auto">
           {stats.map((stat, index) => (
             <RevealOnScroll key={stat.label} delay={index * 0.1}>
               <motion.div
@@ -76,17 +77,6 @@ const ProofSection = () => {
             </RevealOnScroll>
           ))}
         </div>
-
-        <RevealOnScroll>
-          <div className="text-center">
-            <Link
-              to="/services/ar-experiences"
-              className="inline-flex items-center gap-2 text-primary font-medium hover:gap-3 transition-all duration-300"
-            >
-              View All Results <ArrowUpRight className="w-4 h-4" />
-            </Link>
-          </div>
-        </RevealOnScroll>
       </div>
     </section>
   );

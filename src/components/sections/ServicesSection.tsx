@@ -7,25 +7,53 @@ const services = [
   {
     title: 'Brand Foundation',
     slug: 'brand-foundation',
+    tagline: 'Build a brand identity that lasts',
     description: 'Clear brand positioning and identity. Visual and narrative consistency across platforms.',
+    features: [
+      'Brand positioning & messaging',
+      'Visual identity system',
+      'Tone of voice guidelines',
+      'Cross-platform consistency',
+    ],
     gradient: 'from-amber-500/10 via-orange-500/5 to-transparent',
   },
   {
     title: 'Social Media Brand Engine',
     slug: 'social-media-marketing',
+    tagline: 'Content that builds community, not just impressions',
     description: 'Story-driven reels, educational carousels, and value-based content published with intent.',
+    features: [
+      'Story-driven reels & carousels',
+      'Content calendar & strategy',
+      'Community engagement systems',
+      'Platform-specific optimisation',
+    ],
     gradient: 'from-primary/10 via-yellow-500/5 to-transparent',
   },
   {
     title: 'Growth Systems',
     slug: 'sales-lead-generation',
+    tagline: 'Turn your audience into customers, consistently',
     description: 'Structured systems for discovery, trust, conversion, and long-term business credibility.',
+    features: [
+      'Lead generation frameworks',
+      'Conversion funnel design',
+      'Sales pipeline integration',
+      'Performance tracking & reporting',
+    ],
     gradient: 'from-yellow-500/10 via-amber-500/5 to-transparent',
   },
   {
     title: 'AR Experiences',
     slug: 'ar-experiences',
+    tagline: 'Turn your customers into brand advocates',
     description: 'Custom AR filters that turn your audience into active brand participants.',
+    features: [
+      'Custom Snapchat AR filters',
+      'Instagram AR effects',
+      'Campaign & product integration',
+      'Real-time analytics',
+    ],
     gradient: 'from-purple-500/10 via-pink-500/5 to-transparent',
   },
 ];
@@ -64,14 +92,25 @@ const ServicesSection = () => {
                     <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-700`} />
 
                     <div className="relative z-10 flex flex-col flex-1">
+                      <p className="text-primary text-xs tracking-[0.2em] uppercase font-medium mb-3">
+                        {service.tagline}
+                      </p>
                       <h3 className="font-display text-2xl font-bold mb-4 group-hover:text-primary transition-colors duration-300">
                         {service.title}
                       </h3>
-                      <p className="text-muted-foreground leading-relaxed flex-1">
+                      <p className="text-muted-foreground leading-relaxed mb-6">
                         {service.description}
                       </p>
-                      <div className="mt-8 flex items-center gap-2 text-primary font-medium group/btn">
-                        <span>Learn More</span>
+                      <ul className="space-y-2 mb-8 flex-1">
+                        {service.features.map((feature) => (
+                          <li key={feature} className="flex items-center gap-2 text-sm text-muted-foreground">
+                            <span className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
+                            {feature}
+                          </li>
+                        ))}
+                      </ul>
+                      <div className="flex items-center gap-2 text-primary font-medium group/btn">
+                        <span>View Details</span>
                         <ArrowUpRight className="w-4 h-4 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
                       </div>
                     </div>

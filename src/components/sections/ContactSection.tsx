@@ -27,6 +27,21 @@ const socialIcons = [
   { icon: Facebook, name: 'Facebook', color: '#1877F2', delay: 0.4, href: 'https://www.facebook.com/people/Jinansh%C3%A9-Marketing/61581153410106/' },
 ];
 
+const ORBIT_RADIUS = 120;
+
+const getOrbitKeyframes = (index: number, total: number) => {
+  const startAngle = (index / total) * 2 * Math.PI;
+  const steps = 8;
+  const xs: number[] = [];
+  const ys: number[] = [];
+  for (let i = 0; i <= steps; i++) {
+    const angle = startAngle + (i / steps) * 2 * Math.PI;
+    xs.push(Math.round(ORBIT_RADIUS * Math.cos(angle)));
+    ys.push(Math.round(ORBIT_RADIUS * Math.sin(angle)));
+  }
+  return { x: xs, y: ys };
+};
+
 const encode = (data: Record<string, string>) =>
   Object.keys(data)
     .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
@@ -215,7 +230,7 @@ const ContactSection = () => {
           </div>
         </RevealOnScroll>
 
-        {/* Orbiting Social Icons — CSS animation handles the orbit */}
+        {/* Orbiting Social Icons — framer-motion x/y keyframe orbit */}
         <RevealOnScroll delay={0.3}>
           <div className="relative h-[300px] md:h-[360px] flex items-center justify-center">
             {/* Central glow */}
@@ -224,25 +239,26 @@ const ContactSection = () => {
             <div className="absolute w-[240px] h-[240px] rounded-full border border-border/20" />
 
             {socialIcons.map((social, index) => {
+              const { x, y } = getOrbitKeyframes(index, socialIcons.length);
               const animDuration = 20 + index * 3;
-              const animDelay = -((index / socialIcons.length) * animDuration);
               const isHovered = hoveredIcon === social.name;
 
               return (
-                <div
+                <motion.div
                   key={social.name}
                   className="absolute"
-                  style={{
-                    animation: `orbit ${animDuration}s linear infinite`,
-                    animationDelay: `${animDelay}s`,
+                  animate={{ x, y }}
+                  transition={{
+                    x: { repeat: Infinity, ease: 'linear', duration: animDuration },
+                    y: { repeat: Infinity, ease: 'linear', duration: animDuration },
                   }}
-                  onMouseEnter={() => setHoveredIcon(social.name)}
-                  onMouseLeave={() => setHoveredIcon(null)}
                 >
                   <motion.div
                     initial={{ opacity: 0, scale: 0 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: social.delay, duration: 0.5 }}
+                    onMouseEnter={() => setHoveredIcon(social.name)}
+                    onMouseLeave={() => setHoveredIcon(null)}
                   >
                     <a
                       href={social.href}
@@ -275,7 +291,7 @@ const ContactSection = () => {
                       </motion.div>
                     </a>
                   </motion.div>
-                </div>
+                </motion.div>
               );
             })}
           </div>

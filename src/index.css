@@ -144,9 +144,3 @@
     background: hsl(var(--muted-foreground));
   }
 }
-
-/* Social icon orbit animation */
-@keyframes orbit {
-  from { transform: rotate(0deg) translateX(120px) rotate(0deg); }
-  to   { transform: rotate(360deg) translateX(120px) rotate(-360deg); }
-}
